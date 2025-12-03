@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fintech Design System - Professional & Trustworthy */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Financial Trust Theme */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 15%;
+
+    /* Card & Surface Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    --card-elevated: 220 20% 98%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+
+    /* Primary Brand - Orange */
+    --primary: 33 93% 54%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 33 85% 64%;
+    --primary-dark: 33 100% 44%;
+
+    /* Secondary - Light Professional Blue */
+    --secondary: 215 25% 95%;
+    --secondary-foreground: 220 85% 25%;
+
+    /* Muted Tones */
+    --muted: 215 15% 96%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Accent - Red */
+    --accent: 357 99% 45%;
+    --accent-foreground: 0 0% 98%;
+    --accent-light: 357 90% 55%;
+
+    /* Status Colors */
+    --success: 145 85% 35%;
+    --success-foreground: 0 0% 98%;
+    --warning: 35 85% 55%;
+    --warning-foreground: 220 15% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* UI Elements */
+    --border: 215 15% 88%;
+    --input: 215 15% 88%;
+    --ring: 33 93% 54%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+
+    /* Shadows */
+    --shadow-soft: 0 2px 10px hsl(var(--primary) / 0.1);
+    --shadow-medium: 0 8px 30px hsl(var(--primary) / 0.15);
+    --shadow-strong: 0 20px 40px hsl(var(--primary) / 0.2);
+    --shadow-accent: 0 8px 25px hsl(var(--accent) / 0.25);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+
+    /* Sidebar Colors */
+    --sidebar-background: 215 25% 97%;
+    --sidebar-foreground: 220 15% 25%;
+    --sidebar-primary: 220 85% 25%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 215 20% 92%;
+    --sidebar-accent-foreground: 220 85% 25%;
+    --sidebar-border: 215 15% 88%;
+    --sidebar-ring: 220 85% 25%;
+  }
+
+  .dark {
+    /* Dark Mode Colors */
+    --background: 220 25% 8%;
+    --foreground: 220 15% 92%;
+    --card: 220 25% 10%;
+    --card-foreground: 220 15% 92%;
+    --card-elevated: 220 25% 12%;
+    --popover: 220 25% 10%;
+    --popover-foreground: 220 15% 92%;
+    --primary: 33 85% 64%;
+    --primary-foreground: 220 25% 8%;
+    --primary-light: 33 80% 74%;
+    --primary-dark: 33 100% 44%;
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 220 75% 65%;
+    --muted: 220 20% 13%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 357 90% 55%;
+    --accent-foreground: 0 0% 98%;
+    --accent-light: 357 85% 65%;
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 33 85% 64%;
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 220 15% 85%;
+    --sidebar-primary: 220 75% 65%;
+    --sidebar-primary-foreground: 220 25% 8%;
+    --sidebar-accent: 220 20% 15%;
+    --sidebar-accent-foreground: 220 75% 65%;
+    --sidebar-border: 220 20% 18%;
+    --sidebar-ring: 220 75% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom Component Classes */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .card-elevated {
+    background: hsl(var(--card-elevated));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Custom Animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0px); 
+    }
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+  }
+}
