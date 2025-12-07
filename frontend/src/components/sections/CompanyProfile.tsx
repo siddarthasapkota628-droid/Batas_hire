@@ -79,7 +79,7 @@ const CompanyProfile = () => {
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        
+
         {/* Board of Directors */}
         <div className="mb-20">
           <div className="text-center mb-12">
@@ -97,7 +97,7 @@ const CompanyProfile = () => {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-foreground mb-1">{member.name}</h3>
                     <p className="text-primary font-medium mb-2">{member.position}</p>
-                    
+
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center gap-2">
                         <Briefcase className="w-4 h-4 text-muted-foreground" />
@@ -158,7 +158,7 @@ const CompanyProfile = () => {
                 <div key={index} className={`relative flex items-center mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                   {/* Timeline Dot */}
                   <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary rounded-full transform md:-translate-x-2 z-10"></div>
-                  
+
                   {/* Content */}
                   <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
                     <Card className="p-6">
