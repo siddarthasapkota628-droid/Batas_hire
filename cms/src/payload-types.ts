@@ -254,6 +254,7 @@ export interface Page {
   };
   directors?:
     | {
+        photo: number | Media;
         name: string;
         position: string;
         experience?: string | null;
@@ -264,6 +265,7 @@ export interface Page {
     | null;
   leadership?:
     | {
+        photo: number | Media;
         name: string;
         position: string;
         department?: string | null;
@@ -1243,6 +1245,7 @@ export interface PagesSelect<T extends boolean = true> {
   directors?:
     | T
     | {
+        photo?: T;
         name?: T;
         position?: T;
         experience?: T;
@@ -1253,6 +1256,7 @@ export interface PagesSelect<T extends boolean = true> {
   leadership?:
     | T
     | {
+        photo?: T;
         name?: T;
         position?: T;
         department?: T;

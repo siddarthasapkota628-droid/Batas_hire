@@ -226,6 +226,7 @@ export const Pages: CollectionConfig<'pages'> = {
                       minRows: 4,
                       maxRows: 4,
                       fields: [
+                        { name: 'photo', type: 'upload', relationTo: 'media', required: true },
                         { name: 'name', type: 'text', required: true },
                         { name: 'position', type: 'text', required: true },
                         { name: 'experience', type: 'text' },
@@ -240,6 +241,7 @@ export const Pages: CollectionConfig<'pages'> = {
                       minRows: 4,
                       maxRows: 4,
                       fields: [
+                        { name: 'photo', type: 'upload', relationTo: 'media', required: true },
                         { name: 'name', type: 'text', required: true },
                         { name: 'position', type: 'text', required: true },
                         { name: 'department', type: 'text' },

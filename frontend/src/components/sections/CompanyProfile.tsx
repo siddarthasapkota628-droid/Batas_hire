@@ -1,9 +1,16 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { User, Award, Briefcase, GraduationCap } from 'lucide-react';
+import { User, Award, Briefcase, GraduationCap, Loader2 } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { getPages } from '@/lib/api';
 
 const CompanyProfile = () => {
-  const boardMembers = [
+  const { data: pageData, isLoading } = useQuery({
+    queryKey: ['pages', 'about'],
+    queryFn: getPages,
+  });
+
+  const staticBoardMembers = [
     {
       name: "Rajesh Adhikari",
       position: "Chairman & Managing Director",
@@ -34,7 +41,7 @@ const CompanyProfile = () => {
     }
   ];
 
-  const leadership = [
+  const staticLeadership = [
     {
       name: "Bikash Shrestha",
       position: "Chief Technology Officer",
@@ -76,6 +83,30 @@ const CompanyProfile = () => {
     { year: "2024", event: "₹5000 Cr AUM", description: "Achieved Rs. 5000 crores in Assets Under Management" }
   ];
 
+  // Safely access CMS data
+  const cmsData = pageData?.docs?.[0] || {};
+
+  // Use CMS data if available and has rows, otherwise fallback to static
+  const boardMembers = (cmsData.directors && cmsData.directors.length > 0) ? cmsData.directors : staticBoardMembers;
+  const leadership = (cmsData.leadership && cmsData.leadership.length > 0) ? cmsData.leadership : staticLeadership;
+
+  // Helper to get image URL
+  const getImageUrl = (photo: any) => {
+    if (photo && photo.url) {
+      // payload usually returns relative URL
+      return `http://localhost:3000${photo.url}`;
+    }
+    return null;
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -88,34 +119,54 @@ const CompanyProfile = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {boardMembers.map((member, index) => (
-              <Card key={index} className="p-6 hover:shadow-strong transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center flex-shrink-0">
-                    <User className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-foreground mb-1">{member.name}</h3>
-                    <p className="text-primary font-medium mb-2">{member.position}</p>
+            {boardMembers.map((member: any, index: number) => {
+              const imageUrl = getImageUrl(member.photo);
 
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center gap-2">
-                        <Briefcase className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-muted-foreground">{member.experience}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <GraduationCap className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-muted-foreground">{member.education}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Award className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-muted-foreground">{member.specialization}</span>
+              return (
+                <Card key={index} className="p-6 hover:shadow-strong transition-shadow">
+                  <div className="flex items-start gap-4">
+                    <div className="w-16 h-16 rounded-full flex-shrink-0 overflow-hidden bg-primary/10 flex items-center justify-center">
+                      {imageUrl ? (
+                        <img
+                          src={imageUrl}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="text-primary">
+                          <User className="w-8 h-8" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-foreground mb-1">{member.name}</h3>
+                      <p className="text-primary font-medium mb-2">{member.position}</p>
+
+                      <div className="space-y-2 text-sm">
+                        {member.experience && (
+                          <div className="flex items-center gap-2">
+                            <Briefcase className="w-4 h-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">{member.experience}</span>
+                          </div>
+                        )}
+                        {member.education && (
+                          <div className="flex items-center gap-2">
+                            <GraduationCap className="w-4 h-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">{member.education}</span>
+                          </div>
+                        )}
+                        {member.specialization && (
+                          <div className="flex items-center gap-2">
+                            <Award className="w-4 h-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">{member.specialization}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
         </div>
 
@@ -127,22 +178,42 @@ const CompanyProfile = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {leadership.map((leader, index) => (
-              <Card key={index} className="p-6 text-center hover:scale-105 transition-transform">
-                <div className="w-16 h-16 bg-accent/10 text-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <User className="w-8 h-8" />
-                </div>
-                <h3 className="font-semibold text-foreground mb-1">{leader.name}</h3>
-                <p className="text-sm text-primary font-medium mb-2">{leader.position}</p>
-                <Badge variant="outline" className="mb-2 text-xs">{leader.department}</Badge>
-                <p className="text-xs text-muted-foreground mb-1">{leader.experience}</p>
-                <p className="text-xs text-muted-foreground">{leader.expertise}</p>
-              </Card>
-            ))}
+            {leadership.map((leader: any, index: number) => {
+              const imageUrl = getImageUrl(leader.photo);
+
+              return (
+                <Card key={index} className="p-6 text-center hover:scale-105 transition-transform">
+                  <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden bg-accent/10 flex items-center justify-center">
+                    {imageUrl ? (
+                      <img
+                        src={imageUrl}
+                        alt={leader.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="text-accent">
+                        <User className="w-8 h-8" />
+                      </div>
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-1">{leader.name}</h3>
+                  <p className="text-sm text-primary font-medium mb-2">{leader.position}</p>
+                  {leader.department && (
+                    <Badge variant="outline" className="mb-2 text-xs">{leader.department}</Badge>
+                  )}
+                  {leader.experience && (
+                    <p className="text-xs text-muted-foreground mb-1">{leader.experience}</p>
+                  )}
+                  {leader.expertise && (
+                    <p className="text-xs text-muted-foreground">{leader.expertise}</p>
+                  )}
+                </Card>
+              );
+            })}
           </div>
         </div>
 
-        {/* Company Timeline */}
+        {/* Company Timeline - Keep Static for now as requested */}
         <div>
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-foreground mb-4">22 Years of Growth</h2>
