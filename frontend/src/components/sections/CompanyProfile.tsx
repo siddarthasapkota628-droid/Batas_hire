@@ -2,12 +2,12 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { User, Award, Briefcase, GraduationCap, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { getPages } from '@/lib/api';
+import { getAboutPage } from '@/lib/api';
 
 const CompanyProfile = () => {
-  const { data: pageData, isLoading } = useQuery({
-    queryKey: ['pages', 'about'],
-    queryFn: getPages,
+  const { data: pageData, isLoading, error } = useQuery({
+    queryKey: ['aboutPage'],
+    queryFn: getAboutPage,
   });
 
   const staticBoardMembers = [
@@ -72,7 +72,7 @@ const CompanyProfile = () => {
     }
   ];
 
-  const milestones = [
+  const staticMilestones = [
     { year: "2002", event: "Company Incorporated", description: "Batas Hire and Purchase founded with vision to democratize credit" },
     { year: "2005", event: "NBFC License", description: "Obtained NBFC license from NRB" },
     { year: "2010", event: "₹100 Cr AUM", description: "Reached ₹100 crores in Assets Under Management" },
@@ -89,6 +89,7 @@ const CompanyProfile = () => {
   // Use CMS data if available and has rows, otherwise fallback to static
   const boardMembers = (cmsData.directors && cmsData.directors.length > 0) ? cmsData.directors : staticBoardMembers;
   const leadership = (cmsData.leadership && cmsData.leadership.length > 0) ? cmsData.leadership : staticLeadership;
+  const milestones = (cmsData.timeline && cmsData.timeline.length > 0) ? cmsData.timeline : staticMilestones;
 
   // Helper to get image URL
   const getImageUrl = (photo: any) => {
@@ -101,10 +102,15 @@ const CompanyProfile = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center py-20">
+      <section className="py-20 bg-background text-foreground container mx-auto px-4 flex justify-center items-center">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
+      </section>
     );
+  }
+
+  if (error) {
+    console.error("Error fetching about page:", error);
+    // Don't render error UI, just use static data
   }
 
   return (
@@ -114,8 +120,8 @@ const CompanyProfile = () => {
         {/* Board of Directors */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Board of Directors</h2>
-            <p className="text-xl text-muted-foreground">Experienced leadership guiding our strategic vision</p>
+            <h2 className="text-4xl font-bold text-foreground mb-4">{cmsData.directorsTitle || "Board of Directors"}</h2>
+            <p className="text-xl text-muted-foreground">{cmsData.directorsDescription || "Experienced leadership guiding our strategic vision"}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -173,8 +179,8 @@ const CompanyProfile = () => {
         {/* Leadership Team */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Leadership Team</h2>
-            <p className="text-xl text-muted-foreground">Meet our executive team driving operational excellence</p>
+            <h2 className="text-4xl font-bold text-foreground mb-4">{cmsData.leadershipTitle || "Leadership Team"}</h2>
+            <p className="text-xl text-muted-foreground">{cmsData.leadershipDescription || "Meet our executive team driving operational excellence"}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -216,8 +222,8 @@ const CompanyProfile = () => {
         {/* Company Timeline - Keep Static for now as requested */}
         <div>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">22 Years of Growth</h2>
-            <p className="text-xl text-muted-foreground">Our journey from inception to industry leadership</p>
+            <h2 className="text-4xl font-bold text-foreground mb-4">{cmsData.timelineTitle || "22 Years of Growth"}</h2>
+            <p className="text-xl text-muted-foreground">{cmsData.timelineDescription || "Our journey from inception to industry leadership"}</p>
           </div>
 
           <div className="max-w-4xl mx-auto">

@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Target, Eye, Users, Award, ArrowRight, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { getPages } from '@/lib/api';
+import { getAboutPage } from '@/lib/api';
 
 const iconMap: Record<string, React.ReactNode> = {
   Target: <Target className="w-6 h-6" />,
@@ -13,8 +13,8 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const About = () => {
   const { data: pageData, isLoading, error } = useQuery({
-    queryKey: ['pages', 'about'],
-    queryFn: getPages,
+    queryKey: ['aboutPage'],
+    queryFn: getAboutPage,
   });
 
   if (isLoading) {

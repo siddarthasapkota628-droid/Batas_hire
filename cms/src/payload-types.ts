@@ -158,7 +158,7 @@ export interface Page {
   id: number;
   title: string;
   publishedAt?: string | null;
-  template?: ('default' | 'about') | null;
+  template?: ('default' | 'about' | 'services' | 'home') | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -252,6 +252,8 @@ export interface Page {
     title?: string | null;
     description?: string | null;
   };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
   directors?:
     | {
         photo: number | Media;
@@ -263,6 +265,8 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
   leadership?:
     | {
         photo: number | Media;
@@ -274,11 +278,22 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
   timeline?:
     | {
         year: string;
         event: string;
         description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
         id?: string | null;
       }[]
     | null;
@@ -304,6 +319,33 @@ export interface Page {
   badge3?: {
     text?: string | null;
   };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -1242,6 +1284,8 @@ export interface PagesSelect<T extends boolean = true> {
         title?: T;
         description?: T;
       };
+  directorsTitle?: T;
+  directorsDescription?: T;
   directors?:
     | T
     | {
@@ -1253,6 +1297,8 @@ export interface PagesSelect<T extends boolean = true> {
         specialization?: T;
         id?: T;
       };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
   leadership?:
     | T
     | {
@@ -1264,12 +1310,23 @@ export interface PagesSelect<T extends boolean = true> {
         expertise?: T;
         id?: T;
       };
+  timelineTitle?: T;
+  timelineDescription?: T;
   timeline?:
     | T
     | {
         year?: T;
         event?: T;
         description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
         id?: T;
       };
   testimonials?:
@@ -1299,6 +1356,33 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
       };
   meta?:
     | T

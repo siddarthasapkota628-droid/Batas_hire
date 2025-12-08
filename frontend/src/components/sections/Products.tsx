@@ -1,25 +1,91 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowRight, ShoppingCart, Car, Clock, Percent, CheckCircle, CreditCard } from 'lucide-react';
+import {
+  ArrowRight,
+  ShoppingCart,
+  Car,
+  Clock,
+  Percent,
+  CheckCircle,
+  CreditCard,
+  Home,
+  Briefcase
+} from 'lucide-react';
+
 import bnplImage from '@/assets/bnpl-concept.jpg';
 import vehicleImage from '@/assets/vehicle-finance.jpg';
 
-const Products = () => {
-  const bnplFeatures = [
-    "Shop now, pay in 3-12 monthly installments",
-    "0% interest for first 3 months", 
-    "Instant approval in 2 minutes",
-    "Available at 10,000+ partner merchants",
-    "Credit limit up to ₹5 lakhs"
+const iconMap: Record<string, any> = {
+  ShoppingCart,
+  Car,
+  Home,
+  Briefcase,
+  CreditCard,
+  Clock,
+  Percent,
+  CheckCircle
+};
+
+interface ProductsProps {
+  cmsData?: any;
+}
+
+const Products = ({ cmsData = {} }: ProductsProps) => {
+  // Static Data (Fallback)
+  const defaultProducts = [
+    {
+      title: "Buy Now Pay Later",
+      subtitle: "Shop today, pay flexibly tomorrow",
+      image: bnplImage,
+      icon: "ShoppingCart",
+      ctaText: "Apply for BNPL",
+      secondaryCtaText: "Learn More",
+      features: [
+        { text: "Shop now, pay in 3-12 monthly installments" },
+        { text: "0% interest for first 3 months" },
+        { text: "Instant approval in 2 minutes" },
+        { text: "Available at 10,000+ partner merchants" },
+        { text: "Credit limit up to ₹5 lakhs" }
+      ],
+      stats: [
+        { icon: "Clock", value: "2 Minutes", label: "Approval Time" },
+        { icon: "Percent", value: "0% Interest", label: "First 3 Months" }
+      ]
+    },
+    {
+      title: "Vehicle Hire Purchase",
+      subtitle: "Drive your dream vehicle today",
+      image: vehicleImage,
+      icon: "Car",
+      ctaText: "Apply for Vehicle Loan",
+      secondaryCtaText: "EMI Calculator",
+      features: [
+        { text: "Finance cars, bikes & commercial vehicles" },
+        { text: "Loan amount up to ₹50 lakhs" },
+        { text: "Interest rates starting from 8.99%" },
+        { text: "Tenure up to 7 years" },
+        { text: "Minimal documentation required" }
+      ],
+      stats: [
+        { icon: "CreditCard", value: "₹50 Lakhs", label: "Max Loan Amount" },
+        { icon: "Percent", value: "8.99%*", label: "Interest Rate" }
+      ]
+    }
   ];
 
-  const vehicleFeatures = [
-    "Finance cars, bikes & commercial vehicles",
-    "Loan amount up to ₹50 lakhs",
-    "Interest rates starting from 8.99%",
-    "Tenure up to 7 years",
-    "Minimal documentation required"
-  ];
+  // Merge/Select Data
+  const products =
+    cmsData.products && cmsData.products.length > 0
+      ? cmsData.products.map((p: any) => ({
+          ...p,
+          image: p.image?.url ? `http://localhost:3000${p.image.url}` : null
+        }))
+      : defaultProducts;
+
+  const title = cmsData.productsTitle || "Our Financial Solutions";
+  const description =
+    cmsData.productsDescription ||
+    "Tailored financing options to meet your diverse needs with transparent terms and competitive rates";
 
   return (
     <section id="products" className="py-20 bg-gradient-subtle">
@@ -27,135 +93,98 @@ const Products = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Our Financial Solutions
+            {title}
           </h2>
-          <p className="text-xl text-muted-foreground">
-            Tailored financing options to meet your diverse needs with transparent terms and competitive rates
-          </p>
+          <p className="text-xl text-muted-foreground">{description}</p>
         </div>
 
         {/* Products Grid */}
         <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          
-          {/* BNPL Product */}
-          <Card className="group overflow-hidden border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-[1.02]">
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={bnplImage}
-                alt="Buy Now Pay Later Services"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
-              <div className="absolute top-4 left-4">
-                <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                  <ShoppingCart className="w-4 h-4 text-white" />
-                  <span className="text-white text-sm font-medium">BNPL</span>
-                </div>
-              </div>
-              <div className="absolute bottom-4 left-4">
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  Buy Now Pay Later
-                </h3>
-                <p className="text-white/90 text-sm">
-                  Shop today, pay flexibly tomorrow
-                </p>
-              </div>
-            </div>
-            
-            <div className="p-6">
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="text-center p-3 bg-card-elevated rounded-lg">
-                  <Clock className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="font-semibold text-foreground">2 Minutes</div>
-                  <div className="text-sm text-muted-foreground">Approval Time</div>
-                </div>
-                <div className="text-center p-3 bg-card-elevated rounded-lg">
-                  <Percent className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="font-semibold text-foreground">0% Interest</div>
-                  <div className="text-sm text-muted-foreground">First 3 Months</div>
-                </div>
-              </div>
+          {products.map((product: any, index: number) => {
+            const ProductIcon = iconMap[product.icon] || ShoppingCart;
 
-              <ul className="space-y-3 mb-6">
-                {bnplFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex space-x-3">
-                <Button variant="cta" className="flex-1 group">
-                  Apply for BNPL
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button variant="outline" size="default">
-                  Learn More
-                </Button>
-              </div>
-            </div>
-          </Card>
-
-          {/* Vehicle Finance Product */}
-          <Card className="group overflow-hidden border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-[1.02]">
-            <div className="relative h-64 overflow-hidden">
-              <img
-                src={vehicleImage}
-                alt="Vehicle Financing Services"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
-              <div className="absolute top-4 left-4">
-                <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                  <Car className="w-4 h-4 text-white" />
-                  <span className="text-white text-sm font-medium">Vehicle Loan</span>
+            return (
+              <Card
+                key={index}
+                className="group overflow-hidden border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-[1.02]"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={
+                      product.image ||
+                      (index === 0 ? bnplImage : vehicleImage)
+                    }
+                    alt={product.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                      <ProductIcon className="w-4 h-4 text-white" />
+                      <span className="text-white text-sm font-medium">
+                        Product
+                      </span>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-4 left-4">
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {product.title}
+                    </h3>
+                    <p className="text-white/90 text-sm">{product.subtitle}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="absolute bottom-4 left-4">
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  Vehicle Hire Purchase
-                </h3>
-                <p className="text-white/90 text-sm">
-                  Drive your dream vehicle today
-                </p>
-              </div>
-            </div>
-            
-            <div className="p-6">
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="text-center p-3 bg-card-elevated rounded-lg">
-                  <CreditCard className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="font-semibold text-foreground">₹50 Lakhs</div>
-                  <div className="text-sm text-muted-foreground">Max Loan Amount</div>
-                </div>
-                <div className="text-center p-3 bg-card-elevated rounded-lg">
-                  <Percent className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="font-semibold text-foreground">8.99%*</div>
-                  <div className="text-sm text-muted-foreground">Interest Rate</div>
-                </div>
-              </div>
 
-              <ul className="space-y-3 mb-6">
-                {vehicleFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                <div className="p-6">
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    {product.stats?.map((stat: any, sIndex: number) => {
+                      const StatIcon = iconMap[stat.icon] || Clock;
+                      return (
+                        <div
+                          key={sIndex}
+                          className="text-center p-3 bg-card-elevated rounded-lg"
+                        >
+                          <StatIcon className="w-6 h-6 text-primary mx-auto mb-2" />
+                          <div className="font-semibold text-foreground">
+                            {stat.value}
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {stat.label}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
 
-              <div className="flex space-x-3">
-                <Button variant="cta" className="flex-1 group">
-                  Apply for Vehicle Loan
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button variant="outline" size="default">
-                  EMI Calculator
-                </Button>
-              </div>
-            </div>
-          </Card>
+                  <ul className="space-y-3 mb-6">
+                    {product.features?.map(
+                      (feature: any, fIndex: number) => (
+                        <li
+                          key={fIndex}
+                          className="flex items-start space-x-3"
+                        >
+                          <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
+                          <span className="text-muted-foreground text-sm">
+                            {feature.text || feature}
+                          </span>
+                        </li>
+                      )
+                    )}
+                  </ul>
+
+                  <div className="flex space-x-3">
+                    <Button variant="cta" className="flex-1 group">
+                      {product.ctaText}
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    <Button variant="outline" size="default">
+                      {product.secondaryCtaText}
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}

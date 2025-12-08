@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export const api = axios.create({
     baseURL: 'http://localhost:3000/api',
 });
@@ -8,7 +9,22 @@ export const getGlobal = async (slug: string) => {
     return response.data;
 };
 
-export const getPages = async () => {
+// Get About Page
+export const getAboutPage = async () => {
     const response = await api.get('/pages?where[slug][equals]=about&depth=2');
     return response.data;
 };
+
+// Get Home Page
+export const getHomePage = async () => {
+  const response = await api.get('/pages?where[slug][equals]=home&depth=2');
+  return response.data;
+};
+
+// Get Services Page
+export const getServicesPage = async () => {
+    const response = await api.get('/pages?where[slug][equals]=services&depth=2');
+    return response.data;
+};
+
+// Generic function for any page type
