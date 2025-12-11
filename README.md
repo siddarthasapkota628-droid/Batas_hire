@@ -16,7 +16,6 @@
 - [Prerequisites](#-prerequisites)
 - [Installation](#-installation)
 - [Running the Project](#-running-the-project)
-- [Project Structure](#-project-structure)
 - [API Documentation](#-api-documentation)
 - [User Roles](#-user-roles)
 - [Troubleshooting](#-troubleshooting)
@@ -246,52 +245,6 @@ npm run dev:frontend
    - **Name**: Your Name
 3. Click **"Create"**
 4. Your user will automatically have **Admin** role
-
-## 📁 Project Structure
-```
-Batas_CMS/
-├── 📂 frontend/                 # React frontend application
-│   ├── 📂 src/
-│   │   ├── 📂 components/       # Reusable UI components
-│   │   │   └── 📂 ui/          # Shadcn/ui components
-│   │   ├── 📂 pages/           # Page components
-│   │   │   ├── About.tsx       # About Us page
-│   │   │   └── CompanyProfile.tsx
-│   │   ├── 📂 lib/             # Utility functions
-│   │   │   └── api.ts          # API client (Axios)
-│   │   └── App.tsx             # Root component
-│   ├── 📂 public/              # Static assets
-│   ├── .env                    # Frontend environment variables
-│   ├── package.json            # Frontend dependencies
-│   ├── vite.config.ts          # Vite configuration
-│   └── tailwind.config.ts      # Tailwind configuration
-│
-├── 📂 cms/                      # PayloadCMS backend
-│   ├── 📂 src/
-│   │   ├── 📂 collections/     # Data collections
-│   │   │   ├── 📂 Pages/       # Page collections
-│   │   │   │   ├── index.ts    # Main Pages collection
-│   │   │   │   ├── About.ts    # About page tab config
-│   │   │   │   └── Services.ts # Services page tab config
-│   │   │   ├── Users.ts        # User management
-│   │   │   ├── Media.ts        # File uploads
-│   │   │   └── Posts.ts        # Blog posts
-│   │   ├── 📂 access/          # Access control functions
-│   │   │   ├── isAdmin.ts      # Admin role check
-│   │   │   ├── authenticated.ts
-│   │   │   └── authenticatedOrPublished.ts
-│   │   ├── 📂 globals/         # Global settings
-│   │   │   ├── Header.ts       # Site navigation
-│   │   │   └── Footer.ts       # Footer content
-│   │   └── payload.config.ts   # PayloadCMS configuration
-│   ├── .env                    # Backend environment variables
-│   └── package.json            # Backend dependencies
-│
-├── 📂 node_modules/            # Root dependencies
-├── package.json                # Root package.json (workspace config)
-├── .gitignore                  # Git ignore rules
-└── README.md                   # This file
-```
 
 ## 🔌 API Documentation
 
