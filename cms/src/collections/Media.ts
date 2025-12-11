@@ -8,6 +8,7 @@ import {
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+import { checkRole } from '../access/rbac'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 
@@ -18,10 +19,13 @@ export const Media: CollectionConfig = {
   slug: 'media',
   folders: true,
   access: {
-    create: authenticated,
-    delete: authenticated,
-    read: anyone,
-    update: authenticated,
+    create: checkRole('media', 'create'),
+    delete: checkRole('media', 'delete'),
+    read: (args) => {
+ 
+      return anyone(args)
+    },
+    update: checkRole('media', 'update'),
   },
   fields: [
     {

@@ -598,7 +598,7 @@ export interface Role {
   name: string;
   permissions?:
     | {
-        resource: 'pages' | 'users' | 'media';
+        resource: 'pages' | 'media';
         action: 'read' | 'manage' | 'create' | 'update' | 'delete';
         /**
          * Leave empty for ALL pages. Select pages to restrict access.

@@ -23,7 +23,7 @@ export const Users: CollectionConfig = {
     delete: isSuperOrClientAdmin, // Only Admins can delete users
     read: ({ req: { user } }) => {
       if (user?.roles?.includes('admin')) return true
-      if (user?.roles?.includes('client-admin') || user?.roles?.includes('user')) {
+      if (user?.roles?.includes('client-admin')) {
         return {
           roles: {
             not_equals: 'admin',

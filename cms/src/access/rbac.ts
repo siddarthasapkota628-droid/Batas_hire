@@ -11,7 +11,7 @@ export const checkRole = (
         // Flatten all permissions from all relevant roles
         const permissions = (user.associatedRoles || [])
             .flatMap((r: any) => typeof r === 'object' ? r.permissions || [] : [])
-            .filter((p: any) => p.resource === resource && (p.action === 'manage' || (p.action === 'read' && action === 'read')));
+            .filter((p: any) => p.resource === resource && (p.action === 'manage' || p.action === action));
 
         if (permissions.length === 0) return false;
 

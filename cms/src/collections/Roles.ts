@@ -38,7 +38,6 @@ export const Roles: CollectionConfig = {
                     required: true,
                     options: [
                         { label: 'Pages', value: 'pages' },
-                        { label: 'Users', value: 'users' },
                         { label: 'Media', value: 'media' },
                     ],
                 },
