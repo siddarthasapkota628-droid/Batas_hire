@@ -21,18 +21,32 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 
-import { isAdmin } from '../../access/isAdmin'
+import { isSuperAdmin } from '../../access/isSuperAdmin'
 
 import { AboutPage } from './About'
 import { ServicesPage } from './Services'
 
+import { checkRole } from '../../access/rbac'
+
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
-    create: isAdmin,
-    delete: isAdmin,
-    read: authenticatedOrPublished,
-    update: isAdmin,
+    create: checkRole('pages', 'create'),
+    delete: checkRole('pages', 'delete'),
+    read: (args) => {
+      const { req: { user } } = args;
+      // 1. If user has 'pages' 'read' permission (or is admin via checkRole), allow all
+      if (checkRole('pages', 'read')(args)) {
+        return true;
+      }
+      // 2. Otherwise, only allow published
+      return {
+        _status: {
+          equals: 'published',
+        },
+      }
+    },
+    update: checkRole('pages', 'update'),
   },
   // This config controls what's populated by default when a page is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property

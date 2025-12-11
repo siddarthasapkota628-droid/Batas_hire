@@ -8,6 +8,7 @@ import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
+import { Roles } from './collections/Roles'
 import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
@@ -62,19 +63,19 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Categories, Users, Roles],
   cors: [
-  getServerSideURL(),
-  'http://localhost:8080',
-  'http://localhost:5173',
-  'http://localhost:3000',
-].filter(Boolean),
-csrf: [
-  getServerSideURL(),
-  'http://localhost:8080',
-  'http://localhost:5173',
-  'http://localhost:3000',
-].filter(Boolean),
+    getServerSideURL(),
+    'http://localhost:8080',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ].filter(Boolean),
+  csrf: [
+    getServerSideURL(),
+    'http://localhost:8080',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ].filter(Boolean),
   globals: [Header, Footer],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
