@@ -598,12 +598,12 @@ export interface Role {
   name: string;
   permissions?:
     | {
-        resource: 'pages' | 'media';
-        action: 'read' | 'manage' | 'create' | 'update' | 'delete';
+        resource: 'pages' | 'media' | 'users' | 'posts' | 'categories';
         /**
          * Leave empty for ALL pages. Select pages to restrict access.
          */
         specificPages?: (number | Page)[] | null;
+        action: 'read' | 'manage' | 'create' | 'update' | 'delete';
         id?: string | null;
       }[]
     | null;
@@ -1694,8 +1694,8 @@ export interface RolesSelect<T extends boolean = true> {
     | T
     | {
         resource?: T;
-        action?: T;
         specificPages?: T;
+        action?: T;
         id?: T;
       };
   updatedAt?: T;

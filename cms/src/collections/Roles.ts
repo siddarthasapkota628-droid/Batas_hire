@@ -39,7 +39,21 @@ export const Roles: CollectionConfig = {
                     options: [
                         { label: 'Pages', value: 'pages' },
                         { label: 'Media', value: 'media' },
+                        { label: 'Users', value: 'users' },
+                        { label: 'Posts', value: 'posts' },
+                        { label: 'Categories', value: 'categories' },
                     ],
+                },
+                {
+                    name: 'specificPages',
+                    type: 'relationship',
+                    relationTo: 'pages',
+                    hasMany: true,
+                    label: 'Specific Pages (Optional)',
+                    admin: {
+                        description: 'Leave empty for ALL pages. Select pages to restrict access.',
+                        condition: (data: any, siblingData: any) => siblingData?.resource === 'pages',
+                    },
                 },
                 {
                     name: 'action',
@@ -54,17 +68,7 @@ export const Roles: CollectionConfig = {
                     ],
                     defaultValue: 'read',
                 },
-                {
-                    name: 'specificPages',
-                    type: 'relationship',
-                    relationTo: 'pages',
-                    hasMany: true,
-                    label: 'Specific Pages (Optional)',
-                    admin: {
-                        description: 'Leave empty for ALL pages. Select pages to restrict access.',
-                        condition: (data: any, siblingData: any) => siblingData?.resource === 'pages',
-                    },
-                },
+
             ],
         },
     ],

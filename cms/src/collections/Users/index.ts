@@ -28,11 +28,23 @@ export const Users: CollectionConfig = {
           roles: {
             not_equals: 'admin',
           },
-        }
+        } as any
+      }
+      // Allow users to read themselves
+      if (user) {
+        return {
+          id: {
+            equals: user.id,
+          },
+        } as any
       }
       return false
     },
     update: (args) => {
+      // Allow users to update themselves
+      if (args.req.user && args.id === args.req.user.id) {
+        return true
+      }
       console.log('DEBUG: Users Collection Update Access', args.req.user?.email)
       return isSuperOrClientAdmin(args)
     },
@@ -70,6 +82,11 @@ export const Users: CollectionConfig = {
       access: {
         create: canManageSystemRoles,
         update: canManageSystemRoles,
+      },
+      admin: {
+        components: {
+          Field: '@/components/fields/RolesSelect#RolesSelect',
+        },
       },
       validate: async (val, options) => {
         const { operation, req } = options || {}

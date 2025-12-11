@@ -34,17 +34,19 @@ export const Pages: CollectionConfig<'pages'> = {
     create: checkRole('pages', 'create'),
     delete: checkRole('pages', 'delete'),
     read: (args) => {
-      const { req: { user } } = args;
-      // 1. If user has 'pages' 'read' permission (or is admin via checkRole), allow all
-      if (checkRole('pages', 'read')(args)) {
-        return true;
+      const { req: { user } } = args
+
+      // 1. If no user (Public/Frontend), allow reading published pages
+      if (!user) {
+        return {
+          _status: {
+            equals: 'published',
+          },
+        }
       }
-      // 2. Otherwise, only allow published
-      return {
-        _status: {
-          equals: 'published',
-        },
-      }
+
+      // 2. If user exists (Admin Panel), strictly enforce RBAC
+      return checkRole('pages', 'read')(args)
     },
     update: checkRole('pages', 'update'),
   },

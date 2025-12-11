@@ -30,15 +30,13 @@ export const canManageSystemRoles: FieldAccess<User> = ({ req: { user }, data, d
 
     // 2. Client Admin Logic
     if (user.roles?.includes('client-admin')) {
-        // If they are trying to update the 'roles' field
-        // We must ensure they are NOT trying to assign 'admin' role
-        // 'data' here represents the INCOMING data for the update
-
-        // Note: In Payload field access, 'data' is the partial update. 
         // If 'roles' is in data, we check its values.
         if (Array.isArray(data?.roles)) {
             if (data.roles.includes('admin')) {
                 return false // Client Admin cannot assign Super Admin
+            }
+            if (data.roles.includes('client-admin')) {
+                return false // Client Admin cannot assign Admin
             }
         }
 

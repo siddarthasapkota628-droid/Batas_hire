@@ -131,7 +131,7 @@ export const AboutPage: Tab = {
                         {
                             name: 'directors',
                             type: 'array',
-                            label: 'Board of Directors (Fixed 4)',
+                            label: 'Board of Directors',
                             minRows: 1,
                             maxRows: 10,
                             fields: [
@@ -157,7 +157,7 @@ export const AboutPage: Tab = {
                             name: 'leadership',
                             type: 'array',
                             label: 'Leadership Team (Fixed 4)',
-                            minRows: 4,
+                            minRows: 1,
                             maxRows: 10,
                             fields: [
                                 { name: 'photo', type: 'upload', relationTo: 'media', required: true },
@@ -187,7 +187,7 @@ export const AboutPage: Tab = {
                             name: 'timeline',
                             type: 'array',
                             label: 'Milestones (Fixed 6)',
-                            minRows: 6,
+                            minRows: 1,
                             maxRows: 10,
                             fields: [
                                 { name: 'year', type: 'text', required: true },
@@ -209,7 +209,7 @@ export const AboutPage: Tab = {
                             name: 'stats',
                             type: 'array',
                             label: 'Key Statistics',
-                            minRows: 4,
+                            minRows: 1,
                             maxRows: 4,
                             fields: [
                                 { name: 'value', type: 'text', required: true },
@@ -219,8 +219,8 @@ export const AboutPage: Tab = {
                         {
                             name: 'testimonials',
                             type: 'array',
-                            label: 'Customer Reviews (Fixed 6)',
-                            minRows: 6,
+                            label: 'Customer Reviews',
+                            minRows: 1,
                             maxRows: 10,
                             fields: [
                                 { name: 'name', type: 'text', required: true },
