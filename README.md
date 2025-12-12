@@ -32,16 +32,8 @@ Batas CMS is a headless content management system that enables non-technical use
 - 📱 Responsive design with Tailwind CSS
 - 🚀 Fast performance with React + Vite
 - 💾 Robust PostgreSQL database
-- 🎭 Beautiful UI components with Shadcn/ui
 
 ## ✨ Features
-
-### 🌐 Public Website
-- **About Us Page**: Company story, mission, vision, values, statistics
-- **Board of Directors**: Dynamic team member profiles with photos
-- **Leadership Team**: Executive team showcase
-- **Company Timeline**: 22-year journey visualization
-- **Regulatory Compliance**: Badges and certifications display
 
 ### 🎛️ Admin Panel
 - **Intuitive Content Editor**: Rich text editing with drag-and-drop
