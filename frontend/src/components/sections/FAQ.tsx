@@ -111,7 +111,7 @@ const FAQ = () => {
                           <ChevronDown className="w-5 h-5 text-primary flex-shrink-0" />
                         )}
                       </button>
-                      
+
                       {isOpen && (
                         <div className="px-6 pb-6">
                           <div className="pt-4 border-t border-border">
@@ -134,7 +134,7 @@ const FAQ = () => {
               Still have questions?
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Our customer support team is available 24/7 to assist you with any questions 
+              Our customer support team is available 24/7 to assist you with any questions
               or concerns. Get in touch with us through your preferred channel.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

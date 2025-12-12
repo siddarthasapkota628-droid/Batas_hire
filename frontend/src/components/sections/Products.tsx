@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogHeader } from '@/components/ui/dialog';
+import DynamicForm from '@/components/ui/DynamicForm';
 import {
   ArrowRight,
   ShoppingCart,
@@ -31,6 +34,11 @@ interface ProductsProps {
 }
 
 const Products = ({ cmsData = {} }: ProductsProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // TODO: Replace with actual Form ID from PayloadCMS Admin -> Forms
+  // You can also fetch this dynamically if you link the form in the page schema
+  const FORM_ID = "2";
+
   // Static Data (Fallback)
   const defaultProducts = [
     {
@@ -173,7 +181,11 @@ const Products = ({ cmsData = {} }: ProductsProps) => {
                   </ul>
 
                   <div className="flex space-x-3">
-                    <Button variant="cta" className="flex-1 group">
+                    <Button
+                      variant="cta"
+                      className="flex-1 group"
+                      onClick={() => setIsModalOpen(true)}
+                    >
                       {product.ctaText}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -192,10 +204,30 @@ const Products = ({ cmsData = {} }: ProductsProps) => {
           <p className="text-muted-foreground mb-4">
             Need a custom financing solution? Our experts are here to help.
           </p>
-          <Button variant="outline" size="lg">
+          <Button variant="outline" size="lg" onClick={() => setIsModalOpen(true)}>
             Speak to Our Experts
           </Button>
         </div>
+
+        {/* Dynamic Form Modal */}
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Apply Now</DialogTitle>
+              <DialogDescription>
+                Please fill out the form below to submit your application.
+              </DialogDescription>
+            </DialogHeader>
+            {/* 
+                  IMPORTANT: You need to replace 'FORM_ID' with the actual ID of the 
+                  form you create in the PayloadCMS admin panel (under the Forms collection).
+                  
+                  For now, if the ID is invalid, the component will show an error state.
+                */}
+            <DynamicForm formId={FORM_ID} onSuccess={() => setIsModalOpen(false)} />
+          </DialogContent>
+        </Dialog>
+
       </div>
     </section>
   );

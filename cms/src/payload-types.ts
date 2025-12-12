@@ -160,7 +160,7 @@ export interface Page {
   id: number;
   title: string;
   publishedAt?: string | null;
-  template?: ('default' | 'about' | 'services' | 'how-it-works' | 'home') | null;
+  template?: ('default' | 'about' | 'services' | 'how-it-works' | 'home' | 'career') | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -369,6 +369,53 @@ export interface Page {
     | {
         icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
         title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
         description?: string | null;
         id?: string | null;
       }[]
@@ -1459,6 +1506,42 @@ export interface PagesSelect<T extends boolean = true> {
         id?: T;
       };
   trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
     | T
     | {
         icon?: T;

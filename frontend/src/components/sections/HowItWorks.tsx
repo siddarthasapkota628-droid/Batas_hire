@@ -36,7 +36,7 @@ const HowItWorks = () => {
     );
   }
 
-  const data = pageData?.docs?.[0] || {};
+  const data = pageData || {};
 
   // Default fallbacks if data is missing (or for initial verification)
   const headerTitle = data.headerTitle || "How It Works";

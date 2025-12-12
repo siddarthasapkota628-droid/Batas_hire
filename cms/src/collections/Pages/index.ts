@@ -26,6 +26,7 @@ import { isSuperAdmin } from '../../access/isSuperAdmin'
 import { AboutPage } from './About'
 import { ServicesPage } from './Services'
 import { HowItWorksPage } from './HowItWorks'
+import { CareerPage } from './Career'
 import { checkRole } from '../../access/rbac'
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -98,6 +99,7 @@ export const Pages: CollectionConfig<'pages'> = {
         { label: 'Services Page', value: 'services' },
         { label: 'How It Works Page', value: 'how-it-works' },
         { label: 'Home Page', value: 'home' },
+        { label: 'Career Page', value: 'career' },
       ],
       admin: {
         position: 'sidebar',
@@ -126,6 +128,7 @@ export const Pages: CollectionConfig<'pages'> = {
         AboutPage,
         ServicesPage,
         HowItWorksPage,
+        CareerPage,
         {
           name: 'meta',
           label: 'SEO',

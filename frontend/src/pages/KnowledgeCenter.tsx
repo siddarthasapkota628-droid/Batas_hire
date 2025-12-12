@@ -161,21 +161,21 @@ const KnowledgeCenter = () => {
   return (
     <main className="min-h-screen">
       <Header />
-      
+
       {/* Hero Section */}
-      <section className="bg-gradient-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+      <section className="hero-gradient text-primary-foreground py-20 relative">
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-md">
             Knowledge Center
           </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 drop-shadow-md">
             Stay informed with expert insights, financial tips, and industry trends
           </p>
           <div className="relative max-w-md mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary-foreground/70 w-5 h-5" />
-            <Input 
-              placeholder="Search articles and guides..." 
-              className="pl-12 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/70"
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 w-5 h-5" />
+            <Input
+              placeholder="Search articles and guides..."
+              className="pl-12 bg-white/10 border-white/20 text-white placeholder:text-white/70"
             />
           </div>
         </div>
@@ -215,7 +215,7 @@ const KnowledgeCenter = () => {
                   <Star className="w-6 h-6 text-primary" />
                   Featured Articles
                 </h2>
-                
+
                 <div className="grid lg:grid-cols-2 gap-8 mb-16">
                   {articles.filter(article => article.featured).map((article) => (
                     <Card key={article.id} className="overflow-hidden hover:shadow-strong transition-all hover:scale-[1.02]">
