@@ -17,13 +17,19 @@ export const getAboutPage = async () => {
 
 // Get Home Page
 export const getHomePage = async () => {
-  const response = await api.get('/pages?where[slug][equals]=home&depth=2');
-  return response.data;
+    const response = await api.get('/pages?where[slug][equals]=home&depth=2');
+    return response.data;
 };
 
 // Get Services Page
 export const getServicesPage = async () => {
     const response = await api.get('/pages?where[slug][equals]=services&depth=2');
+    return response.data;
+};
+
+// Get How It Works Page
+export const getHowItWorksPage = async () => {
+    const response = await api.get('/pages?where[slug][equals]=how-it-works&depth=2');
     return response.data;
 };
 

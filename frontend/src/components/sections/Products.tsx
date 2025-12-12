@@ -77,9 +77,9 @@ const Products = ({ cmsData = {} }: ProductsProps) => {
   const products =
     cmsData.products && cmsData.products.length > 0
       ? cmsData.products.map((p: any) => ({
-          ...p,
-          image: p.image?.url ? `http://localhost:3000${p.image.url}` : null
-        }))
+        ...p,
+        image: p.image?.url ? `http://localhost:3000${p.image.url}` : null
+      }))
       : defaultProducts;
 
   const title = cmsData.productsTitle || "Our Financial Solutions";
@@ -99,14 +99,14 @@ const Products = ({ cmsData = {} }: ProductsProps) => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
           {products.map((product: any, index: number) => {
             const ProductIcon = iconMap[product.icon] || ShoppingCart;
 
             return (
               <Card
                 key={index}
-                className="group overflow-hidden border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-[1.02]"
+                className="group overflow-hidden border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-[1.02] w-full md:w-[calc(50%-2rem)] max-w-[600px]"
               >
                 <div className="relative h-64 overflow-hidden">
                   <img

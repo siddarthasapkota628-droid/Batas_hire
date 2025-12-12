@@ -160,7 +160,7 @@ export interface Page {
   id: number;
   title: string;
   publishedAt?: string | null;
-  template?: ('default' | 'about' | 'services' | 'home') | null;
+  template?: ('default' | 'about' | 'services' | 'how-it-works' | 'home') | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -345,6 +345,31 @@ export interface Page {
           | null;
         ctaText?: string | null;
         secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1414,6 +1439,31 @@ export interface PagesSelect<T extends boolean = true> {
             };
         ctaText?: T;
         secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
         id?: T;
       };
   meta?:
