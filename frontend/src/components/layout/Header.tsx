@@ -3,10 +3,18 @@ import { Button } from '@/components/ui/button';
 import { Menu, X, Shield, Users, Calculator } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import { useQuery } from '@tanstack/react-query';
+import { getHeader } from '@/lib/api';
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navigationLinks = [
+  const { data: headerData } = useQuery({
+    queryKey: ['header'],
+    queryFn: getHeader,
+  });
+
+  const defaultNavigationLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
     { href: '/products', label: 'Products & Services' },
@@ -18,6 +26,14 @@ const Header = () => {
     { href: '/legal', label: 'Legal' },
     { href: '/notice', label: 'Notice' },
   ];
+
+  // Map headerData?.navItems to the correct structure if available
+  const navigationLinks = headerData?.navItems?.length > 0
+    ? headerData.navItems.map((item: any) => ({
+      label: item.link.label,
+      href: item.link.type === 'custom' ? item.link.url : (item.link.reference?.value?.slug ? `/${item.link.reference.value.slug}` : '#')
+    }))
+    : defaultNavigationLinks;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

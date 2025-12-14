@@ -138,3 +138,8 @@ export const getNoticePage = async () => {
     });
     return response.data.docs[0];
 };
+
+export const getHeader = async () => {
+    const response = await api.get('/globals/header');
+    return response.data;
+};
