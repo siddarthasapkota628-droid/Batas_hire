@@ -27,6 +27,11 @@ import { AboutPage } from './About'
 import { ServicesPage } from './Services'
 import { HowItWorksPage } from './HowItWorks'
 import { CareerPage } from './Career'
+import { KnowledgeCenterPage } from './KnowledgeCenter'
+import { FAQPage } from './FAQPage'
+import { ContactPage } from './Contact'
+import { LegalPage } from './LegalPage';
+import { NoticePage } from './NoticePage';
 import { checkRole } from '../../access/rbac'
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -51,9 +56,6 @@ export const Pages: CollectionConfig<'pages'> = {
     },
     update: checkRole('pages', 'update'),
   },
-  // This config controls what's populated by default when a page is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
   defaultPopulate: {
     title: true,
     slug: true,
@@ -100,6 +102,11 @@ export const Pages: CollectionConfig<'pages'> = {
         { label: 'How It Works Page', value: 'how-it-works' },
         { label: 'Home Page', value: 'home' },
         { label: 'Career Page', value: 'career' },
+        { label: 'Knowledge Center Page', value: 'knowledge-center' },
+        { label: 'FAQ Page', value: 'faq' },
+        { label: 'Contact Page', value: 'contact' },
+        { label: 'Legal Page', value: 'legal' },
+        { label: 'Notice Page', value: 'notice' },
       ],
       admin: {
         position: 'sidebar',
@@ -129,6 +136,11 @@ export const Pages: CollectionConfig<'pages'> = {
         ServicesPage,
         HowItWorksPage,
         CareerPage,
+        KnowledgeCenterPage,
+        FAQPage,
+        ContactPage,
+        LegalPage,
+        NoticePage,
         {
           name: 'meta',
           label: 'SEO',

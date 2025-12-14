@@ -3,7 +3,7 @@ import { Tab } from 'payload/types';
 export const HowItWorksPage: Tab = {
     label: 'How It Works Specifics',
     admin: {
-        condition: (data: any) => data?.template === 'how-it-works',
+        condition: (data) => data?.template === 'how-it-works',
     },
     fields: [
         {

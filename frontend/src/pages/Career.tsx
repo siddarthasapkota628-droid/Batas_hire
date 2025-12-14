@@ -27,7 +27,7 @@ const iconMap: Record<string, any> = {
 const Career = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedFormId, setSelectedFormId] = useState<string | null>(null);
-    const FORM_ID = "3"; // Hardcoded for now as requested
+    const FORM_ID = "3"; // Hardcoded 
 
     const { data: pageData, isLoading } = useQuery({
         queryKey: ['careerPage'],

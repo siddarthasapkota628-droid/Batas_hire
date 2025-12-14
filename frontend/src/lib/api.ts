@@ -54,6 +54,19 @@ export const getCareerPage = async () => {
     return response.data.docs[0];
 };
 
+export const getKnowledgeCenterPage = async () => {
+    const response = await api.get('/pages', {
+        params: {
+            where: {
+                slug: {
+                    equals: 'knowledge-center',
+                },
+            },
+        },
+    });
+    return response.data.docs[0];
+};
+
 // Get Form by ID
 export const getForm = async (formId: string) => {
     const response = await api.get(`/forms/${formId}`);
@@ -73,3 +86,55 @@ export const submitForm = async (formId: string, data: any) => {
 }
 
 // Generic function for any page type
+
+export const getFAQPage = async () => {
+    const response = await api.get('/pages', {
+        params: {
+            where: {
+                template: {
+                    equals: 'faq',
+                },
+            },
+        },
+    });
+    return response.data.docs[0];
+};
+
+export const getContactPage = async () => {
+    const response = await api.get('/pages', {
+        params: {
+            where: {
+                template: {
+                    equals: 'contact',
+                },
+            },
+        },
+    });
+    return response.data.docs[0];
+};
+
+export const getLegalPage = async () => {
+    const response = await api.get('/pages', {
+        params: {
+            where: {
+                template: {
+                    equals: 'legal',
+                },
+            },
+        },
+    });
+    return response.data.docs[0];
+};
+
+export const getNoticePage = async () => {
+    const response = await api.get('/pages', {
+        params: {
+            where: {
+                template: {
+                    equals: 'notice',
+                },
+            },
+        },
+    });
+    return response.data.docs[0];
+};

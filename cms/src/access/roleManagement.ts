@@ -13,18 +13,7 @@ export const canManageSystemRoles: FieldAccess<User> = ({ req: { user }, data, d
         if (doc) console.log('*** DEBUG: Doc Roles ***', doc.roles)
 
         // If they are trying to assign 'admin' role
-        if (Array.isArray(data?.roles) && data.roles.includes('admin')) {
-            // If it's a new user (no id usually implies creation in some contexts, but data is what matters)
-            // Or if we can check the existing  doc. 
-            // Payload FieldAccess provides `doc` which is the existing document.
-
-            // If there is no existing doc, it is a create operation. Not allowed to create admin.
-            // If there is an existing doc, checks if it ALREADY has admin.
-            // We access `doc` from arguments (it might be undefined on create)
-        }
-        // Wait, I need to see the function signature again to be sure about `doc`.
-        // FieldAccess signature: ({ req, id, data, siblingData, doc }) => boolean
-
+        if (Array.isArray(data?.roles) && data.roles.includes('admin')) {}
         return true
     }
 

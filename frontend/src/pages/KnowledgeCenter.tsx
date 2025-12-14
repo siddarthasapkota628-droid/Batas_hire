@@ -5,12 +5,36 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, User, Clock, ArrowRight, BookOpen, TrendingUp, Shield, Search, Star, Download, FileText, Lightbulb, HelpCircle } from 'lucide-react';
+import { Calendar, User, Clock, ArrowRight, BookOpen, TrendingUp, Shield, Search, Star, Download, FileText, Lightbulb, HelpCircle, Loader2 } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { getKnowledgeCenterPage } from '@/lib/api';
+
+const iconMap: Record<string, any> = {
+  TrendingUp,
+  Target: TrendingUp, // Fallback/Map if needed
+  Zap: Lightbulb,
+  Star,
+  Coffee: User, // Just mapping some defaults
+  Award: Star,
+  Heart: User,
+  Users: User,
+  Lightbulb,
+  FileText,
+  Shield,
+  BookOpen,
+  HelpCircle
+};
+
 
 const KnowledgeCenter = () => {
-  const articles = [
+  const { data: pageData, isLoading, isError } = useQuery({
+    queryKey: ['knowledgeCenterPage'],
+    queryFn: getKnowledgeCenterPage,
+    retry: 1, // Minimize retries to fallback quickly if backend is down
+  });
+
+  const defaultArticles = [
     {
-      id: 1,
       title: "Understanding Buy Now Pay Later: A Complete Guide",
       excerpt: "Learn how BNPL works, its benefits, and how to use it responsibly for your purchases.",
       category: "BNPL",
@@ -20,7 +44,6 @@ const KnowledgeCenter = () => {
       featured: true
     },
     {
-      id: 2,
       title: "Vehicle Loan vs Hire Purchase: Which is Better?",
       excerpt: "Compare different vehicle financing options and choose the best one for your needs.",
       category: "Vehicle Finance",
@@ -30,7 +53,6 @@ const KnowledgeCenter = () => {
       featured: true
     },
     {
-      id: 3,
       title: "How to Improve Your Credit Score in 2024",
       excerpt: "Practical tips and strategies to boost your credit score and get better loan terms.",
       category: "Credit Tips",
@@ -40,7 +62,6 @@ const KnowledgeCenter = () => {
       featured: false
     },
     {
-      id: 4,
       title: "EMI Planning: Managing Your Monthly Budget",
       excerpt: "Learn how to plan your EMIs effectively and maintain a healthy financial balance.",
       category: "Financial Planning",
@@ -50,7 +71,6 @@ const KnowledgeCenter = () => {
       featured: false
     },
     {
-      id: 5,
       title: "Digital Lending Revolution in Nepal",
       excerpt: "Explore how technology is transforming the lending landscape in Nepal.",
       category: "Industry Insights",
@@ -60,7 +80,6 @@ const KnowledgeCenter = () => {
       featured: false
     },
     {
-      id: 6,
       title: "Merchant Partnership Benefits for BNPL",
       excerpt: "Discover how merchants can benefit from offering BNPL options to customers.",
       category: "Merchant Guide",
@@ -71,71 +90,62 @@ const KnowledgeCenter = () => {
     }
   ];
 
-  const categories = [
-    { name: "All", count: articles.length },
-    { name: "BNPL", count: 2 },
-    { name: "Vehicle Finance", count: 1 },
-    { name: "Credit Tips", count: 1 },
-    { name: "Financial Planning", count: 1 },
-    { name: "Industry Insights", count: 1 }
-  ];
-
-  const publications = [
-    {
-      title: "Annual Financial Report 2023",
-      type: "Annual Report",
-      date: "March 2024",
-      icon: <TrendingUp className="w-6 h-6" />,
-      size: "2.4 MB"
-    },
-    {
-      title: "Digital Lending Whitepaper",
-      type: "Research Paper",
-      date: "February 2024",
-      icon: <BookOpen className="w-6 h-6" />,
-      size: "1.8 MB"
-    },
-    {
-      title: "Risk Management Guidelines",
-      type: "Policy Document",
-      date: "January 2024",
-      icon: <Shield className="w-6 h-6" />,
-      size: "950 KB"
-    },
-    {
-      title: "BNPL Market Analysis 2024",
-      type: "Market Report",
-      date: "January 2024",
-      icon: <FileText className="w-6 h-6" />,
-      size: "3.2 MB"
-    }
-  ];
-
-  const guides = [
+  const defaultGuides = [
     {
       title: "How to Pay Your EMI",
       description: "Step-by-step guide for all payment methods",
-      icon: <Lightbulb className="w-6 h-6" />,
+      icon: "Lightbulb",
       steps: 5,
       category: "Payment Guide"
     },
     {
       title: "Loan Application Process",
       description: "Complete guide to applying for loans",
-      icon: <FileText className="w-6 h-6" />,
+      icon: "FileText",
       steps: 7,
       category: "Application Guide"
     },
     {
       title: "Understanding Interest Rates",
       description: "Learn about different types of interest rates",
-      icon: <TrendingUp className="w-6 h-6" />,
+      icon: "TrendingUp",
       steps: 4,
       category: "Financial Guide"
     }
   ];
 
-  const faqs = [
+  const defaultReports = [
+    {
+      title: "Annual Financial Report 2023",
+      type: "Annual Report",
+      date: "March 2024",
+      icon: "TrendingUp",
+      size: "2.4 MB"
+    },
+    {
+      title: "Digital Lending Whitepaper",
+      type: "Research Paper",
+      date: "February 2024",
+      icon: "BookOpen",
+      size: "1.8 MB"
+    },
+    {
+      title: "Risk Management Guidelines",
+      type: "Policy Document",
+      date: "January 2024",
+      icon: "Shield",
+      size: "950 KB"
+    },
+    {
+      title: "BNPL Market Analysis 2024",
+      type: "Market Report",
+      date: "January 2024",
+      icon: "FileText",
+      size: "3.2 MB"
+    }
+  ];
+
+  const defaultFaqs = [
     {
       question: "How do I apply for a vehicle loan?",
       category: "Vehicle Loans",
@@ -158,6 +168,46 @@ const KnowledgeCenter = () => {
     }
   ];
 
+  // Fallback logic
+  const articles = pageData?.articles?.length > 0 ? pageData.articles : defaultArticles;
+  const guides = pageData?.guides?.length > 0 ? pageData.guides : defaultGuides;
+  const publications = pageData?.reports?.length > 0 ? pageData.reports : defaultReports;
+  const faqs = pageData?.faqs?.length > 0 ? pageData.faqs : defaultFaqs;
+
+  // Only show loader if we are loading AND we don't have fallback data (which we always do now)
+  // Actually, if we want to show dynamic data if available, we wait.
+  // But if connection fails, we show fallback.
+  // If isLoading is true, it means we are trying.
+  // Let's rely on the result. If pageData is null, we use defaults.
+
+  // NOTE: We comment out the loader to ensure "unstarted backend" (connection refused) results in immediate fallback rendering 
+  // instead of stuck loading state if the query doesn't timeout fast enough.
+  // However, react-query isloading is true initially. 
+  // Let's use `isLoading && !pageData` check?
+  // If backend is down, api returns null fairly quick (or slow depending on axios timeout).
+  // Let's keeping the loader is safer for UX, but maybe the user wants immediate static render if they run locally without backend.
+
+  if (isLoading && !isError && !pageData) {
+    // Optional: You can remove this if you want to show static content WHILE loading dynamic content (stale-while-revalidate style)
+    // But here we just return the loader for now.
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  // Calculate categories dynamically
+  const allCategories = articles.map((a: any) => a.category).filter(Boolean);
+  const uniqueCategories = Array.from(new Set(allCategories));
+  const categories = [
+    { name: "All", count: articles.length },
+    ...uniqueCategories.map((cat: any) => ({
+      name: cat,
+      count: articles.filter((a: any) => a.category === cat).length
+    }))
+  ];
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -166,10 +216,10 @@ const KnowledgeCenter = () => {
       <section className="hero-gradient text-primary-foreground py-20 relative">
         <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-md">
-            Knowledge Center
+            {pageData?.knowledgeCenterHeaderTitle || "Knowledge Center"}
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 drop-shadow-md">
-            Stay informed with expert insights, financial tips, and industry trends
+            {pageData?.knowledgeCenterHeaderSubtitle || "Stay informed with expert insights, financial tips, and industry trends"}
           </p>
           <div className="relative max-w-md mx-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 w-5 h-5" />
@@ -181,24 +231,34 @@ const KnowledgeCenter = () => {
         </div>
       </section>
 
-      {/* Navigation Tabs */}
-      <section className="py-8 bg-background border-b">
-        <div className="container mx-auto px-4">
-          <Tabs defaultValue="articles" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 max-w-md mx-auto">
-              <TabsTrigger value="articles">Articles</TabsTrigger>
-              <TabsTrigger value="guides">Guides</TabsTrigger>
-              <TabsTrigger value="reports">Reports</TabsTrigger>
-              <TabsTrigger value="faqs">FAQs</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-      </section>
+
 
       {/* Content Sections */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
+          {/* We need to use the Tabs context from above, but TabsContent needs to be inside Tabs. 
+                        Refactoring structure: Put the whole section inside the Tabs or move TabsList here?
+                        The original design had TabsList in a separate section. 
+                        To keep state, we need one Tabs parent. 
+                        Actually, let's merge the "Navigation Tabs" section into this one or utilize a state if we want remote tabs.
+                        Easier fix: Just implement the Tabs structure normally around both sections or just move TabsContent up?
+                        Wait, TabsContent must be child of Tabs.
+                        
+                        Let's restructure: Main Tabs wrapper > (TabsList Section + Content Section).
+                    */}
+
           <Tabs defaultValue="articles" className="w-full">
+            {/* Navigation Section */}
+            <div className="border-b mb-12 pb-8">
+              <TabsList className="grid w-full grid-cols-4 max-w-md mx-auto">
+                <TabsTrigger value="articles">Articles</TabsTrigger>
+                <TabsTrigger value="guides">Guides</TabsTrigger>
+                <TabsTrigger value="reports">Reports</TabsTrigger>
+                <TabsTrigger value="faqs">FAQs</TabsTrigger>
+              </TabsList>
+            </div>
+
+
             <TabsContent value="articles" className="space-y-12">
               {/* Categories Filter */}
               <div className="flex flex-wrap gap-3 justify-center">
@@ -216,9 +276,9 @@ const KnowledgeCenter = () => {
                   Featured Articles
                 </h2>
 
-                <div className="grid lg:grid-cols-2 gap-8 mb-16">
-                  {articles.filter(article => article.featured).map((article) => (
-                    <Card key={article.id} className="overflow-hidden hover:shadow-strong transition-all hover:scale-[1.02]">
+                <div className="flex flex-wrap justify-center gap-8 mb-16">
+                  {articles.filter((article: any) => article.featured).map((article: any, index: number) => (
+                    <Card key={index} className="w-full lg:w-[calc(50%-2rem)] overflow-hidden hover:shadow-strong transition-all hover:scale-[1.02]">
                       <div className="h-48 bg-gradient-subtle relative">
                         <Badge className="absolute top-4 left-4 bg-primary/90">{article.category}</Badge>
                       </div>
@@ -252,9 +312,9 @@ const KnowledgeCenter = () => {
 
                 {/* Recent Articles */}
                 <h2 className="text-3xl font-bold text-foreground mb-8">Recent Articles</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {articles.filter(article => !article.featured).map((article) => (
-                    <Card key={article.id} className="p-6 hover:shadow-medium transition-all hover:scale-[1.02] cursor-pointer">
+                <div className="flex flex-wrap justify-center gap-6">
+                  {articles.filter((article: any) => !article.featured).map((article: any, index: number) => (
+                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-6 hover:shadow-medium transition-all hover:scale-[1.02] cursor-pointer">
                       <div className="flex items-center gap-4 mb-3">
                         <Badge variant="outline" className="text-xs">{article.category}</Badge>
                         <span className="text-xs text-muted-foreground flex items-center gap-1">
@@ -282,26 +342,29 @@ const KnowledgeCenter = () => {
                 <Lightbulb className="w-6 h-6 text-primary" />
                 How-To Guides
               </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {guides.map((guide, index) => (
-                  <Card key={index} className="p-6 hover:shadow-strong transition-all hover:scale-[1.02] cursor-pointer">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
-                        {guide.icon}
+              <div className="flex flex-wrap justify-center gap-6">
+                {guides.map((guide: any, index: number) => {
+                  const Icon = iconMap[guide.icon] || Lightbulb;
+                  return (
+                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-6 hover:shadow-strong transition-all hover:scale-[1.02] cursor-pointer">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        <Badge variant="outline" className="text-xs">{guide.category}</Badge>
                       </div>
-                      <Badge variant="outline" className="text-xs">{guide.category}</Badge>
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-2">{guide.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">{guide.description}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{guide.steps} steps</span>
-                      <Button variant="ghost" size="sm" className="group">
-                        Start Guide
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
+                      <h3 className="font-semibold text-foreground mb-2">{guide.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-4">{guide.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">{guide.steps} steps</span>
+                        <Button variant="ghost" size="sm" className="group">
+                          Start Guide
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </div>
+                    </Card>
+                  );
+                })}
               </div>
             </TabsContent>
 
@@ -310,25 +373,28 @@ const KnowledgeCenter = () => {
                 <FileText className="w-6 h-6 text-primary" />
                 Publications & Reports
               </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {publications.map((pub, index) => (
-                  <Card key={index} className="p-6 text-center hover:shadow-strong transition-all hover:scale-[1.02]">
-                    <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                      {pub.icon}
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-2">{pub.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">{pub.type}</p>
-                    <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mb-4">
-                      <span>{pub.date}</span>
-                      <span>•</span>
-                      <span>{pub.size}</span>
-                    </div>
-                    <Button variant="outline" size="sm" className="group">
-                      <Download className="w-4 h-4 mr-2" />
-                      Download PDF
-                    </Button>
-                  </Card>
-                ))}
+              <div className="flex flex-wrap justify-center gap-6">
+                {publications.map((pub: any, index: number) => {
+                  const Icon = iconMap[pub.icon] || TrendingUp;
+                  return (
+                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] p-6 text-center hover:shadow-strong transition-all hover:scale-[1.02]">
+                      <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-semibold text-foreground mb-2">{pub.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-2">{pub.type}</p>
+                      <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mb-4">
+                        <span>{pub.date}</span>
+                        <span>•</span>
+                        <span>{pub.size}</span>
+                      </div>
+                      <Button variant="outline" size="sm" className="group">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download PDF
+                      </Button>
+                    </Card>
+                  );
+                })}
               </div>
             </TabsContent>
 
@@ -337,9 +403,9 @@ const KnowledgeCenter = () => {
                 <HelpCircle className="w-6 h-6 text-primary" />
                 Frequently Asked Questions
               </h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {faqs.map((faq, index) => (
-                  <Card key={index} className="p-6 hover:shadow-medium transition-shadow">
+              <div className="flex flex-wrap justify-center gap-6">
+                {faqs.map((faq: any, index: number) => (
+                  <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] p-6 hover:shadow-medium transition-shadow">
                     <div className="flex items-center gap-2 mb-3">
                       <Badge variant="outline" className="text-xs">{faq.category}</Badge>
                     </div>

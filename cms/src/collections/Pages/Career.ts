@@ -3,7 +3,7 @@ import type { Tab } from 'payload/types'
 export const CareerPage: Tab = {
     label: 'Career Page',
     admin: {
-        condition: (data: any) => data?.template === 'career',
+        condition: (data) => data?.template === 'career',
     },
     fields: [
         {

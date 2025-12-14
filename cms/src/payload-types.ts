@@ -160,7 +160,21 @@ export interface Page {
   id: number;
   title: string;
   publishedAt?: string | null;
-  template?: ('default' | 'about' | 'services' | 'how-it-works' | 'home' | 'career') | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -420,6 +434,140 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
   meta?: {
     title?: string | null;
     /**
@@ -1548,6 +1696,144 @@ export interface PagesSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
       };
   meta?:
     | T

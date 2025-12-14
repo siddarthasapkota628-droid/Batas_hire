@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, ChevronUp, MessageCircle, Phone } from 'lucide-react';
+import { ChevronDown, ChevronUp, MessageCircle, Phone, Loader2 } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { getFAQPage } from '@/lib/api';
 
 const FAQ = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
-  const faqData = [
+  const { data: pageData, isLoading, isError } = useQuery({
+    queryKey: ['faqPage'],
+    queryFn: getFAQPage,
+    retry: 1,
+  });
+
+  const defaultFaqData = [
     {
-      category: "BNPL",
+      categoryName: "BNPL",
       questions: [
         {
           question: "What is Buy Now Pay Later (BNPL)?",
@@ -25,7 +33,7 @@ const FAQ = () => {
       ]
     },
     {
-      category: "Vehicle Loans",
+      categoryName: "Vehicle Loans",
       questions: [
         {
           question: "What types of vehicles can I finance?",
@@ -42,7 +50,7 @@ const FAQ = () => {
       ]
     },
     {
-      category: "General",
+      categoryName: "General",
       questions: [
         {
           question: "Is Batas Hire and Purchase RBI regulated?",
@@ -60,9 +68,20 @@ const FAQ = () => {
     }
   ];
 
+  // Fallback logic
+  const faqData = pageData?.faqCategories?.length > 0 ? pageData.faqCategories : defaultFaqData;
+
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
+
+  if (isLoading && !isError && !pageData) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <section id="faq" className="py-20 bg-background">
@@ -70,29 +89,29 @@ const FAQ = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
+            {pageData?.faqHeaderTitle || "Frequently Asked Questions"}
           </h2>
           <p className="text-xl text-muted-foreground">
-            Find answers to common questions about our services. Can't find what you're looking for? Our support team is here to help.
+            {pageData?.faqHeaderSubtitle || "Find answers to common questions about our services. Can't find what you're looking for? Our support team is here to help."}
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {faqData.map((category, categoryIndex) => (
+          {faqData.map((category: any, categoryIndex: number) => (
             <div key={categoryIndex} className="mb-12">
               {/* Category Header */}
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-8 h-8 bg-primary/10 text-primary rounded-lg flex items-center justify-center font-semibold text-sm">
-                  {category.category.slice(0, 1)}
+                  {category.categoryName?.slice(0, 1) || category.category?.slice(0, 1)}
                 </div>
                 <h3 className="text-2xl font-semibold text-foreground">
-                  {category.category}
+                  {category.categoryName || category.category}
                 </h3>
               </div>
 
               {/* Questions */}
               <div className="space-y-4">
-                {category.questions.map((faq, faqIndex) => {
+                {category.questions.map((faq: any, faqIndex: number) => {
                   const globalIndex = categoryIndex * 10 + faqIndex; // Unique index across categories
                   const isOpen = openFAQ === globalIndex;
 
