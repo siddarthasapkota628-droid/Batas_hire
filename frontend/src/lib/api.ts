@@ -29,41 +29,17 @@ export const getServicesPage = async () => {
 
 // Get How It Works Page
 export const getHowItWorksPage = async () => {
-    const response = await api.get('/pages', {
-        params: {
-            where: {
-                slug: {
-                    equals: 'how-it-works',
-                },
-            },
-        },
-    });
+    const response = await api.get('/pages?where[slug][equals]=how-it-works');
     return response.data.docs[0];
 };
 
 export const getCareerPage = async () => {
-    const response = await api.get('/pages', {
-        params: {
-            where: {
-                slug: {
-                    equals: 'career',
-                },
-            },
-        },
-    });
+    const response = await api.get('/pages?where[slug][equals]=career');
     return response.data.docs[0];
 };
 
 export const getKnowledgeCenterPage = async () => {
-    const response = await api.get('/pages', {
-        params: {
-            where: {
-                slug: {
-                    equals: 'knowledge-center',
-                },
-            },
-        },
-    });
+    const response = await api.get('/pages?where[slug][equals]=knowledge-center');
     return response.data.docs[0];
 };
 
@@ -71,71 +47,39 @@ export const getKnowledgeCenterPage = async () => {
 export const getForm = async (formId: string) => {
     const response = await api.get(`/forms/${formId}`);
     return response.data;
-}
+};
 
 // Submit Form
 export const submitForm = async (formId: string, data: any) => {
-    const response = await api.post(`/form-submissions`, {
+    const response = await api.post('/form-submissions', {
         form: formId,
         submissionData: Object.entries(data).map(([field, value]) => ({
             field,
-            value
-        }))
+            value,
+        })),
     });
     return response.data;
-}
+};
 
 // Generic function for any page type
 
 export const getFAQPage = async () => {
-    const response = await api.get('/pages', {
-        params: {
-            where: {
-                template: {
-                    equals: 'faq',
-                },
-            },
-        },
-    });
+    const response = await api.get('/pages?where[template][equals]=faq');
     return response.data.docs[0];
 };
 
 export const getContactPage = async () => {
-    const response = await api.get('/pages', {
-        params: {
-            where: {
-                template: {
-                    equals: 'contact',
-                },
-            },
-        },
-    });
+    const response = await api.get('/pages?where[template][equals]=contact');
     return response.data.docs[0];
 };
 
 export const getLegalPage = async () => {
-    const response = await api.get('/pages', {
-        params: {
-            where: {
-                template: {
-                    equals: 'legal',
-                },
-            },
-        },
-    });
+    const response = await api.get('/pages?where[template][equals]=legal');
     return response.data.docs[0];
 };
 
 export const getNoticePage = async () => {
-    const response = await api.get('/pages', {
-        params: {
-            where: {
-                template: {
-                    equals: 'notice',
-                },
-            },
-        },
-    });
+    const response = await api.get('/pages?where[template][equals]=notice');
     return response.data.docs[0];
 };
 
