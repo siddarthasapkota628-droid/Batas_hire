@@ -37,7 +37,7 @@ import { checkRole } from '../../access/rbac'
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
-    create: checkRole('pages', 'create'),
+    create: isSuperAdmin, // Locked: Only Vendor can create pages
     delete: checkRole('pages', 'delete'),
     read: (args) => {
       const { req: { user } } = args

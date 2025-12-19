@@ -67,11 +67,11 @@ export const Users: CollectionConfig = {
       label: 'System Roles',
       options: [
         {
-          label: 'Super Admin',
+          label: 'Vendor (Dev Team)',
           value: 'admin',
         },
         {
-          label: 'Admin',
+          label: 'Super Admin (Client)',
           value: 'client-admin',
         },
         {

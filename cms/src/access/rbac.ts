@@ -11,7 +11,15 @@ export const checkRole = (
         // Flatten all permissions from all relevant roles
         const permissions = (user.associatedRoles || [])
             .flatMap((r: any) => typeof r === 'object' ? r.permissions || [] : [])
-            .filter((p: any) => p.resource === resource && (p.action === 'manage' || p.action === action));
+            .filter((p: any) => {
+                if (p.resource !== resource) return false
+                if (p.action === 'manage') return true
+                // Implicit Read rule: If we are checking for 'read', allow ANY other right to suffice
+                if (action === 'read') {
+                    return ['read', 'create', 'update', 'delete'].includes(p.action)
+                }
+                return p.action === action
+            });
 
         if (permissions.length === 0) return false;
 
