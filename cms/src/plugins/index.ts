@@ -84,6 +84,47 @@ export const plugins: Plugin[] = [
       },
     },
     formSubmissionOverrides: {
+      fields: ({ defaultFields }) => {
+        return [
+          ...defaultFields,
+          {
+            name: 'title',
+            type: 'text',
+            admin: {
+              hidden: true,
+            },
+          },
+        ]
+      },
+      hooks: {
+        beforeChange: [
+          ({ data }) => {
+            const nameField = data.submissionData.find((field: any) => {
+              const key = field.field.toLowerCase()
+              return key === 'name' || key.includes('name') || key.includes('full') || key.includes('first')
+            })
+            const emailField = data.submissionData.find((field: any) =>
+              ['email', 'Email'].includes(field.field)
+            )
+
+            if (nameField && nameField.value) {
+              data.title = nameField.value
+            } else if (emailField && emailField.value) {
+              data.title = emailField.value
+            } else {
+              data.title = 'Submission'
+            }
+            return data
+          },
+        ],
+      },
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'form', 'createdAt'],
+        components: {
+          beforeListTable: ['@/components/FormFolderGrid'],
+        },
+      },
       access: {
         read: isSuperOrClientAdmin,
         update: isSuperOrClientAdmin,
