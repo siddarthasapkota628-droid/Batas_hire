@@ -12,21 +12,21 @@ const FormFolderGrid: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // 1. Fetch Forms
-                const resForms = await fetch('/api/forms?limit=100')
-                const dataForms = await resForms.json()
-                setForms(dataForms.docs)
+                // 1. Fetch Dashboard Cards
+                const resDash = await fetch('/api/form-dashboards?limit=100&sort=priority')
+                const dataDash = await resDash.json()
+                setForms(dataDash.docs) // These are now Dashboard Config objects
 
-                // 2. Fetch Submission Counts for each
-                // Optimization: In a real large app, we would aggregate. 
-                // Here we essentially fire N requests or use a where query.
-                // Does Payload support aggregation? Not easily in API. 
-                // We will just do a quick count fetch for each form.
+                // 2. Fetch Submission Counts for each linked Target Form
                 const newStats: Record<string, number> = {}
-                await Promise.all(dataForms.docs.map(async (form: any) => {
-                    const resSub = await fetch(`/api/form-submissions?where[form][equals]=${form.id}&limit=0`)
+                await Promise.all(dataDash.docs.map(async (entry: any) => {
+                    // Check if targetForm exists (it might be deleted)
+                    const formId = entry.targetForm?.id || entry.targetForm // ID or Object depending on depth
+                    if (!formId) return
+
+                    const resSub = await fetch(`/api/form-submissions?where[form][equals]=${formId}&limit=0`)
                     const dataSub = await resSub.json()
-                    newStats[form.id] = dataSub.totalDocs
+                    newStats[entry.id] = dataSub.totalDocs
                 }))
                 setStats(newStats)
 
@@ -47,30 +47,35 @@ const FormFolderGrid: React.FC = () => {
                 gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
                 gap: '20px'
             }}>
-                {forms.map(form => (
-                    <a
-                        key={form.id}
-                        href={`${adminRoute}/collections/form-submissions?where[form][equals]=${form.id}`}
-                        style={{
-                            textDecoration: 'none',
-                            color: 'inherit',
-                            display: 'block',
-                            padding: '20px',
-                            backgroundColor: 'var(--theme-elevation-100)',
-                            border: '1px solid var(--theme-elevation-200)',
-                            borderRadius: '8px',
-                            transition: 'all 0.2s ease',
-                            cursor: 'pointer'
-                        }}
-                        onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--theme-primary-500)'}
-                        onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--theme-elevation-200)'}
-                    >
-                        <h4 style={{ margin: '0 0 10px 0' }}>{form.title}</h4>
-                        <div style={{ fontSize: '0.9rem', color: 'var(--theme-elevation-800)' }}>
-                            {stats[form.id] !== undefined ? `${stats[form.id]} Submissions` : 'Loading...'}
-                        </div>
-                    </a>
-                ))}
+                {forms.map(entry => {
+                    const formId = entry.targetForm?.id || entry.targetForm
+                    if (!formId) return null
+
+                    return (
+                        <a
+                            key={entry.id}
+                            href={`${adminRoute}/collections/form-submissions?where[form][equals]=${formId}`}
+                            style={{
+                                textDecoration: 'none',
+                                color: 'inherit',
+                                display: 'block',
+                                padding: '20px',
+                                backgroundColor: 'var(--theme-elevation-100)',
+                                border: '1px solid var(--theme-elevation-200)',
+                                borderRadius: '8px',
+                                transition: 'all 0.2s ease',
+                                cursor: 'pointer'
+                            }}
+                            onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--theme-primary-500)'}
+                            onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--theme-elevation-200)'}
+                        >
+                            <h4 style={{ margin: '0 0 10px 0' }}>{entry.title}</h4>
+                            <div style={{ fontSize: '0.9rem', color: 'var(--theme-elevation-800)' }}>
+                                {stats[entry.id] !== undefined ? `${stats[entry.id]} Submissions` : 'Loading...'}
+                            </div>
+                        </a>
+                    )
+                })}
             </div>
             <hr style={{ margin: '30px 0', borderColor: 'var(--theme-elevation-200)' }} />
         </div>

@@ -9,6 +9,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Roles } from './collections/Roles'
+import { FormDashboards } from './collections/FormDashboards'
 import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
@@ -63,7 +64,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, Roles],
+  collections: [Pages, Posts, Media, Categories, Users, Roles, FormDashboards],
   cors: [
     getServerSideURL(),
     'http://localhost:8080',

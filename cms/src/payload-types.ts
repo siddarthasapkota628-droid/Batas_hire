@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     users: User;
     roles: Role;
+    'form-dashboards': FormDashboard;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -96,6 +97,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     roles: RolesSelect<false> | RolesSelect<true>;
+    'form-dashboards': FormDashboardsSelect<false> | FormDashboardsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -1173,6 +1175,29 @@ export interface Form {
   createdAt: string;
 }
 /**
+ * Create custom cards for the Form Submissions dashboard.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-dashboards".
+ */
+export interface FormDashboard {
+  id: number;
+  /**
+   * The title displayed on the dashboard card (e.g., "Job Applications").
+   */
+  title: string;
+  /**
+   * Which form should this card display submissions for?
+   */
+  targetForm: number | Form;
+  /**
+   * Lower numbers appear first.
+   */
+  priority?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -1386,6 +1411,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'roles';
         value: number | Role;
+      } | null)
+    | ({
+        relationTo: 'form-dashboards';
+        value: number | FormDashboard;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -2118,6 +2147,17 @@ export interface RolesSelect<T extends boolean = true> {
         action?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-dashboards_select".
+ */
+export interface FormDashboardsSelect<T extends boolean = true> {
+  title?: T;
+  targetForm?: T;
+  priority?: T;
   updatedAt?: T;
   createdAt?: T;
 }
