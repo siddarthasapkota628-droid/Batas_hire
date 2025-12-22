@@ -4,6 +4,7 @@ import { useConfig } from '@payloadcms/ui'
 
 
 const FormFolderGrid: React.FC = () => {
+    // Force rebuild
     const config: any = useConfig()
     const adminRoute = config?.routes?.admin || '/admin'
     const [forms, setForms] = useState<any[]>([])

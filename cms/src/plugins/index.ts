@@ -11,6 +11,7 @@ import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { isSuperAdmin } from '../access/isSuperAdmin'
 import { isClientAdmin } from '../access/isClientAdmin'
+import FormFolderGrid from '@/components/FormFolderGrid'
 
 const isSuperOrClientAdmin = (args: any) => isSuperAdmin(args) || isClientAdmin(args)
 
@@ -79,6 +80,39 @@ export const plugins: Plugin[] = [
               }),
             }
           }
+          if ('name' in field && field.name === 'fields' && field.type === 'blocks') {
+            return {
+              ...field,
+              blocks: [
+                ...(field.blocks || []),
+                {
+                  slug: 'file',
+                  labels: {
+                    singular: 'File',
+                    plural: 'Files',
+                  },
+                  fields: [
+                    {
+                      name: 'name',
+                      type: 'text',
+                      label: 'Name (lowercase, no spaces)',
+                      required: true,
+                    },
+                    {
+                      name: 'label',
+                      type: 'text',
+                      label: 'Label',
+                    },
+                    {
+                      name: 'required',
+                      type: 'checkbox',
+                      label: 'Required',
+                    },
+                  ],
+                },
+              ],
+            }
+          }
           return field
         })
       },
@@ -122,7 +156,7 @@ export const plugins: Plugin[] = [
         useAsTitle: 'title',
         defaultColumns: ['title', 'form', 'createdAt'],
         components: {
-          beforeListTable: ['@/components/FormFolderGrid'],
+          beforeListTable: [FormFolderGrid],
         },
       },
       access: {
