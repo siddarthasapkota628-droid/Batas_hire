@@ -133,12 +133,15 @@ export const plugins: Plugin[] = [
       hooks: {
         beforeChange: [
           ({ data }) => {
+            if (!data?.submissionData || !Array.isArray(data.submissionData)) return data
+
             const nameField = data.submissionData.find((field: any) => {
+              if (!field?.field || typeof field.field !== 'string') return false
               const key = field.field.toLowerCase()
               return key === 'name' || key.includes('name') || key.includes('full') || key.includes('first')
             })
             const emailField = data.submissionData.find((field: any) =>
-              ['email', 'Email'].includes(field.field)
+              field?.field && typeof field.field === 'string' && ['email', 'Email'].includes(field.field)
             )
 
             if (nameField && nameField.value) {
