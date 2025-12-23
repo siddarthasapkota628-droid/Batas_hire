@@ -68,7 +68,12 @@ export const CareerApplications: CollectionConfig = {
             type: 'upload',
             relationTo: 'media',
             label: 'Resume / PDF',
-            admin: { readOnly: true },
+            admin: {
+                readOnly: true,
+                components: {
+                    Cell: '@/components/DownloadResumeCell',
+                },
+            },
         },
         {
             name: 'form',
