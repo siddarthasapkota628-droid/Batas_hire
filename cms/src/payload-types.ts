@@ -73,7 +73,9 @@ export interface Config {
     categories: Category;
     users: User;
     roles: Role;
-    'form-dashboards': FormDashboard;
+    'career-applications': CareerApplication;
+    'service-inquiries': ServiceInquiry;
+    'contact-submissions': ContactSubmission;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -97,7 +99,9 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     roles: RolesSelect<false> | RolesSelect<true>;
-    'form-dashboards': FormDashboardsSelect<false> | FormDashboardsSelect<true>;
+    'career-applications': CareerApplicationsSelect<false> | CareerApplicationsSelect<true>;
+    'service-inquiries': ServiceInquiriesSelect<false> | ServiceInquiriesSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -1183,25 +1187,76 @@ export interface Form {
   createdAt: string;
 }
 /**
- * Create custom cards for the Form Submissions dashboard.
+ * A dedicated view for Career Page applications.
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-dashboards".
+ * via the `definition` "career-applications".
  */
-export interface FormDashboard {
+export interface CareerApplication {
   id: number;
-  /**
-   * The title displayed on the dashboard card (e.g., "Job Applications").
-   */
-  title: string;
-  /**
-   * Which form should this card display submissions for?
-   */
-  targetForm: number | Form;
-  /**
-   * Lower numbers appear first.
-   */
-  priority?: number | null;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  jobPosition?: string | null;
+  resume?: (number | null) | Media;
+  form?: (number | null) | Form;
+  submissionData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Direct view for Service Inquiry form submissions.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "service-inquiries".
+ */
+export interface ServiceInquiry {
+  id: number;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  form?: (number | null) | Form;
+  submissionData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Direct view for General Contact form submissions.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  form?: (number | null) | Form;
+  submissionData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1246,6 +1301,11 @@ export interface FormSubmission {
       }[]
     | null;
   title?: string | null;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  resume?: (number | null) | Media;
+  jobPosition?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1421,8 +1481,16 @@ export interface PayloadLockedDocument {
         value: number | Role;
       } | null)
     | ({
-        relationTo: 'form-dashboards';
-        value: number | FormDashboard;
+        relationTo: 'career-applications';
+        value: number | CareerApplication;
+      } | null)
+    | ({
+        relationTo: 'service-inquiries';
+        value: number | ServiceInquiry;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -2160,12 +2228,42 @@ export interface RolesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-dashboards_select".
+ * via the `definition` "career-applications_select".
  */
-export interface FormDashboardsSelect<T extends boolean = true> {
-  title?: T;
-  targetForm?: T;
-  priority?: T;
+export interface CareerApplicationsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  jobPosition?: T;
+  resume?: T;
+  form?: T;
+  submissionData?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "service-inquiries_select".
+ */
+export interface ServiceInquiriesSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  form?: T;
+  submissionData?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  form?: T;
+  submissionData?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2341,6 +2439,11 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
         id?: T;
       };
   title?: T;
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  resume?: T;
+  jobPosition?: T;
   updatedAt?: T;
   createdAt?: T;
 }

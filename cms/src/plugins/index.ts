@@ -11,7 +11,7 @@ import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { isSuperAdmin } from '../access/isSuperAdmin'
 import { isClientAdmin } from '../access/isClientAdmin'
-import FormFolderGrid from '@/components/FormFolderGrid'
+// import FormFolderGrid from '@/components/FormFolderGrid'
 
 const isSuperOrClientAdmin = (args: any) => isSuperAdmin(args) || isClientAdmin(args)
 
@@ -128,6 +128,32 @@ export const plugins: Plugin[] = [
               hidden: true,
             },
           },
+          {
+            name: 'name',
+            type: 'text',
+            label: 'Full Name',
+          },
+          {
+            name: 'email',
+            type: 'email',
+            label: 'Email Address',
+          },
+          {
+            name: 'phoneNumber',
+            type: 'text',
+            label: 'Phone Number',
+          },
+          {
+            name: 'resume',
+            type: 'upload',
+            relationTo: 'media',
+            label: 'Resume / PDF',
+          },
+          {
+            name: 'jobPosition',
+            type: 'text',
+            label: 'Job Position',
+          },
         ]
       },
       hooks: {
@@ -135,32 +161,58 @@ export const plugins: Plugin[] = [
           ({ data }) => {
             if (!data?.submissionData || !Array.isArray(data.submissionData)) return data
 
+            // Find specific fields in the dynamic submissionData array
             const nameField = data.submissionData.find((field: any) => {
               if (!field?.field || typeof field.field !== 'string') return false
               const key = field.field.toLowerCase()
               return key === 'name' || key.includes('name') || key.includes('full') || key.includes('first')
             })
+
             const emailField = data.submissionData.find((field: any) =>
               field?.field && typeof field.field === 'string' && ['email', 'Email'].includes(field.field)
             )
 
-            if (nameField && nameField.value) {
+            const phoneField = data.submissionData.find((field: any) => {
+              if (!field?.field || typeof field.field !== 'string') return false
+              const key = field.field.toLowerCase()
+              return key.includes('phone') || key.includes('mobile') || key.includes('contact')
+            })
+
+            const resumeField = data.submissionData.find((field: any) => {
+              if (!field?.field || typeof field.field !== 'string') return false
+              const key = field.field.toLowerCase()
+              return key.includes('pdf') || key.includes('resume') || key.includes('file') || key.includes('cv')
+            })
+
+            const jobPositionField = data.submissionData.find((field: any) => {
+              if (!field?.field || typeof field.field !== 'string') return false
+              const key = field.field.toLowerCase()
+              return key.includes('job') || key.includes('position') || key.includes('role')
+            })
+
+            // Populate structured fields
+            if (nameField?.value) {
+              data.name = nameField.value
               data.title = nameField.value
-            } else if (emailField && emailField.value) {
+            } else if (emailField?.value) {
               data.title = emailField.value
             } else {
               data.title = 'Submission'
             }
+
+            if (emailField?.value) data.email = emailField.value
+            if (phoneField?.value) data.phoneNumber = phoneField.value
+            if (resumeField?.value) data.resume = resumeField.value
+            if (jobPositionField?.value) data.jobPosition = jobPositionField.value
+
             return data
           },
         ],
       },
       admin: {
-        useAsTitle: 'title',
-        defaultColumns: ['title', 'form', 'createdAt'],
-        components: {
-          beforeListTable: [FormFolderGrid],
-        },
+        useAsTitle: 'id',
+        defaultColumns: ['id', 'form', 'createdAt'],
+        hidden: true,
       },
       access: {
         read: isSuperOrClientAdmin,
