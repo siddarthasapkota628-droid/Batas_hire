@@ -52,6 +52,11 @@ const run = async () => {
                     roles: ['admin'],
                     // @ts-ignore
                     enableAdminPanelAccess: true
+                },
+                req: {
+                    context: {
+                        preventRoleOverride: false
+                    }
                 }
             })
             console.log(`[SUCCESS] User ${user.email} promoted to Admin.`)

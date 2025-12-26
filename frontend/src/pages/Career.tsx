@@ -27,6 +27,7 @@ const iconMap: Record<string, any> = {
 const Career = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedFormId, setSelectedFormId] = useState<string | null>(null);
+    const [selectedJob, setSelectedJob] = useState<any>(null);
     const FORM_ID = "3"; // Hardcoded 
 
     const { data: pageData, isLoading } = useQuery({
@@ -37,6 +38,7 @@ const Career = () => {
     const handleApply = (job: any) => {
         // Hardcoded form ID as requested for Phase 1
         setSelectedFormId(FORM_ID);
+        setSelectedJob(job);
         setIsModalOpen(true);
     };
 
@@ -237,7 +239,7 @@ const Career = () => {
                         </DialogDescription>
                     </DialogHeader>
                     {selectedFormId ? (
-                        <DynamicForm formId={selectedFormId} onSuccess={() => setIsModalOpen(false)} />
+                        <DynamicForm formId={selectedFormId} jobData={selectedJob} onSuccess={() => setIsModalOpen(false)} />
                     ) : (
                         <div className="p-10 text-center text-muted-foreground">
                             <p>Loading application form...</p>

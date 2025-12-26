@@ -67,11 +67,11 @@ export const Users: CollectionConfig = {
       label: 'System Roles',
       options: [
         {
-          label: 'Super Admin',
+          label: 'Vendor',
           value: 'admin',
         },
         {
-          label: 'Admin',
+          label: 'Super Admin',
           value: 'client-admin',
         },
         {
@@ -94,12 +94,22 @@ export const Users: CollectionConfig = {
         const id = (options as any)?.id
 
         if (operation === 'create') {
+          // Allow system scripts to override this check
+          if (req.context?.preventRoleOverride === false) {
+            return true
+          }
+
           if (Array.isArray(val) && val.includes('admin')) {
             return 'Creating new Super Admins is disabled.'
           }
         }
         if (operation === 'update') {
           if (Array.isArray(val) && val.includes('admin')) {
+            // Allow system scripts to override this check
+            if (req.context?.preventRoleOverride === false) {
+              return true
+            }
+
             try {
               // If we have an ID, we check if the user is ALREADY an admin.
               // If they are, we allow the update (preserving their admin status).

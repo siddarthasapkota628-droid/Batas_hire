@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { getForm, submitForm } from '@/lib/api';
+import { getForm, submitForm, uploadMedia } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { Loader2, CheckCircle, AlertCircle, Upload, X } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface DynamicFormProps {
     formId: string;
+    jobData?: any;
     onSuccess?: () => void;
 }
 
-const DynamicForm = ({ formId, onSuccess }: DynamicFormProps) => {
+const DynamicForm = ({ formId, jobData, onSuccess }: DynamicFormProps) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
 
@@ -44,6 +45,9 @@ const DynamicForm = ({ formId, onSuccess }: DynamicFormProps) => {
     });
 
     const onSubmit = (data: any) => {
+        if (jobData?.title) {
+            data['Job Position'] = jobData.title;
+        }
         mutation.mutate(data);
     };
 
@@ -82,6 +86,14 @@ const DynamicForm = ({ formId, onSuccess }: DynamicFormProps) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {jobData && (
+                <div className="bg-muted/50 p-4 rounded-lg mb-6">
+                    <p className="text-sm text-muted-foreground">Applying for position:</p>
+                    <p className="font-semibold text-foreground">{jobData.title}</p>
+                    {jobData.department && <p className="text-xs text-muted-foreground">{jobData.department}</p>}
+                </div>
+            )}
+
             {/* Ensure fields exist */}
             {!formData.fields && <p>No fields found for this form.</p>}
 
@@ -151,6 +163,45 @@ const DynamicForm = ({ formId, onSuccess }: DynamicFormProps) => {
                             {errors[name] && <span className="text-destructive text-sm">{errors[name]?.message as string}</span>}
                         </div>
                     )
+                }
+
+                if (blockType === 'file') {
+                    return (
+                        <div key={name} className="space-y-2">
+                            <Label htmlFor={name}>
+                                {safeLabel} {required && <span className="text-destructive">*</span>}
+                            </Label>
+                            <div className="flex items-center gap-4">
+                                <Input
+                                    id={name}
+                                    type="file"
+                                    className="cursor-pointer"
+                                    onChange={async (e) => {
+                                        const file = e.target.files?.[0];
+                                        if (file) {
+                                            try {
+                                                const promise = uploadMedia(file);
+                                                toast.promise(promise, {
+                                                    loading: 'Uploading file...',
+                                                    success: 'File uploaded successfully',
+                                                    error: 'Failed to upload file',
+                                                });
+                                                const res = await promise;
+                                                setValue(name, res.doc.id);
+                                            } catch (error) {
+                                                console.error(error);
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+                            <input
+                                type="hidden"
+                                {...register(name, { required: required ? `${safeLabel} is required` : false })}
+                            />
+                            {errors[name] && <span className="text-destructive text-sm">{errors[name]?.message as string}</span>}
+                        </div>
+                    );
                 }
 
                 return null;

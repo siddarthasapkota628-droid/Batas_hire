@@ -68,11 +68,24 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    'about-page': AboutPage;
+    'services-page': ServicesPage;
+    'career-page': CareerPage;
+    'home-page': HomePage;
+    'how-it-works-page': HowItWorksPage;
+    'knowledge-center-page': KnowledgeCenterPage;
+    'faq-page': FaqPage;
+    'contact-page': ContactPage;
+    'legal-page': LegalPage;
+    'notice-page': NoticePage;
     posts: Post;
     media: Media;
     categories: Category;
     users: User;
     roles: Role;
+    'career-applications': CareerApplication;
+    'service-inquiries': ServiceInquiry;
+    'contact-submissions': ContactSubmission;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -91,11 +104,24 @@ export interface Config {
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
+    'services-page': ServicesPageSelect<false> | ServicesPageSelect<true>;
+    'career-page': CareerPageSelect<false> | CareerPageSelect<true>;
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    'how-it-works-page': HowItWorksPageSelect<false> | HowItWorksPageSelect<true>;
+    'knowledge-center-page': KnowledgeCenterPageSelect<false> | KnowledgeCenterPageSelect<true>;
+    'faq-page': FaqPageSelect<false> | FaqPageSelect<true>;
+    'contact-page': ContactPageSelect<false> | ContactPageSelect<true>;
+    'legal-page': LegalPageSelect<false> | LegalPageSelect<true>;
+    'notice-page': NoticePageSelect<false> | NoticePageSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     roles: RolesSelect<false> | RolesSelect<true>;
+    'career-applications': CareerApplicationsSelect<false> | CareerApplicationsSelect<true>;
+    'service-inquiries': ServiceInquiriesSelect<false> | ServiceInquiriesSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -570,10 +596,6 @@ export interface Page {
   };
   meta?: {
     title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -1112,6 +1134,14 @@ export interface Form {
             blockName?: string | null;
             blockType: 'textarea';
           }
+        | {
+            name: string;
+            label?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'file';
+          }
       )[]
     | null;
   submitButtonLabel?: string | null;
@@ -1174,6 +1204,4370 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page".
+ */
+export interface AboutPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services-page".
+ */
+export interface ServicesPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "career-page".
+ */
+export interface CareerPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page".
+ */
+export interface HomePage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "how-it-works-page".
+ */
+export interface HowItWorksPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "knowledge-center-page".
+ */
+export interface KnowledgeCenterPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-page".
+ */
+export interface FaqPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-page".
+ */
+export interface ContactPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal-page".
+ */
+export interface LegalPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notice-page".
+ */
+export interface NoticePage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * A dedicated view for Career Page applications.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "career-applications".
+ */
+export interface CareerApplication {
+  id: number;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  jobPosition?: string | null;
+  resume?: (number | null) | Media;
+  form?: (number | null) | Form;
+  submissionData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Direct view for Service Inquiry form submissions.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "service-inquiries".
+ */
+export interface ServiceInquiry {
+  id: number;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  form?: (number | null) | Form;
+  submissionData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Direct view for General Contact form submissions.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  form?: (number | null) | Form;
+  submissionData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1188,6 +5582,46 @@ export interface Redirect {
       | ({
           relationTo: 'pages';
           value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'about-page';
+          value: number | AboutPage;
+        } | null)
+      | ({
+          relationTo: 'services-page';
+          value: number | ServicesPage;
+        } | null)
+      | ({
+          relationTo: 'career-page';
+          value: number | CareerPage;
+        } | null)
+      | ({
+          relationTo: 'home-page';
+          value: number | HomePage;
+        } | null)
+      | ({
+          relationTo: 'how-it-works-page';
+          value: number | HowItWorksPage;
+        } | null)
+      | ({
+          relationTo: 'knowledge-center-page';
+          value: number | KnowledgeCenterPage;
+        } | null)
+      | ({
+          relationTo: 'faq-page';
+          value: number | FaqPage;
+        } | null)
+      | ({
+          relationTo: 'contact-page';
+          value: number | ContactPage;
+        } | null)
+      | ({
+          relationTo: 'legal-page';
+          value: number | LegalPage;
+        } | null)
+      | ({
+          relationTo: 'notice-page';
+          value: number | NoticePage;
         } | null)
       | ({
           relationTo: 'posts';
@@ -1212,6 +5646,12 @@ export interface FormSubmission {
         id?: string | null;
       }[]
     | null;
+  title?: string | null;
+  name?: string | null;
+  email?: string | null;
+  phoneNumber?: string | null;
+  resume?: (number | null) | Media;
+  jobPosition?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1225,10 +5665,55 @@ export interface Search {
   id: number;
   title?: string | null;
   priority?: number | null;
-  doc: {
-    relationTo: 'posts';
-    value: number | Post;
-  };
+  doc:
+    | {
+        relationTo: 'pages';
+        value: number | Page;
+      }
+    | {
+        relationTo: 'about-page';
+        value: number | AboutPage;
+      }
+    | {
+        relationTo: 'services-page';
+        value: number | ServicesPage;
+      }
+    | {
+        relationTo: 'career-page';
+        value: number | CareerPage;
+      }
+    | {
+        relationTo: 'home-page';
+        value: number | HomePage;
+      }
+    | {
+        relationTo: 'how-it-works-page';
+        value: number | HowItWorksPage;
+      }
+    | {
+        relationTo: 'knowledge-center-page';
+        value: number | KnowledgeCenterPage;
+      }
+    | {
+        relationTo: 'faq-page';
+        value: number | FaqPage;
+      }
+    | {
+        relationTo: 'contact-page';
+        value: number | ContactPage;
+      }
+    | {
+        relationTo: 'legal-page';
+        value: number | LegalPage;
+      }
+    | {
+        relationTo: 'notice-page';
+        value: number | NoticePage;
+      }
+    | {
+        relationTo: 'posts';
+        value: number | Post;
+      };
   slug?: string | null;
   meta?: {
     title?: string | null;
@@ -1367,6 +5852,46 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
+        relationTo: 'about-page';
+        value: number | AboutPage;
+      } | null)
+    | ({
+        relationTo: 'services-page';
+        value: number | ServicesPage;
+      } | null)
+    | ({
+        relationTo: 'career-page';
+        value: number | CareerPage;
+      } | null)
+    | ({
+        relationTo: 'home-page';
+        value: number | HomePage;
+      } | null)
+    | ({
+        relationTo: 'how-it-works-page';
+        value: number | HowItWorksPage;
+      } | null)
+    | ({
+        relationTo: 'knowledge-center-page';
+        value: number | KnowledgeCenterPage;
+      } | null)
+    | ({
+        relationTo: 'faq-page';
+        value: number | FaqPage;
+      } | null)
+    | ({
+        relationTo: 'contact-page';
+        value: number | ContactPage;
+      } | null)
+    | ({
+        relationTo: 'legal-page';
+        value: number | LegalPage;
+      } | null)
+    | ({
+        relationTo: 'notice-page';
+        value: number | NoticePage;
+      } | null)
+    | ({
         relationTo: 'posts';
         value: number | Post;
       } | null)
@@ -1385,6 +5910,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'roles';
         value: number | Role;
+      } | null)
+    | ({
+        relationTo: 'career-applications';
+        value: number | CareerApplication;
+      } | null)
+    | ({
+        relationTo: 'service-inquiries';
+        value: number | ServiceInquiry;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1839,7 +6376,6 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -1931,6 +6467,3996 @@ export interface FormBlockSelect<T extends boolean = true> {
   introContent?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services-page_select".
+ */
+export interface ServicesPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "career-page_select".
+ */
+export interface CareerPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "how-it-works-page_select".
+ */
+export interface HowItWorksPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "knowledge-center-page_select".
+ */
+export interface KnowledgeCenterPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-page_select".
+ */
+export interface FaqPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-page_select".
+ */
+export interface ContactPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal-page_select".
+ */
+export interface LegalPageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notice-page_select".
+ */
+export interface NoticePageSelect<T extends boolean = true> {
+  title?: T;
+  publishedAt?: T;
+  template?: T;
+  hero?:
+    | T
+    | {
+        type?: T;
+        richText?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
+                  };
+              id?: T;
+            };
+        media?: T;
+      };
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
+      };
+  aboutHeaderTitle?: T;
+  aboutHeaderSubtitle?: T;
+  aboutStoryTitle?: T;
+  aboutStoryContent?: T;
+  stat1?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat2?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat3?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  stat4?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+      };
+  mission?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  values?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+      };
+  directorsTitle?: T;
+  directorsDescription?: T;
+  directors?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        experience?: T;
+        education?: T;
+        specialization?: T;
+        id?: T;
+      };
+  leadershipTitle?: T;
+  leadershipDescription?: T;
+  leadership?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        position?: T;
+        department?: T;
+        experience?: T;
+        expertise?: T;
+        id?: T;
+      };
+  timelineTitle?: T;
+  timelineDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        event?: T;
+        description?: T;
+        id?: T;
+      };
+  testimonialsTitle?: T;
+  testimonialsDescription?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        location?: T;
+        rating?: T;
+        content?: T;
+        product?: T;
+        id?: T;
+      };
+  complianceTitle?: T;
+  complianceDescription?: T;
+  badge1?:
+    | T
+    | {
+        text?: T;
+      };
+  badge2?:
+    | T
+    | {
+        text?: T;
+      };
+  badge3?:
+    | T
+    | {
+        text?: T;
+      };
+  productsTitle?: T;
+  productsDescription?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              icon?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaText?: T;
+        secondaryCtaText?: T;
+        id?: T;
+      };
+  headerTitle?: T;
+  headerSubtitle?: T;
+  steps?:
+    | T
+    | {
+        stepNumber?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  trustFeatures?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  careerHeaderTitle?: T;
+  careerHeaderSubtitle?: T;
+  jobOpenings?:
+    | T
+    | {
+        title?: T;
+        department?: T;
+        location?: T;
+        type?: T;
+        experience?: T;
+        salary?: T;
+        description?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  lifeAtCompany?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  knowledgeCenterHeaderTitle?: T;
+  knowledgeCenterHeaderSubtitle?: T;
+  articles?:
+    | T
+    | {
+        title?: T;
+        excerpt?: T;
+        category?: T;
+        author?: T;
+        date?: T;
+        readTime?: T;
+        featured?: T;
+        id?: T;
+      };
+  guides?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        category?: T;
+        steps?: T;
+        id?: T;
+      };
+  reports?:
+    | T
+    | {
+        title?: T;
+        type?: T;
+        date?: T;
+        size?: T;
+        icon?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        category?: T;
+        id?: T;
+      };
+  faqHeaderTitle?: T;
+  faqHeaderSubtitle?: T;
+  faqCategories?:
+    | T
+    | {
+        categoryName?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  contactHeaderTitle?: T;
+  contactHeaderSubtitle?: T;
+  contactMethods?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        contactInfo?: T;
+        availability?: T;
+        id?: T;
+      };
+  contactForm?: T;
+  formTitle?: T;
+  businessHoursTitle?: T;
+  businessHours?:
+    | T
+    | {
+        day?: T;
+        time?: T;
+        id?: T;
+      };
+  businessHoursNote?: T;
+  legalHeaderTitle?: T;
+  legalHeaderSubtitle?: T;
+  regulatoryInfo?:
+    | T
+    | {
+        title?: T;
+        details?: T;
+        validity?: T;
+        id?: T;
+      };
+  documents?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        category?: T;
+        lastUpdated?: T;
+        icon?: T;
+        color?: T;
+        id?: T;
+      };
+  importantNotices?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        type?: T;
+        id?: T;
+      };
+  noticeHeaderTitle?: T;
+  noticeHeaderSubtitle?: T;
+  notices?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        content?: T;
+        type?: T;
+        icon?: T;
+        id?: T;
+      };
+  contactSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        primaryButtonText?: T;
+        primaryButtonLink?: T;
+        secondaryButtonText?: T;
+        secondaryButtonLink?: T;
+      };
+  subscribeSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        buttonText?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2122,6 +10648,47 @@ export interface RolesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "career-applications_select".
+ */
+export interface CareerApplicationsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  jobPosition?: T;
+  resume?: T;
+  form?: T;
+  submissionData?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "service-inquiries_select".
+ */
+export interface ServiceInquiriesSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  form?: T;
+  submissionData?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  form?: T;
+  submissionData?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -2245,6 +10812,15 @@ export interface FormsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        file?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   submitButtonLabel?: T;
   confirmationType?: T;
@@ -2282,6 +10858,12 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
         value?: T;
         id?: T;
       };
+  title?: T;
+  name?: T;
+  email?: T;
+  phoneNumber?: T;
+  resume?: T;
+  jobPosition?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2511,6 +11093,46 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'pages';
           value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'about-page';
+          value: number | AboutPage;
+        } | null)
+      | ({
+          relationTo: 'services-page';
+          value: number | ServicesPage;
+        } | null)
+      | ({
+          relationTo: 'career-page';
+          value: number | CareerPage;
+        } | null)
+      | ({
+          relationTo: 'home-page';
+          value: number | HomePage;
+        } | null)
+      | ({
+          relationTo: 'how-it-works-page';
+          value: number | HowItWorksPage;
+        } | null)
+      | ({
+          relationTo: 'knowledge-center-page';
+          value: number | KnowledgeCenterPage;
+        } | null)
+      | ({
+          relationTo: 'faq-page';
+          value: number | FaqPage;
+        } | null)
+      | ({
+          relationTo: 'contact-page';
+          value: number | ContactPage;
+        } | null)
+      | ({
+          relationTo: 'legal-page';
+          value: number | LegalPage;
+        } | null)
+      | ({
+          relationTo: 'notice-page';
+          value: number | NoticePage;
         } | null)
       | ({
           relationTo: 'posts';

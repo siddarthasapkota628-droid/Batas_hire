@@ -87,3 +87,16 @@ export const getHeader = async () => {
     const response = await api.get('/globals/header');
     return response.data;
 };
+
+// Upload Media
+export const uploadMedia = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await api.post('/media', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return response.data;
+};

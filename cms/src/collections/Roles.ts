@@ -16,7 +16,20 @@ export const Roles: CollectionConfig = {
     access: {
         // Admins (Super & Client) can manage roles
         create: isSuperOrClientAdmin,
-        read: isSuperOrClientAdmin,
+        read: ({ req: { user } }) => {
+            if (!user) return false
+            // Vendor (admin) sees everything
+            if ((user.roles as any)?.includes('admin')) return true
+            // Client (client-admin) sees everything EXCEPT the 'Admin' role
+            if ((user.roles as any)?.includes('client-admin')) {
+                return {
+                    name: {
+                        not_equals: 'Admin',
+                    },
+                }
+            }
+            return false
+        },
         update: isSuperOrClientAdmin,
         delete: isSuperOrClientAdmin,
     },
@@ -67,6 +80,15 @@ export const Roles: CollectionConfig = {
                         { label: 'Delete Only', value: 'delete' },
                     ],
                     defaultValue: 'read',
+                    validate: (value, options) => {
+                        const siblingData = (options as any)?.siblingData
+                        if (siblingData?.resource === 'pages') {
+                            if (['create', 'delete', 'manage'].includes(value)) {
+                                return 'Restricted: New Pages can only be created by the Vendor (Dev Team).'
+                            }
+                        }
+                        return true
+                    }
                 },
 
             ],
