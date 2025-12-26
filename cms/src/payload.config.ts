@@ -7,6 +7,16 @@ import { fileURLToPath } from 'url'
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
+import { AboutPageCollection } from './collections/Pages/AboutPage'
+import { ServicesPageCollection } from './collections/Pages/ServicesPage'
+import { CareerPageCollection } from './collections/Pages/CareerPage'
+import { HomePageCollection } from './collections/Pages/HomePage'
+import { HowItWorksPageCollection } from './collections/Pages/HowItWorksPage'
+import { KnowledgeCenterPageCollection } from './collections/Pages/KnowledgeCenterPage'
+import { FAQPageCollection } from './collections/Pages/FAQPageCollection'
+import { ContactPageCollection } from './collections/Pages/ContactPage'
+import { LegalPageCollection } from './collections/Pages/LegalPageCollection'
+import { NoticePageCollection } from './collections/Pages/NoticePageCollection'
 import { Posts } from './collections/Posts'
 import { Roles } from './collections/Roles'
 import { CareerApplications } from './collections/CareerApplications'
@@ -68,6 +78,16 @@ export default buildConfig({
   }),
   collections: [
     Pages,
+    AboutPageCollection,
+    ServicesPageCollection,
+    CareerPageCollection,
+    HomePageCollection,
+    HowItWorksPageCollection,
+    KnowledgeCenterPageCollection,
+    FAQPageCollection,
+    ContactPageCollection,
+    LegalPageCollection,
+    NoticePageCollection,
     Posts,
     Media,
     Categories,

@@ -62,6 +62,7 @@ export const Pages: CollectionConfig<'pages'> = {
   },
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
+    hidden: true, // Hide from sidebar
     livePreview: {
       url: ({ data, req }) =>
         generatePreviewPath({

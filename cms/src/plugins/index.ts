@@ -28,9 +28,23 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   return doc?.slug ? `${url}/${doc.slug}` : url
 }
 
+const pageSlugs = [
+  'pages',
+  'about-page',
+  'services-page',
+  'career-page',
+  'home-page',
+  'how-it-works-page',
+  'knowledge-center-page',
+  'faq-page',
+  'contact-page',
+  'legal-page',
+  'notice-page',
+]
+
 export const plugins: Plugin[] = [
   redirectsPlugin({
-    collections: ['pages', 'posts'],
+    collections: [...pageSlugs, 'posts'],
     overrides: {
       // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
       fields: ({ defaultFields }) => {
@@ -56,6 +70,7 @@ export const plugins: Plugin[] = [
     generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
   }),
   seoPlugin({
+    collections: pageSlugs,
     generateTitle,
     generateURL,
   }),
@@ -223,7 +238,7 @@ export const plugins: Plugin[] = [
     },
   }),
   searchPlugin({
-    collections: ['posts'],
+    collections: [...pageSlugs, 'posts'],
     beforeSync: beforeSyncWithSearch,
     searchOverrides: {
       fields: ({ defaultFields }) => {
