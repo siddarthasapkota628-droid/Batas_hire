@@ -5852,46 +5852,6 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
-        relationTo: 'about-page';
-        value: number | AboutPage;
-      } | null)
-    | ({
-        relationTo: 'services-page';
-        value: number | ServicesPage;
-      } | null)
-    | ({
-        relationTo: 'career-page';
-        value: number | CareerPage;
-      } | null)
-    | ({
-        relationTo: 'home-page';
-        value: number | HomePage;
-      } | null)
-    | ({
-        relationTo: 'how-it-works-page';
-        value: number | HowItWorksPage;
-      } | null)
-    | ({
-        relationTo: 'knowledge-center-page';
-        value: number | KnowledgeCenterPage;
-      } | null)
-    | ({
-        relationTo: 'faq-page';
-        value: number | FaqPage;
-      } | null)
-    | ({
-        relationTo: 'contact-page';
-        value: number | ContactPage;
-      } | null)
-    | ({
-        relationTo: 'legal-page';
-        value: number | LegalPage;
-      } | null)
-    | ({
-        relationTo: 'notice-page';
-        value: number | NoticePage;
-      } | null)
-    | ({
         relationTo: 'posts';
         value: number | Post;
       } | null)
@@ -5910,18 +5870,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'roles';
         value: number | Role;
-      } | null)
-    | ({
-        relationTo: 'career-applications';
-        value: number | CareerApplication;
-      } | null)
-    | ({
-        relationTo: 'service-inquiries';
-        value: number | ServiceInquiry;
-      } | null)
-    | ({
-        relationTo: 'contact-submissions';
-        value: number | ContactSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
