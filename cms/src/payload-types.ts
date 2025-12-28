@@ -1618,8 +1618,89 @@ export interface AboutPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -2047,8 +2128,89 @@ export interface ServicesPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -2476,8 +2638,89 @@ export interface CareerPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -2905,8 +3148,89 @@ export interface HomePage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -3334,8 +3658,89 @@ export interface HowItWorksPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -3763,8 +4168,89 @@ export interface KnowledgeCenterPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -4192,8 +4678,89 @@ export interface FaqPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -4621,8 +5188,89 @@ export interface ContactPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -5050,8 +5698,89 @@ export interface LegalPage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -5479,8 +6208,89 @@ export interface NoticePage {
     description?: string | null;
     buttonText?: string | null;
   };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
   meta?: {
     title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -5584,46 +6394,6 @@ export interface Redirect {
           value: number | Page;
         } | null)
       | ({
-          relationTo: 'about-page';
-          value: number | AboutPage;
-        } | null)
-      | ({
-          relationTo: 'services-page';
-          value: number | ServicesPage;
-        } | null)
-      | ({
-          relationTo: 'career-page';
-          value: number | CareerPage;
-        } | null)
-      | ({
-          relationTo: 'home-page';
-          value: number | HomePage;
-        } | null)
-      | ({
-          relationTo: 'how-it-works-page';
-          value: number | HowItWorksPage;
-        } | null)
-      | ({
-          relationTo: 'knowledge-center-page';
-          value: number | KnowledgeCenterPage;
-        } | null)
-      | ({
-          relationTo: 'faq-page';
-          value: number | FaqPage;
-        } | null)
-      | ({
-          relationTo: 'contact-page';
-          value: number | ContactPage;
-        } | null)
-      | ({
-          relationTo: 'legal-page';
-          value: number | LegalPage;
-        } | null)
-      | ({
-          relationTo: 'notice-page';
-          value: number | NoticePage;
-        } | null)
-      | ({
           relationTo: 'posts';
           value: number | Post;
         } | null);
@@ -5669,46 +6439,6 @@ export interface Search {
     | {
         relationTo: 'pages';
         value: number | Page;
-      }
-    | {
-        relationTo: 'about-page';
-        value: number | AboutPage;
-      }
-    | {
-        relationTo: 'services-page';
-        value: number | ServicesPage;
-      }
-    | {
-        relationTo: 'career-page';
-        value: number | CareerPage;
-      }
-    | {
-        relationTo: 'home-page';
-        value: number | HomePage;
-      }
-    | {
-        relationTo: 'how-it-works-page';
-        value: number | HowItWorksPage;
-      }
-    | {
-        relationTo: 'knowledge-center-page';
-        value: number | KnowledgeCenterPage;
-      }
-    | {
-        relationTo: 'faq-page';
-        value: number | FaqPage;
-      }
-    | {
-        relationTo: 'contact-page';
-        value: number | ContactPage;
-      }
-    | {
-        relationTo: 'legal-page';
-        value: number | LegalPage;
-      }
-    | {
-        relationTo: 'notice-page';
-        value: number | NoticePage;
       }
     | {
         relationTo: 'posts';
@@ -6803,10 +7533,94 @@ export interface AboutPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -7202,10 +8016,94 @@ export interface ServicesPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -7601,10 +8499,94 @@ export interface CareerPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -8000,10 +8982,94 @@ export interface HomePageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -8399,10 +9465,94 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -8798,10 +9948,94 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -9197,10 +10431,94 @@ export interface FaqPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -9596,10 +10914,94 @@ export interface ContactPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -9995,10 +11397,94 @@ export interface LegalPageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;
@@ -10394,10 +11880,94 @@ export interface NoticePageSelect<T extends boolean = true> {
         description?: T;
         buttonText?: T;
       };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
   meta?:
     | T
     | {
         title?: T;
+        image?: T;
         description?: T;
       };
   generateSlug?: T;

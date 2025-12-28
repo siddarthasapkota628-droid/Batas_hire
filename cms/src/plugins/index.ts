@@ -28,19 +28,7 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   return doc?.slug ? `${url}/${doc.slug}` : url
 }
 
-const pageSlugs = [
-  'pages',
-  'about-page',
-  'services-page',
-  'career-page',
-  'home-page',
-  'how-it-works-page',
-  'knowledge-center-page',
-  'faq-page',
-  'contact-page',
-  'legal-page',
-  'notice-page',
-]
+const pageSlugs = ['pages']
 
 export const plugins: Plugin[] = [
   redirectsPlugin({

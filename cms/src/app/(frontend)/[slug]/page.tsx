@@ -12,6 +12,7 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { HomeTemplateDetail } from './HomeTemplate'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -64,6 +65,49 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
+  let supplementalData: any = {}
+  if (page.template === 'home') {
+    const payload = await getPayload({ config: configPromise })
+
+    // Fetch Services
+    const servicesPage = await payload.find({
+      collection: 'pages',
+      where: { template: { equals: 'services' } },
+      limit: 1,
+    })
+
+    // Fetch About (for testimonials)
+    const aboutPage = await payload.find({
+      collection: 'pages',
+      where: { template: { equals: 'about' } },
+      limit: 1,
+    })
+
+    // Fetch Knowledge Center
+    const knowledgePage = await payload.find({
+      collection: 'pages',
+      where: { template: { equals: 'knowledge-center' } },
+      limit: 1,
+    })
+
+    supplementalData = {
+      products: servicesPage.docs[0]?.products || [],
+      testimonials: aboutPage.docs[0]?.testimonials || [],
+      articles: knowledgePage.docs[0]?.articles || [],
+    }
+  }
+
+  if (page.template === 'home') {
+    return (
+      <article className="pt-16 pb-24">
+        <PageClient />
+        <PayloadRedirects disableNotFound url={url} />
+        {draft && <LivePreviewListener />}
+        <HomeTemplateDetail page={page} supplemental={supplementalData} />
+      </article>
+    )
+  }
+
   const { hero, layout } = page
 
   return (
@@ -75,7 +119,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={layout || []} />
     </article>
   )
 }

@@ -31,13 +31,18 @@ const iconMap: Record<string, any> = {
 
 interface ProductsProps {
   cmsData?: any;
+  supplemental?: any[];
 }
 
-const Products = ({ cmsData = {} }: ProductsProps) => {
+const Products = ({ cmsData = {}, supplemental }: ProductsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // TODO: Replace with actual Form ID from PayloadCMS Admin -> Forms
-  // You can also fetch this dynamically if you link the form in the page schema
+  const { homeProductsConfig } = cmsData;
   const FORM_ID = "2";
+
+  // Use config values if available
+  const title = homeProductsConfig?.title || cmsData.productsTitle || "Our Financial Solutions";
+  const description = homeProductsConfig?.description || cmsData.productsDescription || "Tailored financing options to meet your diverse needs with transparent terms and competitive rates";
+  const maxRows = homeProductsConfig?.maxRows || 4;
 
   // Static Data (Fallback)
   const defaultProducts = [
@@ -82,18 +87,14 @@ const Products = ({ cmsData = {} }: ProductsProps) => {
   ];
 
   // Merge/Select Data
-  const products =
-    cmsData.products && cmsData.products.length > 0
-      ? cmsData.products.map((p: any) => ({
-        ...p,
-        image: p.image?.url ? `http://localhost:3000${p.image.url}` : null
-      }))
-      : defaultProducts;
+  const productsSource = supplemental && supplemental.length > 0 ? supplemental : (cmsData.products || []);
 
-  const title = cmsData.productsTitle || "Our Financial Solutions";
-  const description =
-    cmsData.productsDescription ||
-    "Tailored financing options to meet your diverse needs with transparent terms and competitive rates";
+  const products = productsSource.length > 0
+    ? productsSource.slice(0, maxRows).map((p: any) => ({
+      ...p,
+      image: p.image?.url ? `http://localhost:3000${p.image.url}` : null
+    }))
+    : defaultProducts;
 
   return (
     <section id="products" className="py-20 bg-gradient-subtle">
