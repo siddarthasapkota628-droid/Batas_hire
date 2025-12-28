@@ -113,6 +113,7 @@ export const getAllTabs = (activeTemplate: string): any[] => {
 export const createVirtualPageCollection = (slug: string, template: string, label: string): CollectionConfig => ({
     slug,
     dbName: 'pages',
+    lockDocuments: false,
     admin: {
         useAsTitle: 'title',
         group: 'Pages',

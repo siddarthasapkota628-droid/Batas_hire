@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const ContactSubmissions: CollectionConfig = {
     slug: 'contact-submissions',
     dbName: 'form_submissions',
+    lockDocuments: false,
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'email', 'phoneNumber', 'createdAt'],
