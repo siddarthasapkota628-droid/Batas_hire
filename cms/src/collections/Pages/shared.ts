@@ -24,6 +24,7 @@ import { FAQPage } from './FAQPage'
 import { ContactPage } from './Contact'
 import { LegalPage } from './LegalPage'
 import { NoticePage } from './NoticePage'
+import { HomePage } from './Home'
 
 // Import shared logic
 import { isSuperAdmin } from '../../access/isSuperAdmin'
@@ -88,6 +89,7 @@ export const getAllTabs = (activeTemplate: string): any[] => {
         { ...ContactPage, admin: { ...ContactPage.admin, condition: (data: any) => activeTemplate === 'contact' && data?.template === 'contact' } },
         { ...LegalPage, admin: { ...LegalPage.admin, condition: (data: any) => activeTemplate === 'legal' && data?.template === 'legal' } },
         { ...NoticePage, admin: { ...NoticePage.admin, condition: (data: any) => activeTemplate === 'notice' && data?.template === 'notice' } },
+        { ...HomePage, admin: { ...HomePage.admin, condition: (data: any) => activeTemplate === 'home' && data?.template === 'home' } },
         {
             name: 'meta',
             label: 'SEO',
@@ -108,6 +110,13 @@ export const getAllTabs = (activeTemplate: string): any[] => {
             ],
         },
     ]
+}
+
+const setTemplate = (template: string) => ({ data }: any) => {
+    return {
+        ...data,
+        template,
+    }
 }
 
 export const createVirtualPageCollection = (slug: string, template: string, label: string): CollectionConfig => ({
@@ -137,7 +146,20 @@ export const createVirtualPageCollection = (slug: string, template: string, labe
         create: isSuperAdmin,
         delete: checkRole('pages', 'delete'),
         read: (args: any) => {
+            const { req: { user } } = args
             const templateFilter = { template: { equals: template } }
+
+            // 1. If no user (Public/Frontend), allow reading published documents of this template
+            if (!user) {
+                return {
+                    and: [
+                        { _status: { equals: 'published' } },
+                        templateFilter
+                    ]
+                }
+            }
+
+            // 2. If user exists, strictly enforce RBAC and filter by template
             const rbac = checkRole('pages', 'read')(args)
             if (!rbac) return false
             if (typeof rbac === 'boolean') return templateFilter
@@ -155,7 +177,7 @@ export const createVirtualPageCollection = (slug: string, template: string, labe
     ],
     hooks: {
         afterChange: [revalidatePage],
-        beforeChange: [populatePublishedAt],
+        beforeChange: [populatePublishedAt, setTemplate(template)],
         afterDelete: [revalidateDelete],
     },
     versions: {

@@ -8,7 +8,7 @@ const DownloadResumeCell: React.FC<any> = ({ cellData }) => {
     }
 
     const mediaId = typeof cellData === 'object' ? cellData.id : cellData
-    const filename = typeof cellData === 'object' ? cellData.filename : 'resume.pdf'
+    const filename = typeof cellData === 'object' ? cellData.filename : 'cv.pdf'
 
     const handleDownload = async (e: React.MouseEvent) => {
         e.preventDefault()
