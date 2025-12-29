@@ -159,54 +159,42 @@ export const plugins: Plugin[] = [
           },
         ]
       },
-      hooks: {
+           hooks: {
         beforeChange: [
           ({ data }) => {
             if (!data?.submissionData || !Array.isArray(data.submissionData)) return data
 
-            // Find specific fields in the dynamic submissionData array
-            const nameField = data.submissionData.find((field: any) => {
-              if (!field?.field || typeof field.field !== 'string') return false
-              const key = field.field.toLowerCase()
-              return key === 'name' || key.includes('name') || key.includes('full') || key.includes('first')
-            })
-
-            const emailField = data.submissionData.find((field: any) =>
-              field?.field && typeof field.field === 'string' && ['email', 'Email'].includes(field.field)
-            )
-
-            const phoneField = data.submissionData.find((field: any) => {
-              if (!field?.field || typeof field.field !== 'string') return false
-              const key = field.field.toLowerCase()
-              return key.includes('phone') || key.includes('mobile') || key.includes('contact')
-            })
-
-            const resumeField = data.submissionData.find((field: any) => {
-              if (!field?.field || typeof field.field !== 'string') return false
-              const key = field.field.toLowerCase()
-              return key.includes('pdf') || key.includes('resume') || key.includes('file') || key.includes('cv')
-            })
-
-            const jobPositionField = data.submissionData.find((field: any) => {
-              if (!field?.field || typeof field.field !== 'string') return false
-              const key = field.field.toLowerCase()
-              return key.includes('job') || key.includes('position') || key.includes('role')
-            })
-
-            // Populate structured fields
-            if (nameField?.value) {
-              data.name = nameField.value
-              data.title = nameField.value
-            } else if (emailField?.value) {
-              data.title = emailField.value
-            } else {
-              data.title = 'Submission'
+            // Helper to find field values by name pattern
+            const findValue = (patterns: string[]) => {
+              const field = data.submissionData.find((f: any) => {
+                if (!f?.field || typeof f.field !== 'string') return false
+                const key = f.field.toLowerCase()
+                return patterns.some((p) => key === p.toLowerCase() || key.includes(p.toLowerCase()))
+              })
+              return field?.value
             }
 
-            if (emailField?.value) data.email = emailField.value
-            if (phoneField?.value) data.phoneNumber = phoneField.value
-            if (resumeField?.value) data.resume = resumeField.value
-            if (jobPositionField?.value) data.jobPosition = jobPositionField.value
+            // Map fields with expanded patterns
+            const name = findValue(['name', 'full name', 'first name', 'contact name'])
+            const email = findValue(['email', 'email address'])
+            const phone = findValue(['phone', 'mobile', 'contact number', 'tel'])
+            const resume = findValue(['resume', 'cv', 'pdf', 'file', 'attachment'])
+            const job = findValue(['job', 'position', 'role', 'apply', 'applying', 'vacancy'])
+
+            // Populate structured fields
+            if (name) {
+              data.name = name
+              data.title = name
+            } else if (email) {
+              data.title = email
+            } else {
+              data.title = `Submission ${new Date().toLocaleDateString()}`
+            }
+
+            if (email) data.email = email
+            if (phone) data.phoneNumber = phone
+            if (resume) data.resume = resume
+            if (job) data.jobPosition = job
 
             return data
           },

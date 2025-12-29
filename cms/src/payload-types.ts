@@ -6602,6 +6602,18 @@ export interface PayloadLockedDocument {
         value: number | Role;
       } | null)
     | ({
+        relationTo: 'career-applications';
+        value: number | CareerApplication;
+      } | null)
+    | ({
+        relationTo: 'service-inquiries';
+        value: number | ServiceInquiry;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)

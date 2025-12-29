@@ -3,10 +3,10 @@ import type { CollectionConfig } from 'payload'
 export const ServiceInquiries: CollectionConfig = {
     slug: 'service-inquiries',
     dbName: 'form_submissions',
-    lockDocuments: false,
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'email', 'phoneNumber', 'createdAt'],
+        listSearchableFields: ['name', 'email', 'phoneNumber'],
         group: 'Form Submissions',
         description: 'Direct view for Service Inquiry form submissions.',
     },

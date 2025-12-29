@@ -7,10 +7,10 @@ const isSuperOrClientAdmin = (args: any) => isSuperAdmin(args) || isClientAdmin(
 export const CareerApplications: CollectionConfig = {
     slug: 'career-applications',
     dbName: 'form_submissions', // Point to the same table as form-builder submissions
-    lockDocuments: false,
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'email', 'jobPosition', 'createdAt'],
+        listSearchableFields: ['name', 'email', 'jobPosition', 'phoneNumber'],
         group: 'Form Submissions',
         description: 'A dedicated view for Career Page applications.',
     },

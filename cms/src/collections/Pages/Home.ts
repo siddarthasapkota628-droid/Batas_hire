@@ -57,7 +57,7 @@ export const HomePage: Tab = {
                             name: 'floatingFeatures',
                             type: 'array',
                             label: 'Floating Feature Tags (Glassmorphism)',
-                            minRows: 3,
+                            minRows: 1,
                             maxRows: 3,
                             fields: [
                                 { name: 'text', type: 'text', required: true }
@@ -67,7 +67,7 @@ export const HomePage: Tab = {
                             name: 'heroStats',
                             type: 'array',
                             label: 'Hero Bottom Stats',
-                            minRows: 3,
+                            minRows: 1,
                             maxRows: 3,
                             fields: [
                                 { name: 'value', type: 'text', required: true },
@@ -93,7 +93,7 @@ export const HomePage: Tab = {
                             name: 'journeyCards',
                             type: 'array',
                             label: 'Journey Progress Cards',
-                            minRows: 4,
+                            minRows: 1,
                             maxRows: 4,
                             fields: [
                                 { name: 'icon', type: 'select', options: ['Book', 'Users', 'Briefcase', 'BookOpen', 'FileCheck', 'Calculator', 'Phone'], defaultValue: 'Book' },
@@ -112,7 +112,7 @@ export const HomePage: Tab = {
                             name: 'quickTools',
                             type: 'array',
                             label: 'Calculator/Tools Cards',
-                            minRows: 2,
+                            minRows: 1,
                             maxRows: 2,
                             fields: [
                                 { name: 'name', type: 'text', required: true },
@@ -135,7 +135,7 @@ export const HomePage: Tab = {
                             name: 'trustStats',
                             type: 'array',
                             label: 'Trust Milestone Stats',
-                            minRows: 4,
+                            minRows: 1,
                             maxRows: 4,
                             fields: [
                                 { name: 'value', type: 'text', required: true },
@@ -152,7 +152,7 @@ export const HomePage: Tab = {
                             name: 'badges',
                             type: 'array',
                             label: 'Certification Badges',
-                            minRows: 3,
+                            minRows: 1,
                             maxRows: 3,
                             fields: [
                                 { name: 'title', type: 'text', required: true },
