@@ -1687,6 +1687,20 @@ export interface AboutPage {
         id?: string | null;
       }[]
     | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   homeProductsConfig?: {
     title?: string | null;
     description?: string | null;
@@ -2199,6 +2213,20 @@ export interface ServicesPage {
         title: string;
         subTitle?: string | null;
         icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -2717,6 +2745,20 @@ export interface CareerPage {
         id?: string | null;
       }[]
     | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   homeProductsConfig?: {
     title?: string | null;
     description?: string | null;
@@ -3229,6 +3271,20 @@ export interface HomePage {
         title: string;
         subTitle?: string | null;
         icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -3747,6 +3803,20 @@ export interface HowItWorksPage {
         id?: string | null;
       }[]
     | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   homeProductsConfig?: {
     title?: string | null;
     description?: string | null;
@@ -4259,6 +4329,20 @@ export interface KnowledgeCenterPage {
         title: string;
         subTitle?: string | null;
         icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -4777,6 +4861,20 @@ export interface FaqPage {
         id?: string | null;
       }[]
     | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   homeProductsConfig?: {
     title?: string | null;
     description?: string | null;
@@ -5289,6 +5387,20 @@ export interface ContactPage {
         title: string;
         subTitle?: string | null;
         icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -5807,6 +5919,20 @@ export interface LegalPage {
         id?: string | null;
       }[]
     | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   homeProductsConfig?: {
     title?: string | null;
     description?: string | null;
@@ -6319,6 +6445,20 @@ export interface NoticePage {
         title: string;
         subTitle?: string | null;
         icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -7663,6 +7803,14 @@ export interface AboutPageSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
+        id?: T;
+      };
   homeProductsConfig?:
     | T
     | {
@@ -8146,6 +8294,14 @@ export interface ServicesPageSelect<T extends boolean = true> {
         title?: T;
         subTitle?: T;
         icon?: T;
+        id?: T;
+      };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
         id?: T;
       };
   homeProductsConfig?:
@@ -8633,6 +8789,14 @@ export interface CareerPageSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
+        id?: T;
+      };
   homeProductsConfig?:
     | T
     | {
@@ -9116,6 +9280,14 @@ export interface HomePageSelect<T extends boolean = true> {
         title?: T;
         subTitle?: T;
         icon?: T;
+        id?: T;
+      };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
         id?: T;
       };
   homeProductsConfig?:
@@ -9603,6 +9775,14 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
+        id?: T;
+      };
   homeProductsConfig?:
     | T
     | {
@@ -10086,6 +10266,14 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         title?: T;
         subTitle?: T;
         icon?: T;
+        id?: T;
+      };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
         id?: T;
       };
   homeProductsConfig?:
@@ -10573,6 +10761,14 @@ export interface FaqPageSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
+        id?: T;
+      };
   homeProductsConfig?:
     | T
     | {
@@ -11056,6 +11252,14 @@ export interface ContactPageSelect<T extends boolean = true> {
         title?: T;
         subTitle?: T;
         icon?: T;
+        id?: T;
+      };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
         id?: T;
       };
   homeProductsConfig?:
@@ -11543,6 +11747,14 @@ export interface LegalPageSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
+        id?: T;
+      };
   homeProductsConfig?:
     | T
     | {
@@ -12026,6 +12238,14 @@ export interface NoticePageSelect<T extends boolean = true> {
         title?: T;
         subTitle?: T;
         icon?: T;
+        id?: T;
+      };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
         id?: T;
       };
   homeProductsConfig?:

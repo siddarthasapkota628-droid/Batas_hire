@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <main className="min-h-screen">
       <Header />
-      <ScrollingNotice />
+      <ScrollingNotice cmsData={cmsData} />
       <Hero cmsData={cmsData} />
       <QuickHighlights cmsData={cmsData} />
       <Products cmsData={cmsData} supplemental={supplemental.products} />

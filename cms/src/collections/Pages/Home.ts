@@ -163,6 +163,46 @@ export const HomePage: Tab = {
                     ],
                 },
                 {
+                    label: 'Scrolling Notices',
+                    fields: [
+                        {
+                            name: 'scrollingNotices',
+                            type: 'array',
+                            label: 'Top Scrolling Notices',
+                            admin: {
+                                description: 'These notices will scroll at the very top of the home page.',
+                            },
+                            fields: [
+                                {
+                                    name: 'message',
+                                    type: 'text',
+                                    required: true,
+                                    label: 'Notice Message',
+                                },
+                                {
+                                    name: 'type',
+                                    type: 'select',
+                                    defaultValue: 'announcement',
+                                    options: [
+                                        { label: 'Announcement (Blue)', value: 'announcement' },
+                                        { label: 'Warning (Orange)', value: 'warning' },
+                                        { label: 'Info (Green)', value: 'info' },
+                                    ],
+                                    required: true,
+                                },
+                                {
+                                    name: 'expiryDate',
+                                    type: 'date',
+                                    label: 'Expiry Date (Optional)',
+                                    admin: {
+                                        description: 'Notice will automatically disappear after this date.',
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
                     label: 'Dynamic Feeds',
                     fields: [
                         {

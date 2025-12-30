@@ -1,34 +1,50 @@
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertTriangle, Info, Megaphone } from 'lucide-react';
 
-const ScrollingNotice = () => {
-  const notices = [
+interface ScrollingNoticeProps {
+  cmsData?: any;
+}
+
+const ScrollingNotice = ({ cmsData }: ScrollingNoticeProps) => {
+  const cmsNotices = cmsData?.scrollingNotices || [];
+  const now = new Date();
+
+  const defaultNotices = [
     {
       type: 'warning',
       icon: AlertTriangle,
       message: "Scheduled Maintenance: Payment portal will be unavailable on 15th Aug from 1 AM to 5 AM",
-      color: "border-warning bg-warning/5 text-warning-foreground"
     },
     {
       type: 'announcement',
-      icon: Megaphone, 
+      icon: Megaphone,
       message: "🎉 New Low-Interest Rates Live! Electric Vehicle loans starting from 8.5% per annum",
-      color: "border-primary bg-primary/5 text-primary-foreground"
     },
     {
       type: 'info',
       icon: Info,
       message: "We've successfully disbursed over ₹500 crores in loans! Thank you for your trust.",
-      color: "border-success bg-success/5 text-success-foreground"
     }
   ];
+
+  // Map CMS notices to include icons and filter by expiry
+  const activeNotices = cmsNotices.length > 0
+    ? cmsNotices
+      .filter((n: any) => !n.expiryDate || new Date(n.expiryDate) > now)
+      .map((n: any) => ({
+        ...n,
+        icon: n.type === 'warning' ? AlertTriangle : (n.type === 'info' ? Info : Megaphone)
+      }))
+    : defaultNotices.map(n => ({ ...n }));
+
+  if (activeNotices.length === 0) return null;
 
   return (
     <div className="sticky top-16 z-40 bg-background/95 backdrop-blur border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="overflow-hidden py-2">
           <div className="animate-scroll-left whitespace-nowrap">
-            {notices.map((notice, index) => {
+            {activeNotices.map((notice: any, index: number) => {
               const IconComponent = notice.icon;
               return (
                 <span key={index} className="inline-flex items-center space-x-2 mx-8 text-sm">
@@ -40,7 +56,6 @@ const ScrollingNotice = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
