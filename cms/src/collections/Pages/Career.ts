@@ -95,6 +95,33 @@ export const CareerPage: Tab = {
                                     ],
                                 },
                                 {
+                                    type: 'row',
+                                    fields: [
+                                        {
+                                            name: 'status',
+                                            type: 'select',
+                                            options: [
+                                                { label: 'Open', value: 'Open' },
+                                                { label: 'Closed', value: 'Closed' },
+                                            ],
+                                            defaultValue: 'Open',
+                                            required: true,
+                                            admin: {
+                                                width: '50%',
+                                            },
+                                        },
+                                        {
+                                            name: 'expiryDate',
+                                            type: 'date',
+                                            label: 'Expiry Date',
+                                            admin: {
+                                                width: '50%',
+                                                description: 'Vacancy will automatically be hidden after this date.',
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
                                     name: 'description',
                                     type: 'textarea',
                                 },

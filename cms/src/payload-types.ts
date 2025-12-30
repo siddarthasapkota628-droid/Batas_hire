@@ -434,6 +434,11 @@ export interface Page {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -1458,6 +1463,11 @@ export interface AboutPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -1968,6 +1978,11 @@ export interface ServicesPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -2478,6 +2493,11 @@ export interface CareerPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -2988,6 +3008,11 @@ export interface HomePage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -3498,6 +3523,11 @@ export interface HowItWorksPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -4008,6 +4038,11 @@ export interface KnowledgeCenterPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -4518,6 +4553,11 @@ export interface FaqPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -5028,6 +5068,11 @@ export interface ContactPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -5538,6 +5583,11 @@ export interface LegalPage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -6048,6 +6098,11 @@ export interface NoticePage {
         type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
         experience?: string | null;
         salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
         description?: string | null;
         skills?:
           | {
@@ -6899,6 +6954,8 @@ export interface PagesSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -7382,6 +7439,8 @@ export interface AboutPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -7865,6 +7924,8 @@ export interface ServicesPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -8348,6 +8409,8 @@ export interface CareerPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -8831,6 +8894,8 @@ export interface HomePageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -9314,6 +9379,8 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -9797,6 +9864,8 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -10280,6 +10349,8 @@ export interface FaqPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -10763,6 +10834,8 @@ export interface ContactPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -11246,6 +11319,8 @@ export interface LegalPageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T
@@ -11729,6 +11804,8 @@ export interface NoticePageSelect<T extends boolean = true> {
         type?: T;
         experience?: T;
         salary?: T;
+        status?: T;
+        expiryDate?: T;
         description?: T;
         skills?:
           | T

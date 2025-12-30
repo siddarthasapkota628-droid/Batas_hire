@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MapPin, Clock, Users, ArrowRight, Briefcase, Award, Coffee, Heart, Search, Filter, Star, TrendingUp, Target, Zap, Loader2 } from 'lucide-react';
+import { MapPin, Clock, Users, ArrowRight, Briefcase, Award, Coffee, Heart, Search, Filter, Star, TrendingUp, Target, Zap, Loader2, Calendar } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getCareerPage } from '@/lib/api';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -50,7 +50,14 @@ const Career = () => {
         );
     }
 
-    const jobOpenings = pageData?.jobOpenings || [];
+    const now = new Date();
+    const jobOpenings = (pageData?.jobOpenings || []).filter((job: any) => {
+        // Only show if status is 'Open' (or not set, for legacy/default)
+        // AND if expiryDate is not set OR is in the future
+        const isOpen = !job.status || job.status === 'Open';
+        const isNotExpired = !job.expiryDate || new Date(job.expiryDate) > now;
+        return isOpen && isNotExpired;
+    });
     const benefits = pageData?.benefits || [];
     const lifeAtCompany = pageData?.lifeAtCompany || [];
 
@@ -140,6 +147,16 @@ const Career = () => {
                                                 <Clock className="w-4 h-4" />
                                                 {job.type}
                                             </div>
+                                            {job.expiryDate && (
+                                                <div className="flex items-center gap-1 text-sm text-destructive font-medium">
+                                                    <Calendar className="w-4 h-4" />
+                                                    Expires: {new Date(job.expiryDate).toLocaleDateString(undefined, {
+                                                        year: 'numeric',
+                                                        month: 'short',
+                                                        day: 'numeric'
+                                                    })}
+                                                </div>
+                                            )}
                                         </div>
                                         <p className="text-muted-foreground mb-3">{job.description}</p>
                                         <div className="flex flex-wrap gap-2 mb-3">
