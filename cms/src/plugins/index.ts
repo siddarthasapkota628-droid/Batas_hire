@@ -159,7 +159,7 @@ export const plugins: Plugin[] = [
           },
         ]
       },
-           hooks: {
+      hooks: {
         beforeChange: [
           ({ data }) => {
             if (!data?.submissionData || !Array.isArray(data.submissionData)) return data
@@ -168,8 +168,13 @@ export const plugins: Plugin[] = [
             const findValue = (patterns: string[]) => {
               const field = data.submissionData.find((f: any) => {
                 if (!f?.field || typeof f.field !== 'string') return false
-                const key = f.field.toLowerCase()
-                return patterns.some((p) => key === p.toLowerCase() || key.includes(p.toLowerCase()))
+                const key = f.field.toLowerCase().trim()
+                return patterns.some(
+                  (p) =>
+                    key === p.toLowerCase() ||
+                    key.includes(p.toLowerCase()) ||
+                    p.toLowerCase().includes(key),
+                )
               })
               return field?.value
             }
@@ -177,7 +182,7 @@ export const plugins: Plugin[] = [
             // Map fields with expanded patterns
             const name = findValue(['name', 'full name', 'first name', 'contact name'])
             const email = findValue(['email', 'email address'])
-            const phone = findValue(['phone', 'mobile', 'contact number', 'tel'])
+            const phone = findValue(['phone', 'mobile', 'contact number', 'tel', 'number'])
             const resume = findValue(['resume', 'cv', 'pdf', 'file', 'attachment'])
             const job = findValue(['job', 'position', 'role', 'apply', 'applying', 'vacancy'])
 
