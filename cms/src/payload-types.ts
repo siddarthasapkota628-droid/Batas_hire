@@ -12850,7 +12850,7 @@ export interface Footer {
   socialLinks?:
     | {
         platform: 'facebook' | 'twitter' | 'linkedin' | 'instagram';
-        url: string;
+        url?: string | null;
         id?: string | null;
       }[]
     | null;
