@@ -4,7 +4,7 @@ import { Menu, X, Shield, Users, Calculator } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
-import { getHeader } from '@/lib/api';
+import { getHeader, getSiteSettings, getMediaUrl } from '@/lib/api';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +12,11 @@ const Header = () => {
   const { data: headerData } = useQuery({
     queryKey: ['header'],
     queryFn: getHeader,
+  });
+
+  const { data: siteSettings } = useQuery({
+    queryKey: ['site-settings'],
+    queryFn: getSiteSettings,
   });
 
   const defaultNavigationLinks = [
@@ -40,10 +45,20 @@ const Header = () => {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
-            BP
-          </div>
-          <span className="font-bold text-xl text-foreground">Batas Hire and Purchase</span>
+          {siteSettings?.siteLogo?.url ? (
+            <img
+              src={getMediaUrl(siteSettings.siteLogo.url)}
+              alt={siteSettings.siteTitle || 'Logo'}
+              className="w-10 h-10 object-contain"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
+              BP
+            </div>
+          )}
+          <span className="font-bold text-xl text-foreground">
+            {siteSettings?.siteTitle || 'Batas Hire and Purchase'}
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

@@ -88,6 +88,16 @@ export const getHeader = async () => {
     return response.data;
 };
 
+export const getFooter = async () => {
+    const response = await api.get('/globals/footer?depth=1');
+    return response.data;
+};
+
+export const getSiteSettings = async () => {
+    const response = await api.get('/globals/site-settings?depth=1');
+    return response.data;
+};
+
 // Upload Media
 export const uploadMedia = async (file: File) => {
     const formData = new FormData();
@@ -99,4 +109,10 @@ export const uploadMedia = async (file: File) => {
         },
     });
     return response.data;
+};
+// Helper to get absolute Media URL
+export const getMediaUrl = (url?: string) => {
+    if (!url) return '';
+    if (url.startsWith('http')) return url;
+    return `http://localhost:3000${url}`;
 };

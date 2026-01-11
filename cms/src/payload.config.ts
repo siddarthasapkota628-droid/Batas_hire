@@ -25,6 +25,7 @@ import { ContactSubmissions } from './collections/ContactSubmissions'
 import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
+import { SiteSettings } from './SiteSettings/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -38,9 +39,10 @@ export default buildConfig({
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
       beforeLogin: ['@/components/BeforeLogin'],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below.
-
+      graphics: {
+        Logo: '@/components/Logo/Logo#Logo',
+        Icon: '@/components/Logo/Logo#Logo',
+      },
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -109,7 +111,7 @@ export default buildConfig({
     'http://localhost:5173',
     'http://localhost:3000',
   ].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, SiteSettings],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,

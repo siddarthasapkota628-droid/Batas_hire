@@ -2,7 +2,6 @@ import type { CollectionConfig } from 'payload'
 
 export const ServiceInquiries: CollectionConfig = {
     slug: 'service-inquiries',
-    dbName: 'form_submissions',
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'email', 'phoneNumber', 'createdAt'],

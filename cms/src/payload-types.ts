@@ -140,10 +140,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -12839,7 +12841,21 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  navItems?:
+  description: string;
+  contactInfo: {
+    phone: string;
+    email: string;
+    address: string;
+  };
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'twitter' | 'linkedin' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  copyrightText: string;
+  quickLinks?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;
@@ -12859,6 +12875,71 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  ourProducts?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  legalCompliance?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  newsletter: {
+    title: string;
+    description: string;
+    placeholder: string;
+    buttonLabel: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  siteTitle: string;
+  /**
+   * Logo used in the frontend header and footer
+   */
+  siteLogo: number | Media;
+  /**
+   * Logo used in the Payload admin dashboard and login page
+   */
+  adminLogo?: (number | null) | Media;
+  favicon?: (number | null) | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -12890,7 +12971,23 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  description?: T;
+  contactInfo?:
+    | T
+    | {
+        phone?: T;
+        email?: T;
+        address?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  copyrightText?: T;
+  quickLinks?:
     | T
     | {
         link?:
@@ -12904,6 +13001,55 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  ourProducts?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  legalCompliance?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  newsletter?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        placeholder?: T;
+        buttonLabel?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteTitle?: T;
+  siteLogo?: T;
+  adminLogo?: T;
+  favicon?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

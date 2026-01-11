@@ -6,7 +6,6 @@ const isSuperOrClientAdmin = (args: any) => isSuperAdmin(args) || isClientAdmin(
 
 export const CareerApplications: CollectionConfig = {
     slug: 'career-applications',
-    dbName: 'form_submissions', // Point to the same table as form-builder submissions
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'email', 'jobPosition', 'createdAt'],
