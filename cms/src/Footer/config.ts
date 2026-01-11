@@ -100,15 +100,19 @@ export const Footer: GlobalConfig = {
               type: 'array',
               label: 'Our Products',
               fields: [
-                link({
-                  appearances: false,
-                }),
+                {
+                  name: 'label',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'url',
+                  type: 'text',
+                  required: false,
+                },
               ],
               admin: {
                 initCollapsed: true,
-                components: {
-                  RowLabel: '@/Footer/RowLabel#RowLabel',
-                },
               },
             },
             {
@@ -116,15 +120,19 @@ export const Footer: GlobalConfig = {
               type: 'array',
               label: 'Legal & Compliance',
               fields: [
-                link({
-                  appearances: false,
-                }),
+                {
+                  name: 'label',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'url',
+                  type: 'text',
+                  required: false,
+                },
               ],
               admin: {
                 initCollapsed: true,
-                components: {
-                  RowLabel: '@/Footer/RowLabel#RowLabel',
-                },
               },
             },
           ],

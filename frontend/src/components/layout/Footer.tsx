@@ -55,35 +55,29 @@ const Footer = () => {
     { icon: <Instagram className="w-5 h-5" />, href: '#', label: 'Instagram' }
   ];
 
-  const renderNavColumn = (title: string, items: any[] | undefined, fallback: any[]) => {
-    const hasItems = items && items.length > 0;
-    const linksToRender = hasItems
-      ? items.map((item: any) => ({
-        label: item.link.label,
-        href: item.link.type === 'custom'
-          ? item.link.url
-          : (item.link.reference?.value?.slug ? `/${item.link.reference.value.slug}` : '#'),
-        isCustom: item.link.type === 'custom'
-      }))
-      : fallback;
+  const renderNavColumn = (title: string, links: any[] | undefined, fallback: any[]) => {
+    const linksToRender = links && links.length > 0 ? links : fallback;
 
     return (
       <div>
         <h4 className="font-semibold text-lg mb-4">{title}</h4>
         <ul className="space-y-2">
-          {linksToRender.map((link, index) => (
-            <li key={index}>
-              {link.isCustom ? (
-                <a href={link.href} className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
-                  {link.label}
-                </a>
-              ) : (
-                <Link to={link.href} className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
-                  {link.label}
-                </Link>
-              )}
-            </li>
-          ))}
+          {linksToRender.map((link, index) => {
+            const isExternal = link.isCustom || !link.href?.startsWith('/');
+            return (
+              <li key={index}>
+                {isExternal ? (
+                  <a href={link.href} className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link to={link.href} className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
@@ -160,9 +154,28 @@ const Footer = () => {
           </div>
 
           {/* Navigation Columns */}
-          {renderNavColumn('Quick Links', footerData?.quickLinks, quickLinksFallback)}
-          {renderNavColumn('Our Products', footerData?.ourProducts, productsFallback)}
-          {renderNavColumn('Legal & Compliance', footerData?.legalCompliance, legalFallback)}
+          {/* Quick Links (Smart structure) */}
+          {renderNavColumn('Quick Links', footerData?.quickLinks?.map((item: any) => ({
+            label: item.link.label,
+            href: item.link.type === 'custom'
+              ? item.link.url
+              : (item.link.reference?.value?.slug ? `/${item.link.reference.value.slug}` : '#'),
+            isCustom: item.link.type === 'custom'
+          })), quickLinksFallback)}
+
+          {/* Our Products (Simple structure) */}
+          {renderNavColumn('Our Products', footerData?.ourProducts?.map((item: any) => ({
+            label: item.label,
+            href: item.url,
+            isCustom: true
+          })), productsFallback)}
+
+          {/* Legal & Compliance (Simple structure) */}
+          {renderNavColumn('Legal & Compliance', footerData?.legalCompliance?.map((item: any) => ({
+            label: item.label,
+            href: item.url,
+            isCustom: true
+          })), legalFallback)}
 
           {/* Newsletter Signup */}
           <div>

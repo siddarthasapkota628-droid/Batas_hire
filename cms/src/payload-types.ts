@@ -12877,41 +12877,15 @@ export interface Footer {
     | null;
   ourProducts?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        label: string;
+        url?: string | null;
         id?: string | null;
       }[]
     | null;
   legalCompliance?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        label: string;
+        url?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -13004,29 +12978,15 @@ export interface FooterSelect<T extends boolean = true> {
   ourProducts?:
     | T
     | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
+        label?: T;
+        url?: T;
         id?: T;
       };
   legalCompliance?:
     | T
     | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
+        label?: T;
+        url?: T;
         id?: T;
       };
   newsletter?:
