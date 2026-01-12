@@ -2,11 +2,29 @@ import { Card } from '@/components/ui/card';
 import { Star, Quote, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getAboutPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const Testimonials = () => {
+  const { locale } = useLocale();
+
+  // Helper to safely get numeric value (handles localized objects if they slip through)
+  const getSafeNumber = (val: any, fallback: number) => {
+    if (typeof val === 'number') return isNaN(val) ? fallback : val;
+    if (typeof val === 'string') {
+      const parsed = parseInt(val, 10);
+      return isNaN(parsed) ? fallback : parsed;
+    }
+    if (val && typeof val === 'object' && !Array.isArray(val)) {
+      // In case we get {en: 5, ne: 5}
+      const firstVal = Object.values(val)[0];
+      return getSafeNumber(firstVal, fallback);
+    }
+    return fallback;
+  };
+
   const { data, isLoading } = useQuery({
-    queryKey: ['aboutPage'],
-    queryFn: getAboutPage,
+    queryKey: ['aboutPage', locale],
+    queryFn: () => getAboutPage(locale),
   });
 
   // Get the About page data (it returns an object with docs array)
@@ -84,7 +102,9 @@ const Testimonials = () => {
   // const cmsData = pageData?.docs?.[0] || {};
 
   // Use CMS data if available and has rows, otherwise fallback to static
-  const testimonials = (cmsData.testimonials && cmsData.testimonials.length > 0) ? cmsData.testimonials : staticTestimonials;
+  const testimonials = (cmsData.testimonials && cmsData.testimonials.length > 0)
+    ? cmsData.testimonials.map((t: any) => ({ ...t, rating: getSafeNumber(t.rating, 5) }))
+    : staticTestimonials;
   const stats = (cmsData.stats && cmsData.stats.length > 0) ? cmsData.stats : staticStats;
 
   if (isLoading) {

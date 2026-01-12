@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowRight
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getFooter, getSiteSettings, getMediaUrl } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const socialIconMap: Record<string, React.ReactNode> = {
   facebook: <Facebook className="w-5 h-5" />,
@@ -12,14 +13,16 @@ const socialIconMap: Record<string, React.ReactNode> = {
 };
 
 const Footer = () => {
+  const { locale } = useLocale();
+
   const { data: footerData } = useQuery({
-    queryKey: ['footer'],
-    queryFn: getFooter,
+    queryKey: ['footer', locale],
+    queryFn: () => getFooter(locale),
   });
 
   const { data: siteSettings } = useQuery({
-    queryKey: ['site-settings'],
-    queryFn: getSiteSettings,
+    queryKey: ['site-settings', locale],
+    queryFn: () => getSiteSettings(locale),
   });
 
   const quickLinksFallback = [

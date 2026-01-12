@@ -19,19 +19,19 @@ export const HomePage: Tab = {
                                     name: 'heroBadge1',
                                     type: 'text',
                                     label: 'Top Left Badge (e.g., NBFC Licensed)',
-                                    defaultValue: 'NBFC Licensed',
+                                    defaultValue: 'NBFC Licensed'
                                 },
                                 {
                                     name: 'heroBadge2',
                                     type: 'text',
                                     label: 'Top Middle Badge (e.g., Secure & Trusted)',
-                                    defaultValue: 'Secure & Trusted',
+                                    defaultValue: 'Secure & Trusted'
                                 },
                                 {
                                     name: 'heroRating',
                                     type: 'text',
                                     label: 'Rating Text (e.g., 4.9/5)',
-                                    defaultValue: '4.9/5',
+                                    defaultValue: '4.9/5'
                                 },
                             ],
                         },
@@ -177,7 +177,7 @@ export const HomePage: Tab = {
                                     name: 'message',
                                     type: 'text',
                                     required: true,
-                                    label: 'Notice Message',
+                                    label: 'Notice Message'
                                 },
                                 {
                                     name: 'type',

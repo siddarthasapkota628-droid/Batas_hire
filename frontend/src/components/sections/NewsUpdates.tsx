@@ -7,7 +7,22 @@ import { Link } from 'react-router-dom';
 const NewsUpdates = ({ cmsData, supplemental }: { cmsData: any; supplemental: any }) => {
   const { homeTestimonialsConfig, homeKnowledgeConfig } = cmsData;
 
-  const newsItems = supplemental?.articles?.slice(0, homeKnowledgeConfig?.maxRows || 3).map((art: any) => ({
+  // Helper to safely get numeric value (handles localized objects if they slip through)
+  const getSafeNumber = (val: any, fallback: number) => {
+    if (typeof val === 'number') return isNaN(val) ? fallback : val;
+    if (typeof val === 'string') {
+      const parsed = parseInt(val, 10);
+      return isNaN(parsed) ? fallback : parsed;
+    }
+    if (val && typeof val === 'object' && !Array.isArray(val)) {
+      // In case we get {en: 5, ne: 5}
+      const firstVal = Object.values(val)[0];
+      return getSafeNumber(firstVal, fallback);
+    }
+    return fallback;
+  };
+
+  const newsItems = supplemental?.articles?.slice(0, getSafeNumber(homeKnowledgeConfig?.maxRows, 3)).map((art: any) => ({
     title: art.title,
     description: art.excerpt,
     date: art.date,
@@ -16,11 +31,11 @@ const NewsUpdates = ({ cmsData, supplemental }: { cmsData: any; supplemental: an
     icon: TrendingUp
   })) || [];
 
-  const testimonials = supplemental?.testimonials?.slice(0, homeTestimonialsConfig?.maxRows || 3).map((t: any) => ({
+  const testimonials = supplemental?.testimonials?.slice(0, getSafeNumber(homeTestimonialsConfig?.maxRows, 3)).map((t: any) => ({
     name: t.name,
     location: t.location || t.role,
     text: t.content,
-    rating: t.rating || 5
+    rating: getSafeNumber(t.rating, 5)
   })) || [];
 
   return (
@@ -100,8 +115,13 @@ const NewsUpdates = ({ cmsData, supplemental }: { cmsData: any; supplemental: an
                           <span className="text-sm text-muted-foreground">• {testimonial.location}</span>
                         </div>
                         <div className="flex items-center space-x-1 mb-3">
-                          {[...Array(testimonial.rating || 5)].map((_, i) => (
-                            <span key={i} className="text-warning text-sm">★</span>
+                          {[...Array(5)].map((_, i) => (
+                            <span
+                              key={i}
+                              className={`text-sm ${i < Math.floor(getSafeNumber(testimonial.rating, 5)) ? 'text-warning' : 'text-muted-foreground/30'}`}
+                            >
+                              ★
+                            </span>
                           ))}
                         </div>
                         <p className="text-sm text-muted-foreground italic">"{testimonial.text}"</p>

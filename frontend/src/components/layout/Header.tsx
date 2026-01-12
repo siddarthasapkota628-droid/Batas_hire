@@ -5,18 +5,21 @@ import { Link } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
 import { getHeader, getSiteSettings, getMediaUrl } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
+import { Globe } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { locale, toggleLocale } = useLocale();
 
   const { data: headerData } = useQuery({
-    queryKey: ['header'],
-    queryFn: getHeader,
+    queryKey: ['header', locale],
+    queryFn: () => getHeader(locale),
   });
 
   const { data: siteSettings } = useQuery({
-    queryKey: ['site-settings'],
-    queryFn: getSiteSettings,
+    queryKey: ['site-settings', locale],
+    queryFn: () => getSiteSettings(locale),
   });
 
   const defaultNavigationLinks = [
@@ -76,6 +79,15 @@ const Header = () => {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center space-x-3">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-foreground/80 flex items-center gap-2"
+            onClick={toggleLocale}
+          >
+            <Globe className="h-4 w-4" />
+            {locale === 'en' ? 'नेपाली' : 'English'}
+          </Button>
           <Button variant="ghost" size="sm" className="text-foreground/80">
             Login
           </Button>
@@ -110,6 +122,17 @@ const Header = () => {
               </Link>
             ))}
             <div className="flex flex-col space-y-2 pt-4 border-t">
+              <Button
+                variant="ghost"
+                className="justify-start flex items-center gap-2"
+                onClick={() => {
+                  toggleLocale();
+                  setIsMenuOpen(false);
+                }}
+              >
+                <Globe className="h-4 w-4" />
+                {locale === 'en' ? 'नेपाली' : 'English'}
+              </Button>
               <Button variant="ghost" className="justify-start">
                 Login
               </Button>

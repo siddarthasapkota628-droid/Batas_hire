@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Target, Eye, Users, Award, ArrowRight, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getAboutPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
+import RichText from '@/components/cms/RichText';
 
 const iconMap: Record<string, React.ReactNode> = {
   Target: <Target className="w-6 h-6" />,
@@ -12,9 +14,11 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const About = () => {
+  const { locale } = useLocale();
+
   const { data: pageData, isLoading, error } = useQuery({
-    queryKey: ['aboutPage'],
-    queryFn: getAboutPage,
+    queryKey: ['aboutPage', locale],
+    queryFn: () => getAboutPage(locale),
   });
 
   if (isLoading) {
@@ -41,17 +45,7 @@ const About = () => {
   // In a real implementation we would render the RichText serialiser.
   // We'll check if simple text is possible or just use the title for now.
   const storyTitle = specifics.aboutStoryTitle || "22 Years of Growth in Financial Services";
-
-  // Fallback paragraphs
-  const defaultParagraphs = [
-    "Founded with the vision of democratizing financial services, Batas Hire and Purchase has emerged as a trusted partner for individuals and businesses seeking flexible financing solutions. Our NBFC license ensures regulatory compliance while our technology first approach delivers unmatched customer experience.",
-    "We understand that every customer's financial journey is unique. That's why we've built our platform to offer personalized solutions, whether you're looking to purchase your dream vehicle or need flexible payment options for your purchases.",
-    "With our AI powered assessment system and streamlined processes, we've reduced approval times from weeks to minutes, making financial assistance available when you need it most."
-  ];
-
-  // Try to use API content if it exists and looks like it has text, otherwise default
-  // Ideally specific rich text rendering is needed. For this 'turbo' fix we stick to defaults if complicated.
-  const storyParagraphs = defaultParagraphs;
+  const storyContent = specifics.aboutStoryContent;
 
   const stats = [
     { number: specifics.stat1?.number || "50,000+", label: specifics.stat1?.label || "Happy Customers" },
@@ -105,10 +99,16 @@ const About = () => {
             <h3 className="text-3xl font-bold text-foreground mb-6">
               {storyTitle}
             </h3>
-            <div className="space-y-4 text-muted-foreground">
-              {storyParagraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
+            <div className="text-muted-foreground prose prose-sm max-w-none">
+              {storyContent ? (
+                <RichText content={storyContent} />
+              ) : (
+                <div className="space-y-4">
+                  <p>Founded with the vision of democratizing financial services, Batas Hire and Purchase has emerged as a trusted partner for individuals and businesses seeking flexible financing solutions.</p>
+                  <p>We understand that every customer's financial journey is unique. That's why we've built our platform to offer personalized solutions.</p>
+                  <p>With our AI powered assessment system and streamlined processes, we've reduced approval times from weeks to minutes.</p>
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8">

@@ -8,26 +8,29 @@ import ScrollingNotice from '@/components/sections/ScrollingNotice';
 import Footer from '@/components/layout/Footer';
 import { useQuery } from '@tanstack/react-query';
 import { getHomePage, getServicesPage, getAboutPage, getKnowledgeCenterPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const Home = () => {
+  const { locale } = useLocale();
+
   const { data: homeData } = useQuery({
-    queryKey: ['homePage'],
-    queryFn: getHomePage,
+    queryKey: ['homePage', locale],
+    queryFn: () => getHomePage(locale),
   });
 
   const { data: servicesData } = useQuery({
-    queryKey: ['servicesPage'],
-    queryFn: getServicesPage,
+    queryKey: ['servicesPage', locale],
+    queryFn: () => getServicesPage(locale),
   });
 
   const { data: aboutData } = useQuery({
-    queryKey: ['aboutPage'],
-    queryFn: getAboutPage,
+    queryKey: ['aboutPage', locale],
+    queryFn: () => getAboutPage(locale),
   });
 
   const { data: knowledgeData } = useQuery({
-    queryKey: ['knowledgePage'],
-    queryFn: getKnowledgeCenterPage,
+    queryKey: ['knowledgePage', locale],
+    queryFn: () => getKnowledgeCenterPage(locale),
   });
 
   const cmsData = homeData?.docs?.[0] || {};

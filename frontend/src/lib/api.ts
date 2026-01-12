@@ -4,42 +4,49 @@ export const api = axios.create({
     baseURL: 'http://localhost:3000/api',
 });
 
-export const getGlobal = async (slug: string) => {
-    const response = await api.get(`/globals/${slug}`);
+export const getGlobal = async (slug: string, locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/globals/${slug}?depth=1${localeQuery}`);
     return response.data;
 };
 
 // Get About Page
-export const getAboutPage = async () => {
-    const response = await api.get('/about-page?where[slug][equals]=about&depth=2');
+export const getAboutPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/about-page?where[slug][equals]=about&depth=2${localeQuery}`);
     return response.data;
 };
 
 // Get Home Page
-export const getHomePage = async () => {
-    const response = await api.get('/home-page?where[slug][equals]=home&depth=2');
+export const getHomePage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/home-page?where[slug][equals]=home&depth=2${localeQuery}`);
     return response.data;
 };
 
 // Get Services Page
-export const getServicesPage = async () => {
-    const response = await api.get('/services-page?where[slug][equals]=services&depth=2');
+export const getServicesPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/services-page?where[slug][equals]=services&depth=2${localeQuery}`);
     return response.data;
 };
 
 // Get How It Works Page
-export const getHowItWorksPage = async () => {
-    const response = await api.get('/how-it-works-page?where[slug][equals]=how-it-works');
+export const getHowItWorksPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/how-it-works-page?where[slug][equals]=how-it-works${localeQuery}`);
     return response.data.docs[0];
 };
 
-export const getCareerPage = async () => {
-    const response = await api.get('/career-page?where[slug][equals]=career');
+export const getCareerPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/career-page?where[slug][equals]=career${localeQuery}`);
     return response.data.docs[0];
 };
 
-export const getKnowledgeCenterPage = async () => {
-    const response = await api.get('/knowledge-center-page?where[slug][equals]=knowledge-center');
+export const getKnowledgeCenterPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/knowledge-center-page?where[slug][equals]=knowledge-center${localeQuery}`);
     return response.data.docs[0];
 };
 
@@ -63,38 +70,45 @@ export const submitForm = async (formId: string, data: any) => {
 
 // Generic function for any page type
 
-export const getFAQPage = async () => {
-    const response = await api.get('/faq-page?where[template][equals]=faq');
+export const getFAQPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/faq-page?where[template][equals]=faq${localeQuery}`);
     return response.data.docs[0];
 };
 
-export const getContactPage = async () => {
-    const response = await api.get('/contact-page?where[template][equals]=contact');
+export const getContactPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/contact-page?where[template][equals]=contact${localeQuery}`);
     return response.data.docs[0];
 };
 
-export const getLegalPage = async () => {
-    const response = await api.get('/legal-page?where[template][equals]=legal');
+export const getLegalPage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/legal-page?where[template][equals]=legal${localeQuery}`);
     return response.data.docs[0];
 };
 
-export const getNoticePage = async () => {
-    const response = await api.get('/notice-page?where[template][equals]=notice');
+export const getNoticePage = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/notice-page?where[template][equals]=notice${localeQuery}`);
     return response.data.docs[0];
 };
 
-export const getHeader = async () => {
-    const response = await api.get('/globals/header');
+export const getHeader = async (locale?: string) => {
+    const localeQuery = locale ? `?locale=${locale}` : '';
+    const response = await api.get(`/globals/header${localeQuery}`);
     return response.data;
 };
 
-export const getFooter = async () => {
-    const response = await api.get('/globals/footer?depth=1');
+export const getFooter = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/globals/footer?depth=1${localeQuery}`);
     return response.data;
 };
 
-export const getSiteSettings = async () => {
-    const response = await api.get('/globals/site-settings?depth=1');
+export const getSiteSettings = async (locale?: string) => {
+    const localeQuery = locale ? `&locale=${locale}` : '';
+    const response = await api.get(`/globals/site-settings?depth=1${localeQuery}`);
     return response.data;
 };
 

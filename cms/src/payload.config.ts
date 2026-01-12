@@ -112,6 +112,20 @@ export default buildConfig({
     'http://localhost:3000',
   ].filter(Boolean),
   globals: [Header, Footer, SiteSettings],
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Nepali',
+        code: 'ne',
+      },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,

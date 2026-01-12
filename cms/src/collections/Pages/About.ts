@@ -1,9 +1,9 @@
-import { Tab } from 'payload/types';
+import { Tab } from 'payload';
 
 export const AboutPage: Tab = {
     label: 'About Specifics',
     admin: {
-        condition: (data) => data?.template === 'about',
+        condition: (data: any) => data?.template === 'about',
     },
     fields: [
         {
@@ -17,23 +17,27 @@ export const AboutPage: Tab = {
                             type: 'text',
                             label: 'Header Title',
                             defaultValue: 'About Batas Hire and Purchase',
+                            localized: true,
                         },
                         {
                             name: 'aboutHeaderSubtitle',
                             type: 'textarea',
                             label: 'Header Subtitle',
                             defaultValue: "We're on a mission to make financial services more accessible...",
+                            localized: true,
                         },
                         {
                             name: 'aboutStoryTitle',
                             type: 'text',
                             label: 'Story Title',
                             defaultValue: '22 Years of Growth in Financial Services',
+                            localized: true,
                         },
                         {
                             name: 'aboutStoryContent',
                             type: 'richText',
                             label: 'Story Content',
+                            localized: true,
                         },
                     ],
                 },
@@ -48,8 +52,8 @@ export const AboutPage: Tab = {
                                     type: 'group',
                                     label: 'Stat 1',
                                     fields: [
-                                        { name: 'number', type: 'text', defaultValue: '50,000+' },
-                                        { name: 'label', type: 'text', defaultValue: 'Happy Customers' },
+                                        { name: 'number', type: 'text', defaultValue: '50,000+', localized: true },
+                                        { name: 'label', type: 'text', defaultValue: 'Happy Customers', localized: true },
                                     ],
                                 },
                                 {
@@ -57,8 +61,8 @@ export const AboutPage: Tab = {
                                     type: 'group',
                                     label: 'Stat 2',
                                     fields: [
-                                        { name: 'number', type: 'text', defaultValue: '₹500 Cr+' },
-                                        { name: 'label', type: 'text', defaultValue: 'Loans Disbursed' },
+                                        { name: 'number', type: 'text', defaultValue: '₹500 Cr+', localized: true },
+                                        { name: 'label', type: 'text', defaultValue: 'Loans Disbursed', localized: true },
                                     ],
                                 },
                                 {
@@ -66,8 +70,8 @@ export const AboutPage: Tab = {
                                     type: 'group',
                                     label: 'Stat 3',
                                     fields: [
-                                        { name: 'number', type: 'text', defaultValue: '99.2%' },
-                                        { name: 'label', type: 'text', defaultValue: 'Customer Satisfaction' },
+                                        { name: 'number', type: 'text', defaultValue: '99.2%', localized: true },
+                                        { name: 'label', type: 'text', defaultValue: 'Customer Satisfaction', localized: true },
                                     ],
                                 },
                                 {
@@ -75,8 +79,8 @@ export const AboutPage: Tab = {
                                     type: 'group',
                                     label: 'Stat 4',
                                     fields: [
-                                        { name: 'number', type: 'text', defaultValue: '15+' },
-                                        { name: 'label', type: 'text', defaultValue: 'Banking Partners' },
+                                        { name: 'number', type: 'text', defaultValue: '15+', localized: true },
+                                        { name: 'label', type: 'text', defaultValue: 'Banking Partners', localized: true },
                                     ],
                                 },
                             ],
@@ -91,8 +95,8 @@ export const AboutPage: Tab = {
                             type: 'group',
                             fields: [
                                 { name: 'icon', type: 'select', options: ['Target', 'Eye', 'Users', 'Award'], defaultValue: 'Target' },
-                                { name: 'title', type: 'text', defaultValue: 'Our Mission' },
-                                { name: 'description', type: 'textarea' },
+                                { name: 'title', type: 'text', defaultValue: 'Our Mission', localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
                             ],
                         },
                         {
@@ -100,8 +104,8 @@ export const AboutPage: Tab = {
                             type: 'group',
                             fields: [
                                 { name: 'icon', type: 'select', options: ['Target', 'Eye', 'Users', 'Award'], defaultValue: 'Eye' },
-                                { name: 'title', type: 'text', defaultValue: 'Our Vision' },
-                                { name: 'description', type: 'textarea' },
+                                { name: 'title', type: 'text', defaultValue: 'Our Vision', localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
                             ],
                         },
                         {
@@ -109,8 +113,8 @@ export const AboutPage: Tab = {
                             type: 'group',
                             fields: [
                                 { name: 'icon', type: 'select', options: ['Target', 'Eye', 'Users', 'Award'], defaultValue: 'Users' },
-                                { name: 'title', type: 'text', defaultValue: 'Our Values' },
-                                { name: 'description', type: 'textarea' },
+                                { name: 'title', type: 'text', defaultValue: 'Our Values', localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
                             ],
                         },
                     ],
@@ -122,11 +126,13 @@ export const AboutPage: Tab = {
                             name: 'directorsTitle',
                             type: 'text',
                             defaultValue: 'Board of Directors',
+                            localized: true,
                         },
                         {
                             name: 'directorsDescription',
                             type: 'textarea',
                             defaultValue: 'Experienced leadership guiding our strategic vision',
+                            localized: true,
                         },
                         {
                             name: 'directors',
@@ -136,22 +142,24 @@ export const AboutPage: Tab = {
                             maxRows: 10,
                             fields: [
                                 { name: 'photo', type: 'upload', relationTo: 'media', required: true },
-                                { name: 'name', type: 'text', required: true },
-                                { name: 'position', type: 'text', required: true },
-                                { name: 'experience', type: 'text' },
-                                { name: 'education', type: 'text' },
-                                { name: 'specialization', type: 'text' },
+                                { name: 'name', type: 'text', required: true, localized: true },
+                                { name: 'position', type: 'text', required: true, localized: true },
+                                { name: 'experience', type: 'text', localized: true },
+                                { name: 'education', type: 'text', localized: true },
+                                { name: 'specialization', type: 'text', localized: true },
                             ],
                         },
                         {
                             name: 'leadershipTitle',
                             type: 'text',
                             defaultValue: 'Leadership Team',
+                            localized: true,
                         },
                         {
                             name: 'leadershipDescription',
                             type: 'textarea',
                             defaultValue: 'Meet our executive team driving operational excellence',
+                            localized: true,
                         },
                         {
                             name: 'leadership',
@@ -161,11 +169,11 @@ export const AboutPage: Tab = {
                             maxRows: 10,
                             fields: [
                                 { name: 'photo', type: 'upload', relationTo: 'media', required: true },
-                                { name: 'name', type: 'text', required: true },
-                                { name: 'position', type: 'text', required: true },
-                                { name: 'department', type: 'text' },
-                                { name: 'experience', type: 'text' },
-                                { name: 'expertise', type: 'text' },
+                                { name: 'name', type: 'text', required: true, localized: true },
+                                { name: 'position', type: 'text', required: true, localized: true },
+                                { name: 'department', type: 'text', localized: true },
+                                { name: 'experience', type: 'text', localized: true },
+                                { name: 'expertise', type: 'text', localized: true },
                             ],
                         },
                     ],
@@ -177,11 +185,13 @@ export const AboutPage: Tab = {
                             name: 'timelineTitle',
                             type: 'text',
                             defaultValue: '22 Years of Growth',
+                            localized: true,
                         },
                         {
                             name: 'timelineDescription',
                             type: 'textarea',
                             defaultValue: 'Our journey from inception to industry leadership',
+                            localized: true,
                         },
                         {
                             name: 'timeline',
@@ -190,20 +200,22 @@ export const AboutPage: Tab = {
                             minRows: 1,
                             maxRows: 10,
                             fields: [
-                                { name: 'year', type: 'text', required: true },
-                                { name: 'event', type: 'text', required: true },
-                                { name: 'description', type: 'textarea' },
+                                { name: 'year', type: 'text', required: true, localized: true },
+                                { name: 'event', type: 'text', required: true, localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
                             ],
                         },
                         {
                             name: 'testimonialsTitle',
                             type: 'text',
                             defaultValue: 'What Our Customers Say',
+                            localized: true,
                         },
                         {
                             name: 'testimonialsDescription',
                             type: 'textarea',
                             defaultValue: "Don't just take our word for it. Hear from thousands of satisfied customers across India.",
+                            localized: true,
                         },
                         {
                             name: 'stats',
@@ -212,8 +224,8 @@ export const AboutPage: Tab = {
                             minRows: 1,
                             maxRows: 4,
                             fields: [
-                                { name: 'value', type: 'text', required: true },
-                                { name: 'label', type: 'text', required: true },
+                                { name: 'value', type: 'text', required: true, localized: true },
+                                { name: 'label', type: 'text', required: true, localized: true },
                             ],
                         },
                         {
@@ -223,12 +235,12 @@ export const AboutPage: Tab = {
                             minRows: 1,
                             maxRows: 10,
                             fields: [
-                                { name: 'name', type: 'text', required: true },
-                                { name: 'role', type: 'text' },
-                                { name: 'location', type: 'text' },
+                                { name: 'name', type: 'text', required: true, localized: true },
+                                { name: 'role', type: 'text', localized: true },
+                                { name: 'location', type: 'text', localized: true },
                                 { name: 'rating', type: 'number', min: 1, max: 5, defaultValue: 5 },
-                                { name: 'content', type: 'textarea', required: true },
-                                { name: 'product', type: 'text' },
+                                { name: 'content', type: 'textarea', required: true, localized: true },
+                                { name: 'product', type: 'text', localized: true },
                             ],
                         },
                     ],
@@ -240,10 +252,12 @@ export const AboutPage: Tab = {
                             name: 'complianceTitle',
                             type: 'text',
                             defaultValue: 'Regulatory Compliance',
+                            localized: true,
                         },
                         {
                             name: 'complianceDescription',
                             type: 'textarea',
+                            localized: true,
                         },
                         {
                             type: 'row',
@@ -251,17 +265,17 @@ export const AboutPage: Tab = {
                                 {
                                     name: 'badge1',
                                     type: 'group',
-                                    fields: [{ name: 'text', type: 'text', defaultValue: 'RBI Licensed NBFC' }],
+                                    fields: [{ name: 'text', type: 'text', defaultValue: 'RBI Licensed NBFC', localized: true }],
                                 },
                                 {
                                     name: 'badge2',
                                     type: 'group',
-                                    fields: [{ name: 'text', type: 'text', defaultValue: 'ISO 27001 Certified' }],
+                                    fields: [{ name: 'text', type: 'text', defaultValue: 'ISO 27001 Certified', localized: true }],
                                 },
                                 {
                                     name: 'badge3',
                                     type: 'group',
-                                    fields: [{ name: 'text', type: 'text', defaultValue: 'PCI DSS Compliant' }],
+                                    fields: [{ name: 'text', type: 'text', defaultValue: 'PCI DSS Compliant', localized: true }],
                                 },
                             ],
                         },

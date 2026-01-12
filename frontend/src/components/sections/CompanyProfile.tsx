@@ -3,11 +3,14 @@ import { Badge } from '@/components/ui/badge';
 import { User, Award, Briefcase, GraduationCap, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getAboutPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const CompanyProfile = () => {
+  const { locale } = useLocale();
+
   const { data: pageData, isLoading, error } = useQuery({
-    queryKey: ['aboutPage'],
-    queryFn: getAboutPage,
+    queryKey: ['aboutPage', locale],
+    queryFn: () => getAboutPage(locale),
   });
 
   const staticBoardMembers = [
