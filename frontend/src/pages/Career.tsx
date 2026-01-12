@@ -14,6 +14,47 @@ import DynamicForm from '@/components/ui/DynamicForm';
 import { toast } from 'sonner';
 import { useLocale } from '@/contexts/LocaleContext';
 
+interface CareerJob {
+    title: string;
+    department: string;
+    location: string;
+    type: string;
+    experience: string;
+    salary: string;
+    status: string;
+    expiryDate?: string;
+    description: string;
+    skills?: { skill: string }[];
+}
+
+interface CareerBenefit {
+    icon: string;
+    title: string;
+    description: string;
+}
+
+interface CareerLifeAtCompany {
+    icon: string;
+    title: string;
+    description: string;
+}
+
+interface CareerPageData {
+    careerHeaderTitle?: string;
+    careerHeaderSubtitle?: string;
+    jobOpeningsTitle?: string;
+    jobOpeningsSubtitle?: string;
+    benefitsTitle?: string;
+    benefitsSubtitle?: string;
+    cultureButtonText?: string;
+    cultureButtonLink?: string;
+    lifeAtCompanyTitle?: string;
+    lifeAtCompanySubtitle?: string;
+    jobOpenings?: CareerJob[];
+    benefits?: CareerBenefit[];
+    lifeAtCompany?: CareerLifeAtCompany[];
+}
+
 const iconMap: Record<string, any> = {
     TrendingUp,
     Target,
@@ -28,17 +69,17 @@ const iconMap: Record<string, any> = {
 const Career = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedFormId, setSelectedFormId] = useState<string | null>(null);
-    const [selectedJob, setSelectedJob] = useState<any>(null);
+    const [selectedJob, setSelectedJob] = useState<CareerJob | null>(null);
     const FORM_ID = "3"; // Updated to match CMS
 
     const { locale } = useLocale();
 
-    const { data: pageData, isLoading } = useQuery({
+    const { data: pageData, isLoading } = useQuery<CareerPageData>({
         queryKey: ['careerPage', locale],
         queryFn: () => getCareerPage(locale),
     });
 
-    const handleApply = (job: any) => {
+    const handleApply = (job: CareerJob) => {
         // Hardcoded form ID as requested for Phase 1
         setSelectedFormId(FORM_ID);
         setSelectedJob(job);
@@ -54,7 +95,7 @@ const Career = () => {
     }
 
     const now = new Date();
-    const jobOpenings = (pageData?.jobOpenings || []).filter((job: any) => {
+    const jobOpenings = (pageData?.jobOpenings || []).filter((job: CareerJob) => {
         const isOpen = !job.status || job.status === 'Open';
         const isNotExpired = !job.expiryDate || new Date(job.expiryDate) > now;
         return isOpen && isNotExpired;
@@ -227,7 +268,7 @@ const Career = () => {
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto mb-12">
-                        {benefits.map((benefit: any, index: number) => {
+                        {benefits.map((benefit: CareerBenefit, index: number) => {
                             const Icon = iconMap[benefit.icon] || Star;
                             return (
                                 <Card key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] p-6 text-center hover:scale-105 transition-transform">
@@ -260,7 +301,7 @@ const Career = () => {
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-                        {lifeAtCompany.map((item: any, index: number) => {
+                        {lifeAtCompany.map((item: CareerLifeAtCompany, index: number) => {
                             const Icon = iconMap[item.icon] || Coffee;
                             return (
                                 <Card key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] p-6 text-center hover:scale-105 transition-transform">

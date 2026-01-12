@@ -1,9 +1,9 @@
-import type { Tab } from 'payload/types'
+import type { Tab } from 'payload'
 
 export const KnowledgeCenterPage: Tab = {
     label: 'Knowledge Center Page',
     admin: {
-        condition: (data) => data?.template === 'knowledge-center',
+        condition: (data: any) => data?.template === 'knowledge-center',
     },
     fields: [
         {
@@ -16,11 +16,37 @@ export const KnowledgeCenterPage: Tab = {
                             name: 'knowledgeCenterHeaderTitle',
                             type: 'text',
                             defaultValue: 'Knowledge Center',
+                            localized: true,
                         },
                         {
                             name: 'knowledgeCenterHeaderSubtitle',
                             type: 'textarea',
                             defaultValue: 'Stay informed with expert insights, financial tips, and industry trends',
+                            localized: true,
+                        },
+                        {
+                            name: 'helpTitle',
+                            type: 'text',
+                            defaultValue: 'Need More Help?',
+                            localized: true,
+                        },
+                        {
+                            name: 'helpDescription',
+                            type: 'textarea',
+                            defaultValue: "Can't find what you're looking for? Our support team is here to help.",
+                            localized: true,
+                        },
+                        {
+                            name: 'helpPrimaryButtonText',
+                            type: 'text',
+                            defaultValue: 'Contact Support',
+                            localized: true,
+                        },
+                        {
+                            name: 'helpSecondaryButtonText',
+                            type: 'text',
+                            defaultValue: 'Schedule a Call',
+                            localized: true,
                         },
                     ],
                 },
@@ -36,10 +62,12 @@ export const KnowledgeCenterPage: Tab = {
                                     name: 'title',
                                     type: 'text',
                                     required: true,
+                                    localized: true,
                                 },
                                 {
                                     name: 'excerpt',
                                     type: 'textarea',
+                                    localized: true,
                                 },
                                 {
                                     type: 'row',
@@ -47,18 +75,22 @@ export const KnowledgeCenterPage: Tab = {
                                         {
                                             name: 'category',
                                             type: 'text',
+                                            localized: true,
                                         },
                                         {
                                             name: 'author',
                                             type: 'text',
+                                            localized: true,
                                         },
                                         {
                                             name: 'date',
                                             type: 'text',
+                                            localized: true,
                                         },
                                         {
                                             name: 'readTime',
                                             type: 'text',
+                                            localized: true,
                                         },
                                         {
                                             name: 'featured',
@@ -83,10 +115,12 @@ export const KnowledgeCenterPage: Tab = {
                                     name: 'title',
                                     type: 'text',
                                     required: true,
+                                    localized: true,
                                 },
                                 {
                                     name: 'description',
                                     type: 'textarea',
+                                    localized: true,
                                 },
                                 {
                                     type: 'row',
@@ -105,6 +139,7 @@ export const KnowledgeCenterPage: Tab = {
                                         {
                                             name: 'category',
                                             type: 'text',
+                                            localized: true,
                                         },
                                         {
                                             name: 'steps',
@@ -128,11 +163,13 @@ export const KnowledgeCenterPage: Tab = {
                                     name: 'title',
                                     type: 'text',
                                     required: true,
+                                    localized: true,
                                 },
                                 {
                                     name: 'type',
                                     type: 'text',
                                     label: 'Report Type (e.g. Annual Report)',
+                                    localized: true,
                                 },
                                 {
                                     type: 'row',
@@ -140,11 +177,13 @@ export const KnowledgeCenterPage: Tab = {
                                         {
                                             name: 'date',
                                             type: 'text',
+                                            localized: true,
                                         },
                                         {
                                             name: 'size',
                                             type: 'text',
                                             label: 'File Size (e.g. 2.4 MB)',
+                                            localized: true,
                                         },
                                         {
                                             name: 'icon',
@@ -174,14 +213,17 @@ export const KnowledgeCenterPage: Tab = {
                                     name: 'question',
                                     type: 'text',
                                     required: true,
+                                    localized: true,
                                 },
                                 {
                                     name: 'answer',
                                     type: 'textarea',
+                                    localized: true,
                                 },
                                 {
                                     name: 'category',
                                     type: 'text',
+                                    localized: true,
                                 },
                             ],
                         },

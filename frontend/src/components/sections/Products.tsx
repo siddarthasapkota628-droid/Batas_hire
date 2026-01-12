@@ -40,8 +40,15 @@ const Products = ({ cmsData = {}, supplemental }: ProductsProps) => {
   const FORM_ID = "2";
 
   // Use config values if available
-  const title = homeProductsConfig?.title || cmsData.productsTitle || "Our Financial Solutions";
-  const description = homeProductsConfig?.description || cmsData.productsDescription || "Tailored financing options to meet your diverse needs with transparent terms and competitive rates";
+  // Use config values if available, respecting the current template context
+  const isHomePage = cmsData.template === 'home';
+  const title = isHomePage
+    ? (homeProductsConfig?.title || cmsData.productsTitle || "Our Financial Solutions")
+    : (cmsData.productsTitle || homeProductsConfig?.title || "Our Financial Solutions");
+
+  const description = isHomePage
+    ? (homeProductsConfig?.description || cmsData.productsDescription || "Tailored financing options to meet your diverse needs with transparent terms and competitive rates")
+    : (cmsData.productsDescription || homeProductsConfig?.description || "Tailored financing options to meet your diverse needs with transparent terms and competitive rates");
   const maxRows = homeProductsConfig?.maxRows || 4;
 
   // Static Data (Fallback)

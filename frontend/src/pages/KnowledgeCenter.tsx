@@ -10,6 +10,52 @@ import { useQuery } from '@tanstack/react-query';
 import { getKnowledgeCenterPage } from '@/lib/api';
 import { useLocale } from '@/contexts/LocaleContext';
 
+interface Article {
+  title: string;
+  excerpt: string;
+  category: string;
+  author: string;
+  date: string;
+  readTime: string;
+  featured: boolean;
+}
+
+interface Guide {
+  title: string;
+  description: string;
+  icon: string;
+  steps: number;
+  category: string;
+}
+
+interface Report {
+  title: string;
+  type: string;
+  date: string;
+  icon: string;
+  size: string;
+}
+
+interface FAQ {
+  question: string;
+  category: string;
+  answer: string;
+}
+
+interface KnowledgeCenterPageData {
+  template?: string;
+  knowledgeCenterHeaderTitle?: string;
+  knowledgeCenterHeaderSubtitle?: string;
+  articles?: Article[];
+  guides?: Guide[];
+  reports?: Report[];
+  faqs?: FAQ[];
+  helpTitle?: string;
+  helpDescription?: string;
+  helpPrimaryButtonText?: string;
+  helpSecondaryButtonText?: string;
+}
+
 const iconMap: Record<string, any> = {
   TrendingUp,
   Target: TrendingUp, // Fallback/Map if needed
@@ -29,7 +75,7 @@ const iconMap: Record<string, any> = {
 
 const KnowledgeCenter = () => {
   const { locale } = useLocale();
-  const { data: pageData, isLoading, isError } = useQuery({
+  const { data: pageData, isLoading, isError } = useQuery<KnowledgeCenterPageData>({
     queryKey: ['knowledgeCenterPage', locale],
     queryFn: () => getKnowledgeCenterPage(locale),
     retry: 1, // Minimize retries to fallback quickly if backend is down
@@ -200,13 +246,13 @@ const KnowledgeCenter = () => {
   }
 
   // Calculate categories dynamically
-  const allCategories = articles.map((a: any) => a.category).filter(Boolean);
+  const allCategories = articles.map((a: Article) => a.category).filter(Boolean);
   const uniqueCategories = Array.from(new Set(allCategories));
   const categories = [
     { name: "All", count: articles.length },
-    ...uniqueCategories.map((cat: any) => ({
+    ...uniqueCategories.map((cat: string) => ({
       name: cat,
-      count: articles.filter((a: any) => a.category === cat).length
+      count: articles.filter((a: Article) => a.category === cat).length
     }))
   ];
 
@@ -279,7 +325,7 @@ const KnowledgeCenter = () => {
                 </h2>
 
                 <div className="flex flex-wrap justify-center gap-8 mb-16">
-                  {articles.filter((article: any) => article.featured).map((article: any, index: number) => (
+                  {articles.filter((article: Article) => article.featured).map((article: Article, index: number) => (
                     <Card key={index} className="w-full lg:w-[calc(50%-2rem)] overflow-hidden hover:shadow-strong transition-all hover:scale-[1.02]">
                       <div className="h-48 bg-gradient-subtle relative">
                         <Badge className="absolute top-4 left-4 bg-primary/90">{article.category}</Badge>
@@ -315,7 +361,7 @@ const KnowledgeCenter = () => {
                 {/* Recent Articles */}
                 <h2 className="text-3xl font-bold text-foreground mb-8">Recent Articles</h2>
                 <div className="flex flex-wrap justify-center gap-6">
-                  {articles.filter((article: any) => !article.featured).map((article: any, index: number) => (
+                  {articles.filter((article: Article) => !article.featured).map((article: Article, index: number) => (
                     <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-6 hover:shadow-medium transition-all hover:scale-[1.02] cursor-pointer">
                       <div className="flex items-center gap-4 mb-3">
                         <Badge variant="outline" className="text-xs">{article.category}</Badge>
@@ -345,7 +391,7 @@ const KnowledgeCenter = () => {
                 How-To Guides
               </h2>
               <div className="flex flex-wrap justify-center gap-6">
-                {guides.map((guide: any, index: number) => {
+                {guides.map((guide: Guide, index: number) => {
                   const Icon = iconMap[guide.icon] || Lightbulb;
                   return (
                     <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-6 hover:shadow-strong transition-all hover:scale-[1.02] cursor-pointer">
@@ -376,7 +422,7 @@ const KnowledgeCenter = () => {
                 Publications & Reports
               </h2>
               <div className="flex flex-wrap justify-center gap-6">
-                {publications.map((pub: any, index: number) => {
+                {publications.map((pub: Report, index: number) => {
                   const Icon = iconMap[pub.icon] || TrendingUp;
                   return (
                     <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] p-6 text-center hover:shadow-strong transition-all hover:scale-[1.02]">
@@ -406,7 +452,7 @@ const KnowledgeCenter = () => {
                 Frequently Asked Questions
               </h2>
               <div className="flex flex-wrap justify-center gap-6">
-                {faqs.map((faq: any, index: number) => (
+                {faqs.map((faq: FAQ, index: number) => (
                   <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] p-6 hover:shadow-medium transition-shadow">
                     <div className="flex items-center gap-2 mb-3">
                       <Badge variant="outline" className="text-xs">{faq.category}</Badge>
@@ -429,14 +475,18 @@ const KnowledgeCenter = () => {
       {/* Call to Action */}
       <section className="py-16 bg-gradient-subtle">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Need More Help?</h2>
-          <p className="text-xl text-muted-foreground mb-8">Can't find what you're looking for? Our support team is here to help.</p>
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            {pageData?.helpTitle || "Need More Help?"}
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8">
+            {pageData?.helpDescription || "Can't find what you're looking for? Our support team is here to help."}
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="cta" size="lg">
-              Contact Support
+              {pageData?.helpPrimaryButtonText || "Contact Support"}
             </Button>
             <Button variant="outline" size="lg">
-              Schedule a Call
+              {pageData?.helpSecondaryButtonText || "Schedule a Call"}
             </Button>
           </div>
         </div>

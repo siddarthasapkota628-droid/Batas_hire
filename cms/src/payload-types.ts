@@ -483,6 +483,10 @@ export interface Page {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -1526,6 +1530,10 @@ export interface AboutPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -2069,6 +2077,10 @@ export interface ServicesPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -2612,6 +2624,10 @@ export interface CareerPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -3155,6 +3171,10 @@ export interface HomePage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -3698,6 +3718,10 @@ export interface HowItWorksPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -4241,6 +4265,10 @@ export interface KnowledgeCenterPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -4784,6 +4812,10 @@ export interface FaqPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -5327,6 +5359,10 @@ export interface ContactPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -5870,6 +5906,10 @@ export interface LegalPage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -6413,6 +6453,10 @@ export interface NoticePage {
     | null;
   knowledgeCenterHeaderTitle?: string | null;
   knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
   articles?:
     | {
         title: string;
@@ -7293,6 +7337,10 @@ export interface PagesSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -7792,6 +7840,10 @@ export interface AboutPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -8299,6 +8351,10 @@ export interface ServicesPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -8806,6 +8862,10 @@ export interface CareerPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -9313,6 +9373,10 @@ export interface HomePageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -9820,6 +9884,10 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -10327,6 +10395,10 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -10834,6 +10906,10 @@ export interface FaqPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -11341,6 +11417,10 @@ export interface ContactPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -11848,6 +11928,10 @@ export interface LegalPageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {
@@ -12355,6 +12439,10 @@ export interface NoticePageSelect<T extends boolean = true> {
       };
   knowledgeCenterHeaderTitle?: T;
   knowledgeCenterHeaderSubtitle?: T;
+  helpTitle?: T;
+  helpDescription?: T;
+  helpPrimaryButtonText?: T;
+  helpSecondaryButtonText?: T;
   articles?:
     | T
     | {

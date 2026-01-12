@@ -210,8 +210,8 @@ export const HomePage: Tab = {
                             type: 'group',
                             label: 'Our Final Solutions (Services)',
                             fields: [
-                                { name: 'title', type: 'text', defaultValue: 'Our Final Solutions' },
-                                { name: 'description', type: 'textarea' },
+                                { name: 'title', type: 'text', defaultValue: 'Our Final Solutions', localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
                                 {
                                     type: 'row',
                                     fields: [
@@ -226,8 +226,8 @@ export const HomePage: Tab = {
                             type: 'group',
                             label: 'What Our Customers Say (Testimonials)',
                             fields: [
-                                { name: 'title', type: 'text', defaultValue: 'What Our Customers Say' },
-                                { name: 'description', type: 'textarea' },
+                                { name: 'title', type: 'text', defaultValue: 'What Our Customers Say', localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
                                 {
                                     type: 'row',
                                     fields: [
@@ -242,8 +242,8 @@ export const HomePage: Tab = {
                             type: 'group',
                             label: 'Latest News & Updates (Knowledge Center)',
                             fields: [
-                                { name: 'title', type: 'text', defaultValue: 'Latest News & Updates' },
-                                { name: 'description', type: 'textarea' },
+                                { name: 'title', type: 'text', defaultValue: 'Latest News & Updates', localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
                                 {
                                     type: 'row',
                                     fields: [
