@@ -1,4 +1,4 @@
-import { Tab } from 'payload/types';
+import { Tab } from 'payload';
 
 export const ServicesPage: Tab = {
     label: 'Products & Solutions',
@@ -11,12 +11,14 @@ export const ServicesPage: Tab = {
             type: 'text',
             defaultValue: 'Our Financial Solutions',
             label: 'Section Title',
+            localized: true,
         },
         {
             name: 'productsDescription',
             type: 'textarea',
             defaultValue: 'Tailored financing options to meet your diverse needs with transparent terms and competitive rates',
             label: 'Section Description',
+            localized: true,
         },
         {
             name: 'products',
@@ -44,11 +46,13 @@ export const ServicesPage: Tab = {
                     type: 'text',
                     required: true,
                     label: 'Product Title (e.g., Buy Now Pay Later)',
+                    localized: true,
                 },
                 {
                     name: 'subtitle',
                     type: 'text',
                     label: 'Subtitle (e.g., Shop today, pay flexibly tomorrow)',
+                    localized: true,
                 },
                 {
                     name: 'stats',
@@ -62,12 +66,14 @@ export const ServicesPage: Tab = {
                             type: 'text',
                             required: true,
                             label: 'Value (e.g., 0% Interest)',
+                            localized: true,
                         },
                         {
                             name: 'label',
                             type: 'text',
                             required: true,
                             label: 'Label (e.g., First 3 Months)',
+                            localized: true,
                         },
                         {
                             name: 'icon',
@@ -86,6 +92,7 @@ export const ServicesPage: Tab = {
                             name: 'text',
                             type: 'text',
                             required: true,
+                            localized: true,
                         },
                     ],
                 },
@@ -94,12 +101,14 @@ export const ServicesPage: Tab = {
                     type: 'text',
                     defaultValue: 'Apply Now',
                     label: 'Primary Button Text',
+                    localized: true,
                 },
                 {
                     name: 'secondaryCtaText',
                     type: 'text',
                     defaultValue: 'Learn More',
                     label: 'Secondary Button Text',
+                    localized: true,
                 },
             ],
         },

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { FileText, CreditCard, CheckCircle, ArrowRight, Smartphone, Clock, Shield, Zap, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getHowItWorksPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const iconMap: Record<string, React.ReactNode> = {
   Smartphone: <Smartphone className="w-8 h-8" />,
@@ -23,9 +24,10 @@ const featureIconMap: Record<string, React.ReactNode> = {
 
 
 const HowItWorks = () => {
+  const { locale } = useLocale();
   const { data: pageData, isLoading, error } = useQuery({
-    queryKey: ['howItWorksPage'],
-    queryFn: getHowItWorksPage,
+    queryKey: ['howItWorksPage', locale],
+    queryFn: () => getHowItWorksPage(locale),
   });
 
   if (isLoading) {
@@ -42,19 +44,77 @@ const HowItWorks = () => {
   const headerTitle = data.headerTitle || "How It Works";
   const headerSubtitle = data.headerSubtitle || "Get approved and funded in just 4 simple steps. Our streamlined process ensures you get the financing you need quickly and hassle-free.";
 
-  const steps = data.steps?.map((step: any, index: number) => ({
-    id: step.stepNumber || index + 1,
-    icon: iconMap[step.icon] || <Smartphone className="w-8 h-8" />,
-    title: step.title,
-    description: step.description,
-    details: step.bulletPoints?.map((bp: any) => bp.text) || []
-  })) || [];
+  const steps = data.steps?.length > 0
+    ? data.steps.map((step: any, index: number) => ({
+      id: step.stepNumber || index + 1,
+      icon: iconMap[step.icon] || <Smartphone className="w-8 h-8" />,
+      title: step.title,
+      description: step.description,
+      details: step.bulletPoints?.map((bp: any) => bp.text) || []
+    }))
+    : [
+      {
+        id: 1,
+        icon: iconMap["Smartphone"],
+        title: "Download & Register",
+        description: "Download our app and complete your profile in minutes.",
+        details: ["Quick installation", "Simple registration"]
+      },
+      {
+        id: 2,
+        icon: iconMap["FileText"],
+        title: "Upload Documents",
+        description: "Seamlessly upload your KYC and income documents.",
+        details: ["Digital verification", "Secure processing"]
+      },
+      {
+        id: 3,
+        icon: iconMap["CheckCircle"],
+        title: "Instant Approval",
+        description: "Get real-time feedback on your loan application.",
+        details: ["AI assessment", "Fast response"]
+      },
+      {
+        id: 4,
+        icon: iconMap["CreditCard"],
+        title: "Get Funded",
+        description: "Receive funds directly in your bank account.",
+        details: ["Direct transfer", "Instant access"]
+      }
+    ];
 
-  const features = data.trustFeatures?.map((feature: any) => ({
-    icon: featureIconMap[feature.icon] || <Shield className="w-6 h-6" />,
-    title: feature.title,
-    description: feature.description
-  })) || [];
+  const features = data.trustFeatures?.length > 0
+    ? data.trustFeatures.map((feature: any) => ({
+      icon: featureIconMap[feature.icon] || <Shield className="w-6 h-6" />,
+      title: feature.title,
+      description: feature.description
+    }))
+    : [
+      {
+        icon: featureIconMap["Shield"],
+        title: "Secure & Trusted",
+        description: "Your data is encrypted and protected with bank-grade security."
+      },
+      {
+        icon: featureIconMap["Clock"],
+        title: "24/7 Availability",
+        description: "Apply for loans anytime, anywhere through our mobile app."
+      },
+      {
+        icon: featureIconMap["Zap"],
+        title: "Lightning Fast",
+        description: "Experience the speed of digital-first financial services."
+      }
+    ];
+
+  const ctaData = {
+    title: data.ctaTitle || "Ready to Get Started?",
+    description: data.ctaDescription || "Join thousands of satisfied customers who have chosen our hassle-free financing solutions. Apply now and experience the future of digital lending.",
+    primaryButtonText: data.ctaPrimaryButtonText || "Start Your Application",
+    primaryButtonLink: data.ctaPrimaryButtonLink || "/contact",
+    secondaryButtonText: data.ctaSecondaryButtonText || "Calculate Your EMI",
+    secondaryButtonLink: data.ctaSecondaryButtonLink || "/calculator"
+  };
 
 
   return (
@@ -124,20 +184,23 @@ const HowItWorks = () => {
           {/* CTA Section */}
           <div className="text-center bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Ready to Get Started?
+              {ctaData.title}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who have chosen our hassle-free financing solutions.
-              Apply now and experience the future of digital lending.
+              {ctaData.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="cta" size="lg" className="group">
-                Start Your Application
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button variant="outline" size="lg">
-                Calculate Your EMI
-              </Button>
+              <a href={ctaData.primaryButtonLink} style={{ textDecoration: 'none' }}>
+                <Button variant="cta" size="lg" className="group w-full sm:w-auto">
+                  {ctaData.primaryButtonText}
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
+              <a href={ctaData.secondaryButtonLink} style={{ textDecoration: 'none' }}>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  {ctaData.secondaryButtonText}
+                </Button>
+              </a>
             </div>
           </div>
         </div>

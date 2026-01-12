@@ -4,13 +4,15 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown, ChevronUp, MessageCircle, Phone, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getFAQPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const FAQ = () => {
+  const { locale } = useLocale();
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
   const { data: pageData, isLoading, isError } = useQuery({
-    queryKey: ['faqPage'],
-    queryFn: getFAQPage,
+    queryKey: ['faqPage', locale],
+    queryFn: () => getFAQPage(locale),
     retry: 1,
   });
 

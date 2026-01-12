@@ -204,6 +204,37 @@ export const plugins: Plugin[] = [
             return data
           },
         ],
+        afterChange: [
+          async ({ doc, req: { payload } }) => {
+            const formId = typeof doc.form === 'object' ? doc.form.id : doc.form
+
+            let collection = 'contact-submissions'
+            if (formId === 3 || formId === '3') {
+              collection = 'career-applications'
+            } else if (formId === 2 || formId === '2') {
+              collection = 'service-inquiries'
+            } else if (formId === 4 || formId === '4') {
+              collection = 'contact-submissions'
+            }
+
+            try {
+              await payload.create({
+                collection: collection as any,
+                data: {
+                  name: doc.name,
+                  email: doc.email,
+                  phoneNumber: doc.phoneNumber,
+                  jobPosition: doc.jobPosition,
+                  resume: doc.resume,
+                  form: formId,
+                  submissionData: doc.submissionData,
+                },
+              })
+            } catch (err) {
+              payload.logger.error(`Error mirroring form submission to ${collection}: ${err}`)
+            }
+          }
+        ],
       },
       admin: {
         useAsTitle: 'id',

@@ -392,6 +392,12 @@ export interface Page {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -417,6 +423,8 @@ export interface Page {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -451,6 +459,10 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -459,6 +471,8 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -1421,6 +1435,12 @@ export interface AboutPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -1446,6 +1466,8 @@ export interface AboutPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -1480,6 +1502,10 @@ export interface AboutPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -1488,6 +1514,8 @@ export interface AboutPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -1950,6 +1978,12 @@ export interface ServicesPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -1975,6 +2009,8 @@ export interface ServicesPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -2009,6 +2045,10 @@ export interface ServicesPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -2017,6 +2057,8 @@ export interface ServicesPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -2479,6 +2521,12 @@ export interface CareerPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -2504,6 +2552,8 @@ export interface CareerPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -2538,6 +2588,10 @@ export interface CareerPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -2546,6 +2600,8 @@ export interface CareerPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -3008,6 +3064,12 @@ export interface HomePage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -3033,6 +3095,8 @@ export interface HomePage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -3067,6 +3131,10 @@ export interface HomePage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -3075,6 +3143,8 @@ export interface HomePage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -3537,6 +3607,12 @@ export interface HowItWorksPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -3562,6 +3638,8 @@ export interface HowItWorksPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -3596,6 +3674,10 @@ export interface HowItWorksPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -3604,6 +3686,8 @@ export interface HowItWorksPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -4066,6 +4150,12 @@ export interface KnowledgeCenterPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -4091,6 +4181,8 @@ export interface KnowledgeCenterPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -4125,6 +4217,10 @@ export interface KnowledgeCenterPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -4133,6 +4229,8 @@ export interface KnowledgeCenterPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -4595,6 +4693,12 @@ export interface FaqPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -4620,6 +4724,8 @@ export interface FaqPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -4654,6 +4760,10 @@ export interface FaqPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -4662,6 +4772,8 @@ export interface FaqPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -5124,6 +5236,12 @@ export interface ContactPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -5149,6 +5267,8 @@ export interface ContactPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -5183,6 +5303,10 @@ export interface ContactPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -5191,6 +5315,8 @@ export interface ContactPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -5653,6 +5779,12 @@ export interface LegalPage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -5678,6 +5810,8 @@ export interface LegalPage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -5712,6 +5846,10 @@ export interface LegalPage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -5720,6 +5858,8 @@ export interface LegalPage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -6182,6 +6322,12 @@ export interface NoticePage {
     | null;
   headerTitle: string;
   headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
   steps?:
     | {
         stepNumber: number;
@@ -6207,6 +6353,8 @@ export interface NoticePage {
     | null;
   careerHeaderTitle?: string | null;
   careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
   jobOpenings?:
     | {
         title: string;
@@ -6241,6 +6389,10 @@ export interface NoticePage {
         id?: string | null;
       }[]
     | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
   benefits?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -6249,6 +6401,8 @@ export interface NoticePage {
         id?: string | null;
       }[]
     | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
   lifeAtCompany?:
     | {
         icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
@@ -7062,6 +7216,12 @@ export interface PagesSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -7087,6 +7247,8 @@ export interface PagesSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -7107,6 +7269,10 @@ export interface PagesSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -7115,6 +7281,8 @@ export interface PagesSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -7547,6 +7715,12 @@ export interface AboutPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -7572,6 +7746,8 @@ export interface AboutPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -7592,6 +7768,10 @@ export interface AboutPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -7600,6 +7780,8 @@ export interface AboutPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -8040,6 +8222,12 @@ export interface ServicesPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -8065,6 +8253,8 @@ export interface ServicesPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -8085,6 +8275,10 @@ export interface ServicesPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -8093,6 +8287,8 @@ export interface ServicesPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -8533,6 +8729,12 @@ export interface CareerPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -8558,6 +8760,8 @@ export interface CareerPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -8578,6 +8782,10 @@ export interface CareerPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -8586,6 +8794,8 @@ export interface CareerPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -9026,6 +9236,12 @@ export interface HomePageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -9051,6 +9267,8 @@ export interface HomePageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -9071,6 +9289,10 @@ export interface HomePageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -9079,6 +9301,8 @@ export interface HomePageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -9519,6 +9743,12 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -9544,6 +9774,8 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -9564,6 +9796,10 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -9572,6 +9808,8 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -10012,6 +10250,12 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -10037,6 +10281,8 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -10057,6 +10303,10 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -10065,6 +10315,8 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -10505,6 +10757,12 @@ export interface FaqPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -10530,6 +10788,8 @@ export interface FaqPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -10550,6 +10810,10 @@ export interface FaqPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -10558,6 +10822,8 @@ export interface FaqPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -10998,6 +11264,12 @@ export interface ContactPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -11023,6 +11295,8 @@ export interface ContactPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -11043,6 +11317,10 @@ export interface ContactPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -11051,6 +11329,8 @@ export interface ContactPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -11491,6 +11771,12 @@ export interface LegalPageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -11516,6 +11802,8 @@ export interface LegalPageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -11536,6 +11824,10 @@ export interface LegalPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -11544,6 +11836,8 @@ export interface LegalPageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {
@@ -11984,6 +12278,12 @@ export interface NoticePageSelect<T extends boolean = true> {
       };
   headerTitle?: T;
   headerSubtitle?: T;
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaPrimaryButtonText?: T;
+  ctaPrimaryButtonLink?: T;
+  ctaSecondaryButtonText?: T;
+  ctaSecondaryButtonLink?: T;
   steps?:
     | T
     | {
@@ -12009,6 +12309,8 @@ export interface NoticePageSelect<T extends boolean = true> {
       };
   careerHeaderTitle?: T;
   careerHeaderSubtitle?: T;
+  jobOpeningsTitle?: T;
+  jobOpeningsSubtitle?: T;
   jobOpenings?:
     | T
     | {
@@ -12029,6 +12331,10 @@ export interface NoticePageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  benefitsTitle?: T;
+  benefitsSubtitle?: T;
+  cultureButtonText?: T;
+  cultureButtonLink?: T;
   benefits?:
     | T
     | {
@@ -12037,6 +12343,8 @@ export interface NoticePageSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  lifeAtCompanyTitle?: T;
+  lifeAtCompanySubtitle?: T;
   lifeAtCompany?:
     | T
     | {

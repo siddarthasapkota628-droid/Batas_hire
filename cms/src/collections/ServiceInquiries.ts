@@ -18,7 +18,7 @@ export const ServiceInquiries: CollectionConfig = {
         },
         update: ({ req: { user } }) => !!user,
         delete: ({ req: { user } }) => !!user,
-        create: () => false,
+        create: () => true,
     },
     fields: [
         { name: 'name', type: 'text', label: 'Full Name', admin: { readOnly: true } },

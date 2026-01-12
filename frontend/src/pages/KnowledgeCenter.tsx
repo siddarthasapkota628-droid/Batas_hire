@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Calendar, User, Clock, ArrowRight, BookOpen, TrendingUp, Shield, Search, Star, Download, FileText, Lightbulb, HelpCircle, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getKnowledgeCenterPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const iconMap: Record<string, any> = {
   TrendingUp,
@@ -27,9 +28,10 @@ const iconMap: Record<string, any> = {
 
 
 const KnowledgeCenter = () => {
+  const { locale } = useLocale();
   const { data: pageData, isLoading, isError } = useQuery({
-    queryKey: ['knowledgeCenterPage'],
-    queryFn: getKnowledgeCenterPage,
+    queryKey: ['knowledgeCenterPage', locale],
+    queryFn: () => getKnowledgeCenterPage(locale),
     retry: 1, // Minimize retries to fallback quickly if backend is down
   });
 

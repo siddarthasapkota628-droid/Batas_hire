@@ -6,6 +6,7 @@ import { FileText, Shield, Scale, AlertCircle, Download, Eye, Loader2 } from 'lu
 import { Button } from '@/components/ui/button';
 import { useQuery } from '@tanstack/react-query';
 import { getLegalPage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const iconMap: Record<string, any> = {
   FileText,
@@ -24,9 +25,10 @@ const colorMap: Record<string, string> = {
 };
 
 const Legal = () => {
+  const { locale } = useLocale();
   const { data: pageData, isLoading } = useQuery({
-    queryKey: ['legalPage'],
-    queryFn: getLegalPage,
+    queryKey: ['legalPage', locale],
+    queryFn: () => getLegalPage(locale),
     retry: 1,
   });
 

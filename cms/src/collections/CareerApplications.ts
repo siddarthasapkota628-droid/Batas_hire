@@ -36,7 +36,7 @@ export const CareerApplications: CollectionConfig = {
         },
         update: isSuperOrClientAdmin,
         delete: isSuperOrClientAdmin,
-        create: () => false, // Submissions should only come from the frontend
+        create: () => true, // Changed to true so the server hook can create records
     },
     fields: [
         {

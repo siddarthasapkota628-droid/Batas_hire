@@ -15,17 +15,16 @@ export const ContactSubmissions: CollectionConfig = {
             // For Contact form, we might need to find the ID or filter by name in submissionData
             // For now, we'll use a placeholder or filter out known IDs (2 and 3)
             const filter = {
-                and: [
-                    { form: { not_equals: 2 } }, // Not Services
-                    { form: { not_equals: 3 } }, // Not Careers
-                ]
+                form: {
+                    equals: 4,
+                },
             }
             const roles = user.roles || []
             return roles.includes('admin') || roles.includes('client-admin') ? filter : false
         },
         update: ({ req: { user } }) => !!user,
         delete: ({ req: { user } }) => !!user,
-        create: () => false,
+        create: () => true,
     },
     fields: [
         { name: 'name', type: 'text', label: 'Full Name', admin: { readOnly: true } },

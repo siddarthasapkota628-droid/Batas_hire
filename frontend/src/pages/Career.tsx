@@ -12,6 +12,7 @@ import { getCareerPage } from '@/lib/api';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import DynamicForm from '@/components/ui/DynamicForm';
 import { toast } from 'sonner';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const iconMap: Record<string, any> = {
     TrendingUp,
@@ -28,11 +29,13 @@ const Career = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedFormId, setSelectedFormId] = useState<string | null>(null);
     const [selectedJob, setSelectedJob] = useState<any>(null);
-    const FORM_ID = "3"; // Hardcoded 
+    const FORM_ID = "3"; // Updated to match CMS
+
+    const { locale } = useLocale();
 
     const { data: pageData, isLoading } = useQuery({
-        queryKey: ['careerPage'],
-        queryFn: getCareerPage,
+        queryKey: ['careerPage', locale],
+        queryFn: () => getCareerPage(locale),
     });
 
     const handleApply = (job: any) => {
@@ -52,14 +55,39 @@ const Career = () => {
 
     const now = new Date();
     const jobOpenings = (pageData?.jobOpenings || []).filter((job: any) => {
-        // Only show if status is 'Open' (or not set, for legacy/default)
-        // AND if expiryDate is not set OR is in the future
         const isOpen = !job.status || job.status === 'Open';
         const isNotExpired = !job.expiryDate || new Date(job.expiryDate) > now;
         return isOpen && isNotExpired;
     });
-    const benefits = pageData?.benefits || [];
-    const lifeAtCompany = pageData?.lifeAtCompany || [];
+
+    // Fallbacks
+    const headerTitle = pageData?.careerHeaderTitle || "Build Your Future With Us";
+    const headerSubtitle = pageData?.careerHeaderSubtitle || "Join our dynamic team and be part of Nepal's leading financial services company";
+
+    const openingTitle = pageData?.jobOpeningsTitle || "Current Openings";
+    const openingSubtitle = (pageData?.jobOpeningsSubtitle || "Join our team of {count}+ open positions").replace("{count}", jobOpenings.length.toString());
+
+    const whyJoinTitle = pageData?.benefitsTitle || "Why Join Batas?";
+    const whyJoinSubtitle = pageData?.benefitsSubtitle || "Discover what makes us a great place to work";
+    const cultureBtnText = pageData?.cultureButtonText || "Learn More About Our Culture";
+    const cultureBtnLink = pageData?.cultureButtonLink || "/culture";
+
+    const lifeTitle = pageData?.lifeAtCompanyTitle || "Life at Batas";
+    const lifeSubtitle = pageData?.lifeAtCompanySubtitle || "Why our employees love working with us";
+
+    const benefits = pageData?.benefits?.length > 0
+        ? pageData.benefits
+        : [
+            { icon: "TrendingUp", title: "Growth", description: "Clear career progression paths" },
+            { icon: "Target", title: "Impact", description: "Make a real difference in people's lives" }
+        ];
+
+    const lifeAtCompany = pageData?.lifeAtCompany?.length > 0
+        ? pageData.lifeAtCompany
+        : [
+            { icon: "Coffee", title: "Culture", description: "A collaborative and inclusive environment" },
+            { icon: "Heart", title: "Well-being", description: "Comprehensive health and wellness support" }
+        ];
 
     return (
         <main className="min-h-screen">
@@ -70,10 +98,10 @@ const Career = () => {
                 <div className="container mx-auto px-4 text-center relative z-10">
                     {/* UI FIX: Added text-white and drop-shadow to ensure visibility against gradient/background */}
                     <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-md">
-                        {pageData?.careerHeaderTitle || "Build Your Future With Us"}
+                        {headerTitle}
                     </h1>
                     <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8 drop-shadow-md">
-                        {pageData?.careerHeaderSubtitle || "Join our dynamic team and be part of Nepal's leading financial services company"}
+                        {headerSubtitle}
                     </p>
                     <Button variant="secondary" size="lg" className="group">
                         View All Openings
@@ -123,8 +151,8 @@ const Career = () => {
             <section className="py-16 bg-background">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-foreground mb-4">Current Openings</h2>
-                        <p className="text-xl text-muted-foreground">Join our team of {jobOpenings.length}+ open positions</p>
+                        <h2 className="text-4xl font-bold text-foreground mb-4">{openingTitle}</h2>
+                        <p className="text-xl text-muted-foreground">{openingSubtitle}</p>
                     </div>
 
                     <div className="grid gap-6 max-w-5xl mx-auto">
@@ -194,8 +222,8 @@ const Career = () => {
             <section className="py-16 bg-muted/30">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-foreground mb-4">Why Join Batas?</h2>
-                        <p className="text-xl text-muted-foreground">Discover what makes us a great place to work</p>
+                        <h2 className="text-4xl font-bold text-foreground mb-4">{whyJoinTitle}</h2>
+                        <p className="text-xl text-muted-foreground">{whyJoinSubtitle}</p>
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto mb-12">
@@ -214,9 +242,11 @@ const Career = () => {
                     </div>
 
                     <div className="text-center">
-                        <Button variant="outline" size="lg">
-                            Learn More About Our Culture
-                        </Button>
+                        <a href={cultureBtnLink} style={{ textDecoration: 'none' }}>
+                            <Button variant="outline" size="lg">
+                                {cultureBtnText}
+                            </Button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -225,8 +255,8 @@ const Career = () => {
             <section className="py-16 bg-gradient-subtle">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-foreground mb-4">Life at Batas</h2>
-                        <p className="text-xl text-muted-foreground">Why our employees love working with us</p>
+                        <h2 className="text-4xl font-bold text-foreground mb-4">{lifeTitle}</h2>
+                        <p className="text-xl text-muted-foreground">{lifeSubtitle}</p>
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">

@@ -1,4 +1,4 @@
-import type { Tab } from 'payload/types'
+import type { Tab } from 'payload'
 
 export const CareerPage: Tab = {
     label: 'Career Page',
@@ -16,17 +16,38 @@ export const CareerPage: Tab = {
                             name: 'careerHeaderTitle',
                             type: 'text',
                             defaultValue: 'Build Your Future With Us',
+                            localized: true,
                         },
                         {
                             name: 'careerHeaderSubtitle',
                             type: 'textarea',
                             defaultValue: 'Join our dynamic team and be part of Nepal\'s leading financial services company',
+                            localized: true,
                         },
                     ],
                 },
                 {
                     label: 'Job Openings',
                     fields: [
+                        {
+                            type: 'row',
+                            fields: [
+                                {
+                                    name: 'jobOpeningsTitle',
+                                    type: 'text',
+                                    label: 'Section Title',
+                                    defaultValue: 'Current Openings',
+                                    localized: true,
+                                },
+                                {
+                                    name: 'jobOpeningsSubtitle',
+                                    type: 'text',
+                                    label: 'Section Subtitle',
+                                    defaultValue: 'Join our team of open positions',
+                                    localized: true,
+                                },
+                            ],
+                        },
                         {
                             name: 'jobOpenings',
                             type: 'array',
@@ -36,6 +57,7 @@ export const CareerPage: Tab = {
                                     name: 'title',
                                     type: 'text',
                                     required: true,
+                                    localized: true,
                                 },
                                 {
                                     type: 'row',
@@ -133,6 +155,7 @@ export const CareerPage: Tab = {
                                         {
                                             name: 'skill',
                                             type: 'text',
+                                            localized: true,
                                         },
                                     ],
                                 },
@@ -143,6 +166,44 @@ export const CareerPage: Tab = {
                 {
                     label: 'Benefits',
                     fields: [
+                        {
+                            type: 'row',
+                            fields: [
+                                {
+                                    name: 'benefitsTitle',
+                                    type: 'text',
+                                    label: 'Section Title',
+                                    defaultValue: 'Why Join Batas?',
+                                    localized: true,
+                                },
+                                {
+                                    name: 'benefitsSubtitle',
+                                    type: 'text',
+                                    label: 'Section Subtitle',
+                                    defaultValue: 'Discover what makes us a great place to work',
+                                    localized: true,
+                                },
+                            ],
+                        },
+                        {
+                            type: 'row',
+                            fields: [
+                                {
+                                    name: 'cultureButtonText',
+                                    type: 'text',
+                                    label: 'Culture Button Text',
+                                    defaultValue: 'Learn More About Our Culture',
+                                    localized: true,
+                                },
+                                {
+                                    name: 'cultureButtonLink',
+                                    type: 'text',
+                                    label: 'Culture Button Link',
+                                    defaultValue: '/culture',
+                                    localized: true,
+                                },
+                            ],
+                        },
                         {
                             name: 'benefits',
                             type: 'array',
@@ -177,6 +238,25 @@ export const CareerPage: Tab = {
                 {
                     label: 'Life at Batas',
                     fields: [
+                        {
+                            type: 'row',
+                            fields: [
+                                {
+                                    name: 'lifeAtCompanyTitle',
+                                    type: 'text',
+                                    label: 'Section Title',
+                                    defaultValue: 'Life at Batas',
+                                    localized: true,
+                                },
+                                {
+                                    name: 'lifeAtCompanySubtitle',
+                                    type: 'text',
+                                    label: 'Section Subtitle',
+                                    defaultValue: 'Why our employees love working with us',
+                                    localized: true,
+                                },
+                            ],
+                        },
                         {
                             name: 'lifeAtCompany',
                             type: 'array',

@@ -1,4 +1,4 @@
-import { Tab } from 'payload/types';
+import { Tab } from 'payload';
 
 export const HowItWorksPage: Tab = {
     label: 'How It Works Specifics',
@@ -10,7 +10,7 @@ export const HowItWorksPage: Tab = {
             type: 'tabs',
             tabs: [
                 {
-                    label: 'Header',
+                    label: 'Header & Footer',
                     fields: [
                         {
                             name: 'headerTitle',
@@ -18,12 +18,71 @@ export const HowItWorksPage: Tab = {
                             label: 'Header Title',
                             defaultValue: 'How It Works',
                             required: true,
+                            localized: true,
                         },
                         {
                             name: 'headerSubtitle',
                             type: 'textarea',
                             label: 'Header Subtitle',
                             defaultValue: 'Get approved and funded in just 4 simple steps...',
+                            localized: true,
+                        },
+                        {
+                            type: 'row',
+                            fields: [
+                                {
+                                    name: 'ctaTitle',
+                                    type: 'text',
+                                    label: 'CTA Title',
+                                    defaultValue: 'Ready to Get Started?',
+                                    localized: true,
+                                },
+                                {
+                                    name: 'ctaDescription',
+                                    type: 'textarea',
+                                    label: 'CTA Description',
+                                    defaultValue: 'Join thousands of satisfied customers who have chosen our hassle-free financing solutions.',
+                                    localized: true,
+                                },
+                            ],
+                        },
+                        {
+                            type: 'row',
+                            fields: [
+                                {
+                                    name: 'ctaPrimaryButtonText',
+                                    type: 'text',
+                                    label: 'Primary Button Text',
+                                    defaultValue: 'Start Your Application',
+                                    localized: true,
+                                },
+                                {
+                                    name: 'ctaPrimaryButtonLink',
+                                    type: 'text',
+                                    label: 'Primary Button Link',
+                                    defaultValue: '/contact',
+                                    localized: true,
+                                },
+                            ],
+                        },
+                        {
+                            type: 'row',
+                            fields: [
+                                {
+                                    name: 'ctaSecondaryButtonText',
+                                    type: 'text',
+                                    label: 'Secondary Button Text',
+                                    defaultValue: 'Calculate Your EMI',
+                                    localized: true,
+                                },
+                                {
+                                    name: 'ctaSecondaryButtonLink',
+                                    type: 'text',
+                                    label: 'Secondary Button Link',
+                                    defaultValue: '/calculator',
+                                    localized: true,
+                                },
+                            ],
                         },
                     ],
                 },
@@ -62,11 +121,13 @@ export const HowItWorksPage: Tab = {
                                     type: 'text',
                                     label: 'Step Title',
                                     required: true,
+                                    localized: true,
                                 },
                                 {
                                     name: 'description',
                                     type: 'textarea',
                                     label: 'Step Description',
+                                    localized: true,
                                 },
                                 {
                                     name: 'bulletPoints',
@@ -77,6 +138,7 @@ export const HowItWorksPage: Tab = {
                                             name: 'text',
                                             type: 'text',
                                             label: 'Point',
+                                            localized: true,
                                         },
                                     ],
                                 },
@@ -111,11 +173,13 @@ export const HowItWorksPage: Tab = {
                                     type: 'text',
                                     label: 'Feature Title',
                                     required: true,
+                                    localized: true,
                                 },
                                 {
                                     name: 'description',
                                     type: 'textarea',
                                     label: 'Feature Description',
+                                    localized: true,
                                 },
                             ],
                         },

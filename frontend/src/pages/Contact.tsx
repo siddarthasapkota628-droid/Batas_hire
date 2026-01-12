@@ -7,6 +7,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { getContactPage, submitForm } from '@/lib/api';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const iconMap: { [key: string]: JSX.Element } = {
   Phone: <Phone className="w-6 h-6" />,
@@ -17,9 +18,10 @@ const iconMap: { [key: string]: JSX.Element } = {
 };
 
 const Contact = () => {
+  const { locale } = useLocale();
   const { data: pageData, isLoading } = useQuery({
-    queryKey: ['contactPage'],
-    queryFn: getContactPage,
+    queryKey: ['contactPage', locale],
+    queryFn: () => getContactPage(locale),
     retry: 1,
   });
 

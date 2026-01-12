@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Bell, AlertTriangle, Info, FileText, Calendar, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getNoticePage } from '@/lib/api';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const iconMap: Record<string, any> = {
   AlertTriangle,
@@ -14,9 +15,10 @@ const iconMap: Record<string, any> = {
 };
 
 const Notice = () => {
+  const { locale } = useLocale();
   const { data: pageData, isLoading } = useQuery({
-    queryKey: ['noticePage'],
-    queryFn: getNoticePage,
+    queryKey: ['noticePage', locale],
+    queryFn: () => getNoticePage(locale),
     retry: 1,
   });
 
