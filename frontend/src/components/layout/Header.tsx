@@ -37,10 +37,17 @@ const Header = () => {
 
   // Map headerData?.navItems to the correct structure if available
   const navigationLinks = headerData?.navItems?.length > 0
-    ? headerData.navItems.map((item: any) => ({
-      label: item.link.label,
-      href: item.link.type === 'custom' ? item.link.url : (item.link.reference?.value?.slug ? `/${item.link.reference.value.slug}` : '#')
-    }))
+    ? headerData.navItems.map((item: any) => {
+      const slug = item.link.reference?.value?.slug;
+      const href = item.link.type === 'custom'
+        ? item.link.url
+        : (slug === 'home' ? '/' : (slug ? `/${slug}` : '#'));
+
+      return {
+        label: item.link.label,
+        href
+      };
+    })
     : defaultNavigationLinks;
 
   return (
@@ -89,10 +96,10 @@ const Header = () => {
             {locale === 'en' ? 'नेपाली' : 'English'}
           </Button>
           <Button variant="ghost" size="sm" className="text-foreground/80">
-            Login
+            {headerData?.loginLabel || 'Login'}
           </Button>
           <Button variant="cta" size="sm">
-            Apply Now
+            {headerData?.applyNowLabel || 'Apply Now'}
           </Button>
         </div>
 
@@ -134,10 +141,10 @@ const Header = () => {
                 {locale === 'en' ? 'नेपाली' : 'English'}
               </Button>
               <Button variant="ghost" className="justify-start">
-                Login
+                {headerData?.loginLabel || 'Login'}
               </Button>
               <Button variant="cta" className="justify-start">
-                Apply Now
+                {headerData?.applyNowLabel || 'Apply Now'}
               </Button>
             </div>
           </div>

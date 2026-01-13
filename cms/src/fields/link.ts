@@ -75,7 +75,20 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
         condition: (_, siblingData) => siblingData?.type === 'reference',
       },
       label: 'Document to link to',
-      relationTo: ['pages', 'posts'],
+      relationTo: [
+        'pages',
+        'posts',
+        'home-page',
+        'about-page',
+        'services-page',
+        'career-page',
+        'contact-page',
+        'faq-page',
+        'how-it-works-page',
+        'knowledge-center-page',
+        'legal-page',
+        'notice-page'
+      ],
       required: true,
     },
     {

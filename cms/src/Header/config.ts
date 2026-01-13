@@ -12,6 +12,7 @@ export const Header: GlobalConfig = {
     {
       name: 'navItems',
       type: 'array',
+      localized: true,
       fields: [
         link({
           appearances: false,
@@ -24,6 +25,18 @@ export const Header: GlobalConfig = {
           RowLabel: '@/Header/RowLabel#RowLabel',
         },
       },
+    },
+    {
+      name: 'loginLabel',
+      type: 'text',
+      defaultValue: 'Login',
+      localized: true,
+    },
+    {
+      name: 'applyNowLabel',
+      type: 'text',
+      defaultValue: 'Apply Now',
+      localized: true,
     },
   ],
   hooks: {

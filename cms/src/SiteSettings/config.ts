@@ -12,6 +12,7 @@ export const SiteSettings: GlobalConfig = {
             type: 'text',
             required: true,
             defaultValue: 'Batas Hire and Purchase',
+            localized: true,
         },
         {
             name: 'siteLogo',
