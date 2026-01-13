@@ -233,783 +233,6 @@ export interface Page {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
-                } | null);
-            url?: string | null;
-            label: string;
-            /**
-             * Choose how the link should be rendered.
-             */
-            appearance?: ('default' | 'outline') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-    media?: (number | null) | Media;
-  };
-  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
-  aboutHeaderTitle?: string | null;
-  aboutHeaderSubtitle?: string | null;
-  aboutStoryTitle?: string | null;
-  aboutStoryContent?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  stat1?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  stat2?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  stat3?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  stat4?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  mission?: {
-    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
-    title?: string | null;
-    description?: string | null;
-  };
-  vision?: {
-    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
-    title?: string | null;
-    description?: string | null;
-  };
-  values?: {
-    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
-    title?: string | null;
-    description?: string | null;
-  };
-  directorsTitle?: string | null;
-  directorsDescription?: string | null;
-  directors?:
-    | {
-        photo: number | Media;
-        name: string;
-        position: string;
-        experience?: string | null;
-        education?: string | null;
-        specialization?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  leadershipTitle?: string | null;
-  leadershipDescription?: string | null;
-  leadership?:
-    | {
-        photo: number | Media;
-        name: string;
-        position: string;
-        department?: string | null;
-        experience?: string | null;
-        expertise?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  timelineTitle?: string | null;
-  timelineDescription?: string | null;
-  timeline?:
-    | {
-        year: string;
-        event: string;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  testimonialsTitle?: string | null;
-  testimonialsDescription?: string | null;
-  stats?:
-    | {
-        value: string;
-        label: string;
-        id?: string | null;
-      }[]
-    | null;
-  testimonials?:
-    | {
-        name: string;
-        role?: string | null;
-        location?: string | null;
-        rating?: number | null;
-        content: string;
-        product?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  complianceTitle?: string | null;
-  complianceDescription?: string | null;
-  badge1?: {
-    text?: string | null;
-  };
-  badge2?: {
-    text?: string | null;
-  };
-  badge3?: {
-    text?: string | null;
-  };
-  productsTitle?: string | null;
-  productsDescription?: string | null;
-  products?:
-    | {
-        image: number | Media;
-        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
-        title: string;
-        subtitle?: string | null;
-        stats?:
-          | {
-              value: string;
-              label: string;
-              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
-              id?: string | null;
-            }[]
-          | null;
-        features?:
-          | {
-              text: string;
-              id?: string | null;
-            }[]
-          | null;
-        ctaText?: string | null;
-        secondaryCtaText?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  headerTitle: string;
-  headerSubtitle?: string | null;
-  ctaTitle?: string | null;
-  ctaDescription?: string | null;
-  ctaPrimaryButtonText?: string | null;
-  ctaPrimaryButtonLink?: string | null;
-  ctaSecondaryButtonText?: string | null;
-  ctaSecondaryButtonLink?: string | null;
-  steps?:
-    | {
-        stepNumber: number;
-        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
-        title: string;
-        description?: string | null;
-        bulletPoints?:
-          | {
-              text?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  trustFeatures?:
-    | {
-        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
-        title: string;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  careerHeaderTitle?: string | null;
-  careerHeaderSubtitle?: string | null;
-  jobOpeningsTitle?: string | null;
-  jobOpeningsSubtitle?: string | null;
-  jobOpenings?:
-    | {
-        title: string;
-        department?:
-          | (
-              | 'Technology'
-              | 'Risk Management'
-              | 'Marketing'
-              | 'Sales'
-              | 'Customer Success'
-              | 'Product'
-              | 'Finance'
-              | 'HR'
-            )
-          | null;
-        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
-        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
-        experience?: string | null;
-        salary?: string | null;
-        status: 'Open' | 'Closed';
-        /**
-         * Vacancy will automatically be hidden after this date.
-         */
-        expiryDate?: string | null;
-        description?: string | null;
-        skills?:
-          | {
-              skill?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  benefitsTitle?: string | null;
-  benefitsSubtitle?: string | null;
-  cultureButtonText?: string | null;
-  cultureButtonLink?: string | null;
-  benefits?:
-    | {
-        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
-        title?: string | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  lifeAtCompanyTitle?: string | null;
-  lifeAtCompanySubtitle?: string | null;
-  lifeAtCompany?:
-    | {
-        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
-        title?: string | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  knowledgeCenterHeaderTitle?: string | null;
-  knowledgeCenterHeaderSubtitle?: string | null;
-  helpTitle?: string | null;
-  helpDescription?: string | null;
-  helpPrimaryButtonText?: string | null;
-  helpSecondaryButtonText?: string | null;
-  articles?:
-    | {
-        title: string;
-        excerpt?: string | null;
-        category?: string | null;
-        author?: string | null;
-        date?: string | null;
-        readTime?: string | null;
-        featured?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  guides?:
-    | {
-        title: string;
-        description?: string | null;
-        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
-        category?: string | null;
-        steps?: number | null;
-        id?: string | null;
-      }[]
-    | null;
-  reports?:
-    | {
-        title: string;
-        type?: string | null;
-        date?: string | null;
-        size?: string | null;
-        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
-        id?: string | null;
-      }[]
-    | null;
-  faqs?:
-    | {
-        question: string;
-        answer?: string | null;
-        category?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  faqHeaderTitle?: string | null;
-  faqHeaderSubtitle?: string | null;
-  faqCategories?:
-    | {
-        categoryName: string;
-        questions?:
-          | {
-              question: string;
-              answer: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  contactHeaderTitle?: string | null;
-  contactHeaderSubtitle?: string | null;
-  contactMethods?:
-    | {
-        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
-        title: string;
-        description?: string | null;
-        contactInfo: string;
-        availability?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  contactForm: number | Form;
-  formTitle?: string | null;
-  businessHoursTitle?: string | null;
-  businessHours?:
-    | {
-        day: string;
-        time: string;
-        id?: string | null;
-      }[]
-    | null;
-  businessHoursNote?: string | null;
-  legalHeaderTitle?: string | null;
-  legalHeaderSubtitle?: string | null;
-  regulatoryInfo?:
-    | {
-        title: string;
-        details?: string | null;
-        validity?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  documents?:
-    | {
-        title: string;
-        description?: string | null;
-        category?: string | null;
-        lastUpdated?: string | null;
-        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
-        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
-        id?: string | null;
-      }[]
-    | null;
-  importantNotices?:
-    | {
-        title: string;
-        description?: string | null;
-        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
-        id?: string | null;
-      }[]
-    | null;
-  noticeHeaderTitle?: string | null;
-  noticeHeaderSubtitle?: string | null;
-  notices?:
-    | {
-        title: string;
-        date: string;
-        content: string;
-        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
-        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
-        id?: string | null;
-      }[]
-    | null;
-  contactSection?: {
-    title?: string | null;
-    description?: string | null;
-    primaryButtonText?: string | null;
-    primaryButtonLink?: string | null;
-    secondaryButtonText?: string | null;
-    secondaryButtonLink?: string | null;
-  };
-  subscribeSection?: {
-    title?: string | null;
-    description?: string | null;
-    buttonText?: string | null;
-  };
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-  };
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
-  id: number;
-  title: string;
-  heroImage?: (number | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  relatedPosts?: (number | Post)[] | null;
-  categories?: (number | Category)[] | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  authors?: (number | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt?: string | null;
-  caption?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  folder?: (number | null) | FolderInterface;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    square?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    small?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    medium?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    large?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    xlarge?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    og?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-folders".
- */
-export interface FolderInterface {
-  id: number;
-  name: string;
-  folder?: (number | null) | FolderInterface;
-  documentsAndFolders?: {
-    docs?: (
-      | {
-          relationTo?: 'payload-folders';
-          value: number | FolderInterface;
-        }
-      | {
-          relationTo?: 'media';
-          value: number | Media;
-        }
-    )[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  folderType?: 'media'[] | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: number;
-  title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  parent?: (number | null) | Category;
-  breadcrumbs?:
-    | {
-        doc?: (number | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name?: string | null;
-  roles?: ('admin' | 'client-admin' | 'user')[] | null;
-  /**
-   * If unchecked, this user cannot log in to the Admin Panel.
-   */
-  enableAdminPanelAccess?: boolean | null;
-  associatedRoles?: (number | Role)[] | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "roles".
- */
-export interface Role {
-  id: number;
-  name: string;
-  permissions?:
-    | {
-        resource: 'pages' | 'media' | 'users' | 'posts' | 'categories';
-        /**
-         * Leave empty for ALL pages. Select pages to restrict access.
-         */
-        specificPages?: (number | Page)[] | null;
-        action: 'read' | 'manage' | 'create' | 'update' | 'delete';
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page".
- */
-export interface HomePage {
-  id: number;
-  title: string;
-  publishedAt?: string | null;
-  template?:
-    | (
-        | 'default'
-        | 'about'
-        | 'services'
-        | 'how-it-works'
-        | 'home'
-        | 'career'
-        | 'knowledge-center'
-        | 'faq'
-        | 'contact'
-        | 'legal'
-        | 'notice'
-      )
-    | null;
-  hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    richText?: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?:
-              | ({
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null)
-              | ({
-                  relationTo: 'posts';
-                  value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -1489,10 +712,6 @@ export interface HomePage {
   };
   meta?: {
     title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
     description?: string | null;
   };
   /**
@@ -1503,6 +722,601 @@ export interface HomePage {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: number;
+  title: string;
+  heroImage?: (number | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  relatedPosts?: (number | Post)[] | null;
+  categories?: (number | Category)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  authors?: (number | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt?: string | null;
+  caption?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  folder?: (number | null) | FolderInterface;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    square?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    small?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    medium?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    large?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    xlarge?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    og?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-folders".
+ */
+export interface FolderInterface {
+  id: number;
+  name: string;
+  folder?: (number | null) | FolderInterface;
+  documentsAndFolders?: {
+    docs?: (
+      | {
+          relationTo?: 'payload-folders';
+          value: number | FolderInterface;
+        }
+      | {
+          relationTo?: 'media';
+          value: number | Media;
+        }
+    )[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  folderType?: 'media'[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  parent?: (number | null) | Category;
+  breadcrumbs?:
+    | {
+        doc?: (number | null) | Category;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name?: string | null;
+  roles?: ('admin' | 'client-admin' | 'user')[] | null;
+  /**
+   * If unchecked, this user cannot log in to the Admin Panel.
+   */
+  enableAdminPanelAccess?: boolean | null;
+  associatedRoles?: (number | Role)[] | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "roles".
+ */
+export interface Role {
+  id: number;
+  name: string;
+  permissions?:
+    | {
+        resource: 'pages' | 'media' | 'users' | 'posts' | 'categories';
+        /**
+         * Leave empty for ALL pages. Select pages to restrict access.
+         */
+        specificPages?: (number | Page)[] | null;
+        action: 'read' | 'manage' | 'create' | 'update' | 'delete';
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock".
+ */
+export interface CallToActionBlock {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock".
+ */
+export interface ContentBlock {
+  columns?:
+    | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        enableLink?: boolean | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock".
+ */
+export interface ArchiveBlock {
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  populateBy?: ('collection' | 'selection') | null;
+  relationTo?: 'posts' | null;
+  categories?: (number | Category)[] | null;
+  limit?: number | null;
+  selectedDocs?:
+    | {
+        relationTo: 'posts';
+        value: number | Post;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'archive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock".
+ */
+export interface FormBlock {
+  form: number | Form;
+  enableIntro?: boolean | null;
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'formBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+  id: number;
+  title: string;
+  fields?:
+    | (
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            defaultValue?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'checkbox';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'country';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'email';
+          }
+        | {
+            message?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'message';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'number';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            placeholder?: string | null;
+            options?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'select';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'state';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textarea';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'file';
+          }
+      )[]
+    | null;
+  submitButtonLabel?: string | null;
+  /**
+   * Choose whether to display an on-page message or redirect to a different page after they submit the form.
+   */
+  confirmationType?: ('message' | 'redirect') | null;
+  confirmationMessage?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  redirect?: {
+    url: string;
+  };
+  /**
+   * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
+   */
+  emails?:
+    | {
+        emailTo?: string | null;
+        cc?: string | null;
+        bcc?: string | null;
+        replyTo?: string | null;
+        emailFrom?: string | null;
+        subject: string;
+        /**
+         * Enter the message that should be sent in this email.
+         */
+        message?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1557,46 +1371,6 @@ export interface AboutPage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -2144,46 +1918,6 @@ export interface ServicesPage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -2731,46 +2465,6 @@ export interface CareerPage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -3267,9 +2961,9 @@ export interface CareerPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-page".
+ * via the `definition` "home-page".
  */
-export interface ContactPage {
+export interface HomePage {
   id: number;
   title: string;
   publishedAt?: string | null;
@@ -3318,633 +3012,6 @@ export interface ContactPage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
-                } | null);
-            url?: string | null;
-            label: string;
-            /**
-             * Choose how the link should be rendered.
-             */
-            appearance?: ('default' | 'outline') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-    media?: (number | null) | Media;
-  };
-  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
-  aboutHeaderTitle?: string | null;
-  aboutHeaderSubtitle?: string | null;
-  aboutStoryTitle?: string | null;
-  aboutStoryContent?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  stat1?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  stat2?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  stat3?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  stat4?: {
-    number?: string | null;
-    label?: string | null;
-  };
-  mission?: {
-    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
-    title?: string | null;
-    description?: string | null;
-  };
-  vision?: {
-    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
-    title?: string | null;
-    description?: string | null;
-  };
-  values?: {
-    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
-    title?: string | null;
-    description?: string | null;
-  };
-  directorsTitle?: string | null;
-  directorsDescription?: string | null;
-  directors?:
-    | {
-        photo: number | Media;
-        name: string;
-        position: string;
-        experience?: string | null;
-        education?: string | null;
-        specialization?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  leadershipTitle?: string | null;
-  leadershipDescription?: string | null;
-  leadership?:
-    | {
-        photo: number | Media;
-        name: string;
-        position: string;
-        department?: string | null;
-        experience?: string | null;
-        expertise?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  timelineTitle?: string | null;
-  timelineDescription?: string | null;
-  timeline?:
-    | {
-        year: string;
-        event: string;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  testimonialsTitle?: string | null;
-  testimonialsDescription?: string | null;
-  stats?:
-    | {
-        value: string;
-        label: string;
-        id?: string | null;
-      }[]
-    | null;
-  testimonials?:
-    | {
-        name: string;
-        role?: string | null;
-        location?: string | null;
-        rating?: number | null;
-        content: string;
-        product?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  complianceTitle?: string | null;
-  complianceDescription?: string | null;
-  badge1?: {
-    text?: string | null;
-  };
-  badge2?: {
-    text?: string | null;
-  };
-  badge3?: {
-    text?: string | null;
-  };
-  productsTitle?: string | null;
-  productsDescription?: string | null;
-  products?:
-    | {
-        image: number | Media;
-        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
-        title: string;
-        subtitle?: string | null;
-        stats?:
-          | {
-              value: string;
-              label: string;
-              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
-              id?: string | null;
-            }[]
-          | null;
-        features?:
-          | {
-              text: string;
-              id?: string | null;
-            }[]
-          | null;
-        ctaText?: string | null;
-        secondaryCtaText?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  headerTitle: string;
-  headerSubtitle?: string | null;
-  ctaTitle?: string | null;
-  ctaDescription?: string | null;
-  ctaPrimaryButtonText?: string | null;
-  ctaPrimaryButtonLink?: string | null;
-  ctaSecondaryButtonText?: string | null;
-  ctaSecondaryButtonLink?: string | null;
-  steps?:
-    | {
-        stepNumber: number;
-        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
-        title: string;
-        description?: string | null;
-        bulletPoints?:
-          | {
-              text?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  trustFeatures?:
-    | {
-        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
-        title: string;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  careerHeaderTitle?: string | null;
-  careerHeaderSubtitle?: string | null;
-  jobOpeningsTitle?: string | null;
-  jobOpeningsSubtitle?: string | null;
-  jobOpenings?:
-    | {
-        title: string;
-        department?:
-          | (
-              | 'Technology'
-              | 'Risk Management'
-              | 'Marketing'
-              | 'Sales'
-              | 'Customer Success'
-              | 'Product'
-              | 'Finance'
-              | 'HR'
-            )
-          | null;
-        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
-        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
-        experience?: string | null;
-        salary?: string | null;
-        status: 'Open' | 'Closed';
-        /**
-         * Vacancy will automatically be hidden after this date.
-         */
-        expiryDate?: string | null;
-        description?: string | null;
-        skills?:
-          | {
-              skill?: string | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  benefitsTitle?: string | null;
-  benefitsSubtitle?: string | null;
-  cultureButtonText?: string | null;
-  cultureButtonLink?: string | null;
-  benefits?:
-    | {
-        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
-        title?: string | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  lifeAtCompanyTitle?: string | null;
-  lifeAtCompanySubtitle?: string | null;
-  lifeAtCompany?:
-    | {
-        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
-        title?: string | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  knowledgeCenterHeaderTitle?: string | null;
-  knowledgeCenterHeaderSubtitle?: string | null;
-  helpTitle?: string | null;
-  helpDescription?: string | null;
-  helpPrimaryButtonText?: string | null;
-  helpSecondaryButtonText?: string | null;
-  articles?:
-    | {
-        title: string;
-        excerpt?: string | null;
-        category?: string | null;
-        author?: string | null;
-        date?: string | null;
-        readTime?: string | null;
-        featured?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  guides?:
-    | {
-        title: string;
-        description?: string | null;
-        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
-        category?: string | null;
-        steps?: number | null;
-        id?: string | null;
-      }[]
-    | null;
-  reports?:
-    | {
-        title: string;
-        type?: string | null;
-        date?: string | null;
-        size?: string | null;
-        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
-        id?: string | null;
-      }[]
-    | null;
-  faqs?:
-    | {
-        question: string;
-        answer?: string | null;
-        category?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  faqHeaderTitle?: string | null;
-  faqHeaderSubtitle?: string | null;
-  faqCategories?:
-    | {
-        categoryName: string;
-        questions?:
-          | {
-              question: string;
-              answer: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  contactHeaderTitle?: string | null;
-  contactHeaderSubtitle?: string | null;
-  contactMethods?:
-    | {
-        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
-        title: string;
-        description?: string | null;
-        contactInfo: string;
-        availability?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  contactForm: number | Form;
-  formTitle?: string | null;
-  businessHoursTitle?: string | null;
-  businessHours?:
-    | {
-        day: string;
-        time: string;
-        id?: string | null;
-      }[]
-    | null;
-  businessHoursNote?: string | null;
-  legalHeaderTitle?: string | null;
-  legalHeaderSubtitle?: string | null;
-  regulatoryInfo?:
-    | {
-        title: string;
-        details?: string | null;
-        validity?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  documents?:
-    | {
-        title: string;
-        description?: string | null;
-        category?: string | null;
-        lastUpdated?: string | null;
-        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
-        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
-        id?: string | null;
-      }[]
-    | null;
-  importantNotices?:
-    | {
-        title: string;
-        description?: string | null;
-        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
-        id?: string | null;
-      }[]
-    | null;
-  noticeHeaderTitle?: string | null;
-  noticeHeaderSubtitle?: string | null;
-  notices?:
-    | {
-        title: string;
-        date: string;
-        content: string;
-        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
-        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
-        id?: string | null;
-      }[]
-    | null;
-  contactSection?: {
-    title?: string | null;
-    description?: string | null;
-    primaryButtonText?: string | null;
-    primaryButtonLink?: string | null;
-    secondaryButtonText?: string | null;
-    secondaryButtonLink?: string | null;
-  };
-  subscribeSection?: {
-    title?: string | null;
-    description?: string | null;
-    buttonText?: string | null;
-  };
-  heroBadge1?: string | null;
-  heroBadge2?: string | null;
-  heroRating?: string | null;
-  heroTitlePart1?: string | null;
-  heroTitlePart2?: string | null;
-  heroSubtitle?: string | null;
-  floatingFeatures?:
-    | {
-        text: string;
-        id?: string | null;
-      }[]
-    | null;
-  heroStats?:
-    | {
-        value: string;
-        label: string;
-        id?: string | null;
-      }[]
-    | null;
-  journeyTitle?: string | null;
-  journeyDescription?: string | null;
-  journeyCards?:
-    | {
-        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
-        title: string;
-        description?: string | null;
-        linkText?: string | null;
-        link?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  quickToolsTitle?: string | null;
-  quickTools?:
-    | {
-        name: string;
-        description?: string | null;
-        buttonText?: string | null;
-        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
-        id?: string | null;
-      }[]
-    | null;
-  trustTitle?: string | null;
-  trustStats?:
-    | {
-        value: string;
-        label: string;
-        subLabel?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  certificationTitle?: string | null;
-  badges?:
-    | {
-        title: string;
-        subTitle?: string | null;
-        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * These notices will scroll at the very top of the home page.
-   */
-  scrollingNotices?:
-    | {
-        message: string;
-        type: 'announcement' | 'warning' | 'info';
-        /**
-         * Notice will automatically disappear after this date.
-         */
-        expiryDate?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  homeProductsConfig?: {
-    title?: string | null;
-    description?: string | null;
-    minRows?: number | null;
-    maxRows?: number | null;
-  };
-  homeTestimonialsConfig?: {
-    title?: string | null;
-    description?: string | null;
-    minRows?: number | null;
-    maxRows?: number | null;
-  };
-  homeKnowledgeConfig?: {
-    title?: string | null;
-    description?: string | null;
-    minRows?: number | null;
-    maxRows?: number | null;
-  };
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-    description?: string | null;
-  };
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faq-page".
- */
-export interface FaqPage {
-  id: number;
-  title: string;
-  publishedAt?: string | null;
-  template?:
-    | (
-        | 'default'
-        | 'about'
-        | 'services'
-        | 'how-it-works'
-        | 'home'
-        | 'career'
-        | 'knowledge-center'
-        | 'faq'
-        | 'contact'
-        | 'legal'
-        | 'notice'
-      )
-    | null;
-  hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    richText?: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?:
-              | ({
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null)
-              | ({
-                  relationTo: 'posts';
-                  value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -4492,46 +3559,6 @@ export interface HowItWorksPage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -5079,46 +4106,1100 @@ export interface KnowledgeCenterPage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq-page".
+ */
+export interface FaqPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
                 } | null)
               | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+            /**
+             * Choose how the link should be rendered.
+             */
+            appearance?: ('default' | 'outline') | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    media?: (number | null) | Media;
+  };
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
+  aboutHeaderTitle?: string | null;
+  aboutHeaderSubtitle?: string | null;
+  aboutStoryTitle?: string | null;
+  aboutStoryContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stat1?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat2?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat3?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  stat4?: {
+    number?: string | null;
+    label?: string | null;
+  };
+  mission?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  values?: {
+    icon?: ('Target' | 'Eye' | 'Users' | 'Award') | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  directorsTitle?: string | null;
+  directorsDescription?: string | null;
+  directors?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        experience?: string | null;
+        education?: string | null;
+        specialization?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  leadershipTitle?: string | null;
+  leadershipDescription?: string | null;
+  leadership?:
+    | {
+        photo: number | Media;
+        name: string;
+        position: string;
+        department?: string | null;
+        experience?: string | null;
+        expertise?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  timelineTitle?: string | null;
+  timelineDescription?: string | null;
+  timeline?:
+    | {
+        year: string;
+        event: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonialsTitle?: string | null;
+  testimonialsDescription?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        name: string;
+        role?: string | null;
+        location?: string | null;
+        rating?: number | null;
+        content: string;
+        product?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  complianceTitle?: string | null;
+  complianceDescription?: string | null;
+  badge1?: {
+    text?: string | null;
+  };
+  badge2?: {
+    text?: string | null;
+  };
+  badge3?: {
+    text?: string | null;
+  };
+  productsTitle?: string | null;
+  productsDescription?: string | null;
+  products?:
+    | {
+        image: number | Media;
+        icon?: ('ShoppingCart' | 'Car' | 'Home' | 'Briefcase' | 'CreditCard') | null;
+        title: string;
+        subtitle?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              icon?: ('Clock' | 'Percent' | 'CreditCard' | 'CheckCircle') | null;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        ctaText?: string | null;
+        secondaryCtaText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerTitle: string;
+  headerSubtitle?: string | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryButtonText?: string | null;
+  ctaPrimaryButtonLink?: string | null;
+  ctaSecondaryButtonText?: string | null;
+  ctaSecondaryButtonLink?: string | null;
+  steps?:
+    | {
+        stepNumber: number;
+        icon?: ('Smartphone' | 'Clock' | 'CheckCircle' | 'CreditCard' | 'FileText' | 'Shield') | null;
+        title: string;
+        description?: string | null;
+        bulletPoints?:
+          | {
+              text?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustFeatures?:
+    | {
+        icon?: ('Shield' | 'Clock' | 'FileText' | 'Zap') | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  careerHeaderTitle?: string | null;
+  careerHeaderSubtitle?: string | null;
+  jobOpeningsTitle?: string | null;
+  jobOpeningsSubtitle?: string | null;
+  jobOpenings?:
+    | {
+        title: string;
+        department?:
+          | (
+              | 'Technology'
+              | 'Risk Management'
+              | 'Marketing'
+              | 'Sales'
+              | 'Customer Success'
+              | 'Product'
+              | 'Finance'
+              | 'HR'
+            )
+          | null;
+        location?: ('Kathmandu' | 'Lalitpur' | 'Bhaktapur' | 'Chitwan' | 'Pokhara' | 'Remote') | null;
+        type?: ('Full-time' | 'Part-time' | 'Contract' | 'Internship') | null;
+        experience?: string | null;
+        salary?: string | null;
+        status: 'Open' | 'Closed';
+        /**
+         * Vacancy will automatically be hidden after this date.
+         */
+        expiryDate?: string | null;
+        description?: string | null;
+        skills?:
+          | {
+              skill?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  benefitsTitle?: string | null;
+  benefitsSubtitle?: string | null;
+  cultureButtonText?: string | null;
+  cultureButtonLink?: string | null;
+  benefits?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  lifeAtCompanyTitle?: string | null;
+  lifeAtCompanySubtitle?: string | null;
+  lifeAtCompany?:
+    | {
+        icon?: ('TrendingUp' | 'Target' | 'Zap' | 'Star' | 'Coffee' | 'Award' | 'Heart' | 'Users') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  knowledgeCenterHeaderTitle?: string | null;
+  knowledgeCenterHeaderSubtitle?: string | null;
+  helpTitle?: string | null;
+  helpDescription?: string | null;
+  helpPrimaryButtonText?: string | null;
+  helpSecondaryButtonText?: string | null;
+  articles?:
+    | {
+        title: string;
+        excerpt?: string | null;
+        category?: string | null;
+        author?: string | null;
+        date?: string | null;
+        readTime?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  guides?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('Lightbulb' | 'FileText' | 'TrendingUp' | 'Shield' | 'BookOpen') | null;
+        category?: string | null;
+        steps?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  reports?:
+    | {
+        title: string;
+        type?: string | null;
+        date?: string | null;
+        size?: string | null;
+        icon?: ('TrendingUp' | 'BookOpen' | 'Shield' | 'FileText') | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer?: string | null;
+        category?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faqHeaderTitle?: string | null;
+  faqHeaderSubtitle?: string | null;
+  faqCategories?:
+    | {
+        categoryName: string;
+        questions?:
+          | {
+              question: string;
+              answer: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactHeaderTitle?: string | null;
+  contactHeaderSubtitle?: string | null;
+  contactMethods?:
+    | {
+        icon?: ('Phone' | 'Mail' | 'MessageCircle' | 'MapPin' | 'Clock') | null;
+        title: string;
+        description?: string | null;
+        contactInfo: string;
+        availability?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactForm: number | Form;
+  formTitle?: string | null;
+  businessHoursTitle?: string | null;
+  businessHours?:
+    | {
+        day: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  businessHoursNote?: string | null;
+  legalHeaderTitle?: string | null;
+  legalHeaderSubtitle?: string | null;
+  regulatoryInfo?:
+    | {
+        title: string;
+        details?: string | null;
+        validity?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  documents?:
+    | {
+        title: string;
+        description?: string | null;
+        category?: string | null;
+        lastUpdated?: string | null;
+        icon?: ('FileText' | 'Shield' | 'Scale' | 'AlertCircle') | null;
+        color?: ('blue' | 'green' | 'purple' | 'orange' | 'teal' | 'red') | null;
+        id?: string | null;
+      }[]
+    | null;
+  importantNotices?:
+    | {
+        title: string;
+        description?: string | null;
+        type?: ('primary' | 'accent' | 'success' | 'destructive') | null;
+        id?: string | null;
+      }[]
+    | null;
+  noticeHeaderTitle?: string | null;
+  noticeHeaderSubtitle?: string | null;
+  notices?:
+    | {
+        title: string;
+        date: string;
+        content: string;
+        type?: ('Important' | 'Service Update' | 'Policy Update' | 'Holiday Notice' | 'Product Launch') | null;
+        icon?: ('AlertTriangle' | 'Info' | 'FileText' | 'Calendar' | 'Bell') | null;
+        id?: string | null;
+      }[]
+    | null;
+  contactSection?: {
+    title?: string | null;
+    description?: string | null;
+    primaryButtonText?: string | null;
+    primaryButtonLink?: string | null;
+    secondaryButtonText?: string | null;
+    secondaryButtonLink?: string | null;
+  };
+  subscribeSection?: {
+    title?: string | null;
+    description?: string | null;
+    buttonText?: string | null;
+  };
+  heroBadge1?: string | null;
+  heroBadge2?: string | null;
+  heroRating?: string | null;
+  heroTitlePart1?: string | null;
+  heroTitlePart2?: string | null;
+  heroSubtitle?: string | null;
+  floatingFeatures?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroStats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  journeyTitle?: string | null;
+  journeyDescription?: string | null;
+  journeyCards?:
+    | {
+        icon?: ('Book' | 'Users' | 'Briefcase' | 'BookOpen' | 'FileCheck' | 'Calculator' | 'Phone') | null;
+        title: string;
+        description?: string | null;
+        linkText?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickToolsTitle?: string | null;
+  quickTools?:
+    | {
+        name: string;
+        description?: string | null;
+        buttonText?: string | null;
+        icon?: ('Calculator' | 'Car' | 'FileCheck' | 'TrendingUp') | null;
+        id?: string | null;
+      }[]
+    | null;
+  trustTitle?: string | null;
+  trustStats?:
+    | {
+        value: string;
+        label: string;
+        subLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  certificationTitle?: string | null;
+  badges?:
+    | {
+        title: string;
+        subTitle?: string | null;
+        icon?: ('Shield' | 'CheckCircle' | 'Award') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * These notices will scroll at the very top of the home page.
+   */
+  scrollingNotices?:
+    | {
+        message: string;
+        type: 'announcement' | 'warning' | 'info';
+        /**
+         * Notice will automatically disappear after this date.
+         */
+        expiryDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  homeProductsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeTestimonialsConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  homeKnowledgeConfig?: {
+    title?: string | null;
+    description?: string | null;
+    minRows?: number | null;
+    maxRows?: number | null;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-page".
+ */
+export interface ContactPage {
+  id: number;
+  title: string;
+  publishedAt?: string | null;
+  template?:
+    | (
+        | 'default'
+        | 'about'
+        | 'services'
+        | 'how-it-works'
+        | 'home'
+        | 'career'
+        | 'knowledge-center'
+        | 'faq'
+        | 'contact'
+        | 'legal'
+        | 'notice'
+      )
+    | null;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    links?:
+      | {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
                 } | null)
               | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
+                  relationTo: 'posts';
+                  value: number | Post;
                 } | null);
             url?: string | null;
             label: string;
@@ -5666,46 +5747,6 @@ export interface LegalPage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -6253,46 +6294,6 @@ export interface NoticePage {
               | ({
                   relationTo: 'posts';
                   value: number | Post;
-                } | null)
-              | ({
-                  relationTo: 'home-page';
-                  value: number | HomePage;
-                } | null)
-              | ({
-                  relationTo: 'about-page';
-                  value: number | AboutPage;
-                } | null)
-              | ({
-                  relationTo: 'services-page';
-                  value: number | ServicesPage;
-                } | null)
-              | ({
-                  relationTo: 'career-page';
-                  value: number | CareerPage;
-                } | null)
-              | ({
-                  relationTo: 'contact-page';
-                  value: number | ContactPage;
-                } | null)
-              | ({
-                  relationTo: 'faq-page';
-                  value: number | FaqPage;
-                } | null)
-              | ({
-                  relationTo: 'how-it-works-page';
-                  value: number | HowItWorksPage;
-                } | null)
-              | ({
-                  relationTo: 'knowledge-center-page';
-                  value: number | KnowledgeCenterPage;
-                } | null)
-              | ({
-                  relationTo: 'legal-page';
-                  value: number | LegalPage;
-                } | null)
-              | ({
-                  relationTo: 'notice-page';
-                  value: number | NoticePage;
                 } | null);
             url?: string | null;
             label: string;
@@ -6786,436 +6787,6 @@ export interface NoticePage {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CallToActionBlock".
- */
-export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null)
-            | ({
-                relationTo: 'home-page';
-                value: number | HomePage;
-              } | null)
-            | ({
-                relationTo: 'about-page';
-                value: number | AboutPage;
-              } | null)
-            | ({
-                relationTo: 'services-page';
-                value: number | ServicesPage;
-              } | null)
-            | ({
-                relationTo: 'career-page';
-                value: number | CareerPage;
-              } | null)
-            | ({
-                relationTo: 'contact-page';
-                value: number | ContactPage;
-              } | null)
-            | ({
-                relationTo: 'faq-page';
-                value: number | FaqPage;
-              } | null)
-            | ({
-                relationTo: 'how-it-works-page';
-                value: number | HowItWorksPage;
-              } | null)
-            | ({
-                relationTo: 'knowledge-center-page';
-                value: number | KnowledgeCenterPage;
-              } | null)
-            | ({
-                relationTo: 'legal-page';
-                value: number | LegalPage;
-              } | null)
-            | ({
-                relationTo: 'notice-page';
-                value: number | NoticePage;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cta';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContentBlock".
- */
-export interface ContentBlock {
-  columns?:
-    | {
-        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        enableLink?: boolean | null;
-        link?: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null)
-            | ({
-                relationTo: 'home-page';
-                value: number | HomePage;
-              } | null)
-            | ({
-                relationTo: 'about-page';
-                value: number | AboutPage;
-              } | null)
-            | ({
-                relationTo: 'services-page';
-                value: number | ServicesPage;
-              } | null)
-            | ({
-                relationTo: 'career-page';
-                value: number | CareerPage;
-              } | null)
-            | ({
-                relationTo: 'contact-page';
-                value: number | ContactPage;
-              } | null)
-            | ({
-                relationTo: 'faq-page';
-                value: number | FaqPage;
-              } | null)
-            | ({
-                relationTo: 'how-it-works-page';
-                value: number | HowItWorksPage;
-              } | null)
-            | ({
-                relationTo: 'knowledge-center-page';
-                value: number | KnowledgeCenterPage;
-              } | null)
-            | ({
-                relationTo: 'legal-page';
-                value: number | LegalPage;
-              } | null)
-            | ({
-                relationTo: 'notice-page';
-                value: number | NoticePage;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'content';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MediaBlock".
- */
-export interface MediaBlock {
-  media: number | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'mediaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock".
- */
-export interface ArchiveBlock {
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
-  categories?: (number | Category)[] | null;
-  limit?: number | null;
-  selectedDocs?:
-    | {
-        relationTo: 'posts';
-        value: number | Post;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'archive';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlock".
- */
-export interface FormBlock {
-  form: number | Form;
-  enableIntro?: boolean | null;
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'formBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forms".
- */
-export interface Form {
-  id: number;
-  title: string;
-  fields?:
-    | (
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            defaultValue?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'checkbox';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'country';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'email';
-          }
-        | {
-            message?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'message';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'number';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: string | null;
-            placeholder?: string | null;
-            options?:
-              | {
-                  label: string;
-                  value: string;
-                  id?: string | null;
-                }[]
-              | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'select';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'state';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: string | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'text';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            width?: number | null;
-            defaultValue?: string | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'textarea';
-          }
-        | {
-            name: string;
-            label?: string | null;
-            required?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'file';
-          }
-      )[]
-    | null;
-  submitButtonLabel?: string | null;
-  /**
-   * Choose whether to display an on-page message or redirect to a different page after they submit the form.
-   */
-  confirmationType?: ('message' | 'redirect') | null;
-  confirmationMessage?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  redirect?: {
-    url: string;
-  };
-  /**
-   * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
-   */
-  emails?:
-    | {
-        emailTo?: string | null;
-        cc?: string | null;
-        bcc?: string | null;
-        replyTo?: string | null;
-        emailFrom?: string | null;
-        subject: string;
-        /**
-         * Enter the message that should be sent in this email.
-         */
-        message?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * A dedicated view for Career Page applications.
@@ -7996,6 +7567,97 @@ export interface PagesSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         buttonText?: T;
+      };
+  heroBadge1?: T;
+  heroBadge2?: T;
+  heroRating?: T;
+  heroTitlePart1?: T;
+  heroTitlePart2?: T;
+  heroSubtitle?: T;
+  floatingFeatures?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  journeyTitle?: T;
+  journeyDescription?: T;
+  journeyCards?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        linkText?: T;
+        link?: T;
+        id?: T;
+      };
+  quickToolsTitle?: T;
+  quickTools?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        buttonText?: T;
+        icon?: T;
+        id?: T;
+      };
+  trustTitle?: T;
+  trustStats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        subLabel?: T;
+        id?: T;
+      };
+  certificationTitle?: T;
+  badges?:
+    | T
+    | {
+        title?: T;
+        subTitle?: T;
+        icon?: T;
+        id?: T;
+      };
+  scrollingNotices?:
+    | T
+    | {
+        message?: T;
+        type?: T;
+        expiryDate?: T;
+        id?: T;
+      };
+  homeProductsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeTestimonialsConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
+      };
+  homeKnowledgeConfig?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        minRows?: T;
+        maxRows?: T;
       };
   meta?:
     | T
@@ -13741,46 +13403,6 @@ export interface Header {
             | ({
                 relationTo: 'posts';
                 value: number | Post;
-              } | null)
-            | ({
-                relationTo: 'home-page';
-                value: number | HomePage;
-              } | null)
-            | ({
-                relationTo: 'about-page';
-                value: number | AboutPage;
-              } | null)
-            | ({
-                relationTo: 'services-page';
-                value: number | ServicesPage;
-              } | null)
-            | ({
-                relationTo: 'career-page';
-                value: number | CareerPage;
-              } | null)
-            | ({
-                relationTo: 'contact-page';
-                value: number | ContactPage;
-              } | null)
-            | ({
-                relationTo: 'faq-page';
-                value: number | FaqPage;
-              } | null)
-            | ({
-                relationTo: 'how-it-works-page';
-                value: number | HowItWorksPage;
-              } | null)
-            | ({
-                relationTo: 'knowledge-center-page';
-                value: number | KnowledgeCenterPage;
-              } | null)
-            | ({
-                relationTo: 'legal-page';
-                value: number | LegalPage;
-              } | null)
-            | ({
-                relationTo: 'notice-page';
-                value: number | NoticePage;
               } | null);
           url?: string | null;
           label: string;
@@ -13826,46 +13448,6 @@ export interface Footer {
             | ({
                 relationTo: 'posts';
                 value: number | Post;
-              } | null)
-            | ({
-                relationTo: 'home-page';
-                value: number | HomePage;
-              } | null)
-            | ({
-                relationTo: 'about-page';
-                value: number | AboutPage;
-              } | null)
-            | ({
-                relationTo: 'services-page';
-                value: number | ServicesPage;
-              } | null)
-            | ({
-                relationTo: 'career-page';
-                value: number | CareerPage;
-              } | null)
-            | ({
-                relationTo: 'contact-page';
-                value: number | ContactPage;
-              } | null)
-            | ({
-                relationTo: 'faq-page';
-                value: number | FaqPage;
-              } | null)
-            | ({
-                relationTo: 'how-it-works-page';
-                value: number | HowItWorksPage;
-              } | null)
-            | ({
-                relationTo: 'knowledge-center-page';
-                value: number | KnowledgeCenterPage;
-              } | null)
-            | ({
-                relationTo: 'legal-page';
-                value: number | LegalPage;
-              } | null)
-            | ({
-                relationTo: 'notice-page';
-                value: number | NoticePage;
               } | null);
           url?: string | null;
           label: string;

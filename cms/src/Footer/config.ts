@@ -1,5 +1,4 @@
 import type { GlobalConfig } from 'payload'
-
 import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
 
@@ -20,6 +19,7 @@ export const Footer: GlobalConfig = {
               name: 'description',
               type: 'textarea',
               required: true,
+              localized: true,
               defaultValue: 'Your trusted partner for flexible financing solutions. We provide transparent, accessible, and innovative financial services to help you achieve your goals.',
             },
             {
@@ -42,6 +42,7 @@ export const Footer: GlobalConfig = {
                   name: 'address',
                   type: 'textarea',
                   required: true,
+                  localized: true,
                   defaultValue: 'Batas Tower, Kathmandu,\nNepal',
                 },
               ],
@@ -72,6 +73,7 @@ export const Footer: GlobalConfig = {
               name: 'copyrightText',
               type: 'text',
               required: true,
+              localized: true,
               defaultValue: '© 2024 Batas Hire and Purchase Financial Services Pvt. Ltd. All rights reserved. | NBFC License No: N-12345',
             },
           ],
@@ -88,6 +90,7 @@ export const Footer: GlobalConfig = {
                   appearances: false,
                 }),
               ],
+              localized: true,
               admin: {
                 initCollapsed: true,
                 components: {
@@ -99,11 +102,13 @@ export const Footer: GlobalConfig = {
               name: 'ourProducts',
               type: 'array',
               label: 'Our Products',
+              localized: true,
               fields: [
                 {
                   name: 'label',
                   type: 'text',
                   required: true,
+                  localized: true,
                 },
                 {
                   name: 'url',
@@ -119,11 +124,13 @@ export const Footer: GlobalConfig = {
               name: 'legalCompliance',
               type: 'array',
               label: 'Legal & Compliance',
+              localized: true,
               fields: [
                 {
                   name: 'label',
                   type: 'text',
                   required: true,
+                  localized: true,
                 },
                 {
                   name: 'url',

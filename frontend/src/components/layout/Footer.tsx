@@ -191,7 +191,7 @@ const Footer = () => {
               {footerData?.copyrightText || `© 2024 Batas Hire and Purchase Financial Services Pvt. Ltd. All rights reserved. | NBFC License No: N-12345`}
             </div>
             <div className="flex items-center space-x-6 text-xs text-primary-foreground/60">
-              <span>Developer by Naya Code Pvt. Ltd.</span>
+              <span>Developed by Naya Code Pvt. Ltd.</span>
               <span>•</span>
               <a href="#" className="hover:text-accent transition-colors">
                 Cookie Policy
