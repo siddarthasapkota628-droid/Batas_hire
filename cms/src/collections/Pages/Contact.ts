@@ -1,9 +1,9 @@
-import { Tab } from 'payload/types';
+import { Tab } from 'payload';
 
 export const ContactPage: Tab = {
     label: 'Contact Page',
     admin: {
-        condition: (data) => data?.template === 'contact',
+        condition: (data: any) => data?.template === 'contact',
     },
     fields: [
         {
@@ -17,12 +17,14 @@ export const ContactPage: Tab = {
                             type: 'text',
                             defaultValue: 'Get In Touch',
                             label: 'Header Title',
+                            localized: true,
                         },
                         {
                             name: 'contactHeaderSubtitle',
                             type: 'textarea',
                             defaultValue: "Have questions about our financial services? We're here to help you 24/7 with personalized support.",
                             label: 'Header Subtitle',
+                            localized: true,
                         },
                     ],
                 },
@@ -53,11 +55,13 @@ export const ContactPage: Tab = {
                                     type: 'text',
                                     required: true,
                                     label: 'Title',
+                                    localized: true,
                                 },
                                 {
                                     name: 'description',
                                     type: 'text',
                                     label: 'Description',
+                                    localized: true,
                                 },
                                 {
                                     name: 'contactInfo',
@@ -69,6 +73,7 @@ export const ContactPage: Tab = {
                                     name: 'availability',
                                     type: 'text',
                                     label: 'Availability',
+                                    localized: true,
                                 },
                             ],
                         },
@@ -88,6 +93,7 @@ export const ContactPage: Tab = {
                             name: 'formTitle',
                             type: 'text',
                             defaultValue: 'Send Us a Message',
+                            localized: true,
                         },
                     ],
                 },
@@ -99,6 +105,7 @@ export const ContactPage: Tab = {
                             type: 'text',
                             defaultValue: 'Business Hours',
                             label: 'Section Title',
+                            localized: true,
                         },
                         {
                             name: 'businessHours',
@@ -113,6 +120,7 @@ export const ContactPage: Tab = {
                                     required: true,
                                     label: 'Day(s)',
                                     defaultValue: 'Monday - Friday',
+                                    localized: true,
                                 },
                                 {
                                     name: 'time',
@@ -120,6 +128,7 @@ export const ContactPage: Tab = {
                                     required: true,
                                     label: 'Time',
                                     defaultValue: '9:00 AM to 6:00 PM',
+                                    localized: true,
                                 },
                             ],
                         },
@@ -128,6 +137,7 @@ export const ContactPage: Tab = {
                             type: 'text',
                             label: 'Assessment/Note',
                             defaultValue: '24/7 Customer Support Available',
+                            localized: true,
                         },
                     ],
                 },

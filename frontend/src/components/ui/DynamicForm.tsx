@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Loader2, CheckCircle, AlertCircle, Upload, X } from 'lucide-react';
 import { toast } from 'sonner';
+import { useLocale } from '@/contexts/LocaleContext';
 
 interface DynamicFormProps {
     formId: string;
@@ -17,13 +18,14 @@ interface DynamicFormProps {
 }
 
 const DynamicForm = ({ formId, jobData, onSuccess }: DynamicFormProps) => {
+    const { locale } = useLocale();
     const [isSubmitted, setIsSubmitted] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
 
     // Fetch Form Definition
     const { data: formData, isLoading: isFormLoading, error: formError } = useQuery({
-        queryKey: ['form', formId],
-        queryFn: () => getForm(formId),
+        queryKey: ['form', formId, locale],
+        queryFn: () => getForm(formId, locale),
         enabled: !!formId,
     });
 
@@ -98,9 +100,9 @@ const DynamicForm = ({ formId, jobData, onSuccess }: DynamicFormProps) => {
             {!formData.fields && <p>No fields found for this form.</p>}
 
             {formData.fields?.map((field: any) => {
-                const { name, label, required, blockType, options } = field;
+                const { name, label, required, blockType, options, placeholder: cmsPlaceholder } = field;
                 const safeLabel = label || name || "Field";
-                const placeholder = `Enter your ${safeLabel.toLowerCase()}`;
+                const placeholder = cmsPlaceholder || (locale === 'ne' ? `${safeLabel} प्रविष्ट गर्नुहोस्` : `Enter your ${safeLabel.toLowerCase()}`);
 
                 // Handle different field types
 
@@ -145,7 +147,7 @@ const DynamicForm = ({ formId, jobData, onSuccess }: DynamicFormProps) => {
                             </Label>
                             <Select onValueChange={(val) => setValue(name, val)}>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select an option" />
+                                    <SelectValue placeholder={locale === 'ne' ? "विकल्प छान्नुहोस्" : "Select an option"} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {options?.map((opt: any) => (

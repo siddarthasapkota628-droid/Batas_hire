@@ -3,10 +3,10 @@ import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Mail, Phone, MapPin, Clock, MessageCircle, Loader2 } from 'lucide-react';
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { getContactPage, submitForm } from '@/lib/api';
+import { useQuery } from '@tanstack/react-query';
+import { getContactPage } from '@/lib/api';
 import { useState } from 'react';
-import { toast } from 'sonner';
+import DynamicForm from '@/components/ui/DynamicForm';
 import { useLocale } from '@/contexts/LocaleContext';
 
 const iconMap: { [key: string]: JSX.Element } = {
@@ -24,49 +24,6 @@ const Contact = () => {
     queryFn: () => getContactPage(locale),
     retry: 1,
   });
-
-  const [formData, setFormData] = useState({
-    fullName: '',
-    phoneNumber: '',
-    email: '',
-    subject: 'General Inquiry',
-    message: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const mutation = useMutation({
-    mutationFn: (data: any) => submitForm(pageData?.contactForm?.id, data),
-    onSuccess: () => {
-      toast.success("Message sent successfully!");
-      setFormData({
-        fullName: '',
-        phoneNumber: '',
-        email: '',
-        subject: 'General Inquiry',
-        message: ''
-      });
-      setIsSubmitting(false);
-    },
-    onError: () => {
-      toast.error("Failed to send message. Please try again.");
-      setIsSubmitting(false);
-    }
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!pageData?.contactForm?.id) {
-      toast.error("Contact form not configured in CMS.");
-      return;
-    }
-    setIsSubmitting(true);
-    mutation.mutate(formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   if (isLoading) {
     return (
@@ -130,97 +87,13 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
                 {pageData?.formTitle || "Send Us a Message"}
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleChange}
-                      type="text"
-                      required
-                      className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Phone Number *
-                    </label>
-                    <input
-                      name="phoneNumber"
-                      value={formData.phoneNumber}
-                      onChange={handleChange}
-                      type="tel"
-                      required
-                      className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
-                      placeholder="Your phone number"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    type="email"
-                    required
-                    className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Subject *
-                  </label>
-                  <select
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
-                  >
-                    <option value="" disabled>Select inquiry type</option>
-                    <option value="BNPL Application">BNPL Application</option>
-                    <option value="Vehicle Hire Purchase">Vehicle Hire Purchase</option>
-                    <option value="Existing Loan Query">Existing Loan Query</option>
-                    <option value="Technical Support">Technical Support</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Complaint">Complaint</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
-                    placeholder="Please describe your inquiry in detail..."
-                  />
-                </div>
-
-                <Button disabled={isSubmitting} variant="cta" size="lg" className="w-full">
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Sending...
-                    </>
-                  ) : "Send Message"}
-                </Button>
-              </form>
+              {pageData?.contactForm?.id ? (
+                <DynamicForm formId={pageData.contactForm.id} />
+              ) : (
+                <p className="text-center text-muted-foreground py-10">
+                  Form configuration missing in CMS.
+                </p>
+              )}
             </Card>
           </div>
 

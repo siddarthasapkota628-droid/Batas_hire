@@ -51,8 +51,9 @@ export const getKnowledgeCenterPage = async (locale?: string) => {
 };
 
 // Get Form by ID
-export const getForm = async (formId: string) => {
-    const response = await api.get(`/forms/${formId}`);
+export const getForm = async (formId: string, locale?: string) => {
+    const localeQuery = locale ? `?locale=${locale}` : '';
+    const response = await api.get(`/forms/${formId}${localeQuery}`);
     return response.data;
 };
 
