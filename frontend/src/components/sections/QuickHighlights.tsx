@@ -2,13 +2,16 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calculator, FileCheck, Users, BookOpen, Briefcase, Phone, Book, Car, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
+  const { locale } = useLocale();
   const {
     journeyTitle = "Your Financial Journey Simplified",
     journeyDescription = "Discover our comprehensive financial services designed to make your dreams achievable",
     journeyCards = [],
     quickToolsTitle = "Quick Tools",
+    quickToolsDescription = locale === 'ne' ? 'तुरुन्त गणना र मूल्याङ्कन प्राप्त गर्नुहोस्' : 'Get instant calculations and valuations',
     quickTools = []
   } = cmsData || {}; // Fallback to empty object
 
@@ -61,7 +64,7 @@ const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
         {/* Quick Tools */}
         <div className="text-center mb-8">
           <h3 className="text-2xl font-bold text-foreground mb-2">{quickToolsTitle}</h3>
-          <p className="text-muted-foreground">Get instant calculations and valuations</p>
+          <p className="text-muted-foreground">{quickToolsDescription}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -72,6 +75,7 @@ const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <span className="sr-only">Icon</span>
                       <IconComponent className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">

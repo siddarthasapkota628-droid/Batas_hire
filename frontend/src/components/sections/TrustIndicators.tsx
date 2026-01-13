@@ -1,9 +1,12 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Shield, Award, Clock, Users, Banknote, TrendingUp, CheckCircle } from 'lucide-react';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const TrustIndicators = ({ cmsData }: { cmsData: any }) => {
+  const { locale } = useLocale();
   const {
     trustTitle = "Trusted by Thousands",
+    trustDescription = locale === 'ne' ? 'हाम्रा संख्याहरू आफैं बोल्छन् - निरन्तर सेवा र विश्वसनीयता मार्फत विश्वास निर्माण गर्दै' : 'Our numbers speak for themselves - building trust through consistent service and reliability',
     trustStats = [
       { value: "50K+", label: "Happy Customers", subLabel: "Trusted by families across Nepal", icon: "Users" },
       { value: "₹500Cr+", label: "Loans Disbursed", subLabel: "Helping dreams come true", icon: "Banknote" },
@@ -11,6 +14,7 @@ const TrustIndicators = ({ cmsData }: { cmsData: any }) => {
       { value: "22+", label: "Years of Legacy", subLabel: "Established financial expertise", icon: "TrendingUp" }
     ],
     certificationTitle = "Licensed & Certified",
+    certificationDescription = locale === 'ne' ? 'तपाईंको सुरक्षा र विश्वास हाम्रो उच्च प्राथमिकता हो' : 'Your security and trust are our top priorities',
     badges = [
       { title: "NBFC Licensed", subTitle: "NRB Authorized", icon: "Shield" },
       { title: "ISO Certified", subTitle: "Quality Management Standards", icon: "Award" },
@@ -33,7 +37,7 @@ const TrustIndicators = ({ cmsData }: { cmsData: any }) => {
             {trustTitle}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Our numbers speak for themselves - building trust through consistent service and reliability
+            {trustDescription}
           </p>
         </div>
 
@@ -58,7 +62,7 @@ const TrustIndicators = ({ cmsData }: { cmsData: any }) => {
         {/* Certifications */}
         <div className="text-center mb-8">
           <h3 className="text-xl font-bold text-foreground mb-2">{certificationTitle}</h3>
-          <p className="text-muted-foreground">Your security and trust are our top priorities</p>
+          <p className="text-muted-foreground">{certificationDescription}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">

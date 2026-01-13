@@ -1,9 +1,11 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield, CheckCircle, Star } from 'lucide-react';
+import { ArrowRight, Shield, CheckCircle, Star, CheckCircle2 } from 'lucide-react';
 import heroImage from '@/assets/hero-fintech.jpg';
 import nbfcBadge from '@/assets/nbfc-badge.png';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const Hero = ({ cmsData }: { cmsData: any }) => {
+  const { locale } = useLocale();
   const {
     heroBadge1 = "NBFC Licensed",
     heroBadge2 = "Secure & Trusted",
@@ -21,10 +23,18 @@ const Hero = ({ cmsData }: { cmsData: any }) => {
       { value: "₹500Cr+", label: "Loans Disbursed" },
       { value: "2 mins", label: "Avg Approval Time" }
     ],
+    heroCTAs = [],
     heroImage: cmsHeroImage
   } = cmsData;
 
   const bgImage = cmsHeroImage?.url ? `http://localhost:3000${cmsHeroImage.url}` : heroImage;
+
+  const defaultCTAs = [
+    { label: locale === 'ne' ? 'BNPL को लागि आवेदन दिनुहोस्' : 'Apply for BNPL', link: '/form/1', variant: 'hero' },
+    { label: locale === 'ne' ? 'EMI गणना गर्नुहोस्' : 'Calculate EMI', link: '/form/2', variant: 'outline' }
+  ];
+
+  const ctasToRender = heroCTAs && heroCTAs.length > 0 ? heroCTAs : defaultCTAs;
 
   return (
     <section id="home" className="relative min-h-screen flex items-center">
@@ -58,7 +68,7 @@ const Hero = ({ cmsData }: { cmsData: any }) => {
             {heroRating && (
               <div className="flex items-center space-x-1 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
                 <Star className="w-4 h-4 text-accent fill-current" />
-                <span className="text-white text-sm font-medium ml-2">{heroRating} Rating</span>
+                <span className="text-white text-sm font-medium ml-2">{heroRating} {locale === 'ne' ? 'रेटिङ' : 'Rating'}</span>
               </div>
             )}
           </div>
@@ -86,13 +96,22 @@ const Hero = ({ cmsData }: { cmsData: any }) => {
 
           {/* Call to Action */}
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up">
-            <Button variant="hero" size="xl" className="group">
-              Apply for BNPL
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="outline" size="xl" className="bg-white/10 text-white border-white/30 hover:bg-white/20">
-              Calculate EMI
-            </Button>
+            {ctasToRender.map((cta: any, i: number) => (
+              <Button
+                key={i}
+                variant={cta.variant || 'hero'}
+                size="xl"
+                className={cta.variant === 'outline' ? "bg-white/10 text-white border-white/30 hover:bg-white/20" : "group"}
+                asChild
+              >
+                <a href={cta.link}>
+                  {cta.label}
+                  {cta.variant !== 'outline' && (
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  )}
+                </a>
+              </Button>
+            ))}
           </div>
 
           {/* Quick Stats */}

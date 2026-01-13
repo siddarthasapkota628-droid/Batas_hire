@@ -19,19 +19,22 @@ export const HomePage: Tab = {
                                     name: 'heroBadge1',
                                     type: 'text',
                                     label: 'Top Left Badge (e.g., NBFC Licensed)',
-                                    defaultValue: 'NBFC Licensed'
+                                    defaultValue: 'NBFC Licensed',
+                                    localized: true,
                                 },
                                 {
                                     name: 'heroBadge2',
                                     type: 'text',
                                     label: 'Top Middle Badge (e.g., Secure & Trusted)',
-                                    defaultValue: 'Secure & Trusted'
+                                    defaultValue: 'Secure & Trusted',
+                                    localized: true,
                                 },
                                 {
                                     name: 'heroRating',
                                     type: 'text',
                                     label: 'Rating Text (e.g., 4.9/5)',
-                                    defaultValue: '4.9/5'
+                                    defaultValue: '4.9/5',
+                                    localized: true,
                                 },
                             ],
                         },
@@ -40,18 +43,21 @@ export const HomePage: Tab = {
                             type: 'text',
                             label: 'Title Part 1 (Regular)',
                             defaultValue: 'Smart Finance',
+                            localized: true,
                         },
                         {
                             name: 'heroTitlePart2',
                             type: 'text',
                             label: 'Title Part 2 (Highlighted/Red)',
                             defaultValue: 'Made Simple',
+                            localized: true,
                         },
                         {
                             name: 'heroSubtitle',
                             type: 'textarea',
                             label: 'Hero Subtitle',
                             defaultValue: 'Instant BNPL solutions and vehicle financing with transparent terms...',
+                            localized: true,
                         },
                         {
                             name: 'floatingFeatures',
@@ -60,7 +66,7 @@ export const HomePage: Tab = {
                             minRows: 1,
                             maxRows: 3,
                             fields: [
-                                { name: 'text', type: 'text', required: true }
+                                { name: 'text', type: 'text', required: true, localized: true }
                             ],
                         },
                         {
@@ -70,9 +76,29 @@ export const HomePage: Tab = {
                             minRows: 1,
                             maxRows: 3,
                             fields: [
-                                { name: 'value', type: 'text', required: true },
-                                { name: 'label', type: 'text', required: true },
+                                { name: 'value', type: 'text', required: true, localized: true },
+                                { name: 'label', type: 'text', required: true, localized: true },
                             ],
+                        },
+                        {
+                            name: 'heroCTAs',
+                            type: 'array',
+                            label: 'Hero CTA Buttons',
+                            minRows: 1,
+                            maxRows: 2,
+                            fields: [
+                                { name: 'label', type: 'text', required: true, localized: true },
+                                { name: 'link', type: 'text', required: true },
+                                {
+                                    name: 'variant',
+                                    type: 'select',
+                                    options: [
+                                        { label: 'Hero (Primary)', value: 'hero' },
+                                        { label: 'Outline', value: 'outline' },
+                                    ],
+                                    defaultValue: 'hero',
+                                }
+                            ]
                         }
                     ],
                 },
@@ -83,11 +109,13 @@ export const HomePage: Tab = {
                             name: 'journeyTitle',
                             type: 'text',
                             defaultValue: 'Your Financial Journey Simplified',
+                            localized: true,
                         },
                         {
                             name: 'journeyDescription',
                             type: 'textarea',
                             defaultValue: 'Discover our comprehensive financial services...',
+                            localized: true,
                         },
                         {
                             name: 'journeyCards',
@@ -97,9 +125,9 @@ export const HomePage: Tab = {
                             maxRows: 4,
                             fields: [
                                 { name: 'icon', type: 'select', options: ['Book', 'Users', 'Briefcase', 'BookOpen', 'FileCheck', 'Calculator', 'Phone'], defaultValue: 'Book' },
-                                { name: 'title', type: 'text', required: true },
-                                { name: 'description', type: 'textarea' },
-                                { name: 'linkText', type: 'text', defaultValue: 'Explore' },
+                                { name: 'title', type: 'text', required: true, localized: true },
+                                { name: 'description', type: 'textarea', localized: true },
+                                { name: 'linkText', type: 'text', defaultValue: 'Explore', localized: true },
                                 { name: 'link', type: 'text', label: 'Link (e.g., /products)' },
                             ],
                         },
@@ -107,6 +135,13 @@ export const HomePage: Tab = {
                             name: 'quickToolsTitle',
                             type: 'text',
                             defaultValue: 'Quick Tools',
+                            localized: true,
+                        },
+                        {
+                            name: 'quickToolsDescription',
+                            type: 'text',
+                            defaultValue: 'Get instant calculations and valuations',
+                            localized: true,
                         },
                         {
                             name: 'quickTools',
@@ -115,9 +150,9 @@ export const HomePage: Tab = {
                             minRows: 1,
                             maxRows: 2,
                             fields: [
-                                { name: 'name', type: 'text', required: true },
-                                { name: 'description', type: 'text' },
-                                { name: 'buttonText', type: 'text', defaultValue: 'Calculate Now' },
+                                { name: 'name', type: 'text', required: true, localized: true },
+                                { name: 'description', type: 'text', localized: true },
+                                { name: 'buttonText', type: 'text', defaultValue: 'Calculate Now', localized: true },
                                 { name: 'icon', type: 'select', options: ['Calculator', 'Car', 'FileCheck', 'TrendingUp'], defaultValue: 'Calculator' },
                             ],
                         }
@@ -130,6 +165,13 @@ export const HomePage: Tab = {
                             name: 'trustTitle',
                             type: 'text',
                             defaultValue: 'Trusted by Thousands',
+                            localized: true,
+                        },
+                        {
+                            name: 'trustDescription',
+                            type: 'textarea',
+                            defaultValue: 'Our numbers speak for themselves - building trust through consistent service and reliability',
+                            localized: true,
                         },
                         {
                             name: 'trustStats',
@@ -138,15 +180,22 @@ export const HomePage: Tab = {
                             minRows: 1,
                             maxRows: 4,
                             fields: [
-                                { name: 'value', type: 'text', required: true },
-                                { name: 'label', type: 'text', required: true },
-                                { name: 'subLabel', type: 'text' },
+                                { name: 'value', type: 'text', required: true, localized: true },
+                                { name: 'label', type: 'text', required: true, localized: true },
+                                { name: 'subLabel', type: 'text', localized: true },
                             ],
                         },
                         {
                             name: 'certificationTitle',
                             type: 'text',
                             defaultValue: 'Licensed & Certified',
+                            localized: true,
+                        },
+                        {
+                            name: 'certificationDescription',
+                            type: 'text',
+                            defaultValue: 'Your security and trust are our top priorities',
+                            localized: true,
                         },
                         {
                             name: 'badges',
@@ -155,8 +204,8 @@ export const HomePage: Tab = {
                             minRows: 1,
                             maxRows: 3,
                             fields: [
-                                { name: 'title', type: 'text', required: true },
-                                { name: 'subTitle', type: 'text' },
+                                { name: 'title', type: 'text', required: true, localized: true },
+                                { name: 'subTitle', type: 'text', localized: true },
                                 { name: 'icon', type: 'select', options: ['Shield', 'CheckCircle', 'Award'], defaultValue: 'Shield' },
                             ],
                         }
@@ -177,7 +226,8 @@ export const HomePage: Tab = {
                                     name: 'message',
                                     type: 'text',
                                     required: true,
-                                    label: 'Notice Message'
+                                    label: 'Notice Message',
+                                    localized: true,
                                 },
                                 {
                                     name: 'type',

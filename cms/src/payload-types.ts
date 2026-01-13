@@ -638,6 +638,14 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -651,6 +659,7 @@ export interface Page {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -661,6 +670,7 @@ export interface Page {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -670,6 +680,7 @@ export interface Page {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -1776,6 +1787,14 @@ export interface AboutPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -1789,6 +1808,7 @@ export interface AboutPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -1799,6 +1819,7 @@ export interface AboutPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -1808,6 +1829,7 @@ export interface AboutPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -2323,6 +2345,14 @@ export interface ServicesPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -2336,6 +2366,7 @@ export interface ServicesPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -2346,6 +2377,7 @@ export interface ServicesPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -2355,6 +2387,7 @@ export interface ServicesPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -2870,6 +2903,14 @@ export interface CareerPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -2883,6 +2924,7 @@ export interface CareerPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -2893,6 +2935,7 @@ export interface CareerPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -2902,6 +2945,7 @@ export interface CareerPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -3417,6 +3461,14 @@ export interface HomePage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -3430,6 +3482,7 @@ export interface HomePage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -3440,6 +3493,7 @@ export interface HomePage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -3449,6 +3503,7 @@ export interface HomePage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -3964,6 +4019,14 @@ export interface HowItWorksPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -3977,6 +4040,7 @@ export interface HowItWorksPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -3987,6 +4051,7 @@ export interface HowItWorksPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -3996,6 +4061,7 @@ export interface HowItWorksPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -4511,6 +4577,14 @@ export interface KnowledgeCenterPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -4524,6 +4598,7 @@ export interface KnowledgeCenterPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -4534,6 +4609,7 @@ export interface KnowledgeCenterPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -4543,6 +4619,7 @@ export interface KnowledgeCenterPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -5058,6 +5135,14 @@ export interface FaqPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -5071,6 +5156,7 @@ export interface FaqPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -5081,6 +5167,7 @@ export interface FaqPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -5090,6 +5177,7 @@ export interface FaqPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -5605,6 +5693,14 @@ export interface ContactPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -5618,6 +5714,7 @@ export interface ContactPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -5628,6 +5725,7 @@ export interface ContactPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -5637,6 +5735,7 @@ export interface ContactPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -6152,6 +6251,14 @@ export interface LegalPage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -6165,6 +6272,7 @@ export interface LegalPage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -6175,6 +6283,7 @@ export interface LegalPage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -6184,6 +6293,7 @@ export interface LegalPage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -6699,6 +6809,14 @@ export interface NoticePage {
         id?: string | null;
       }[]
     | null;
+  heroCTAs?:
+    | {
+        label: string;
+        link: string;
+        variant?: ('hero' | 'outline') | null;
+        id?: string | null;
+      }[]
+    | null;
   journeyTitle?: string | null;
   journeyDescription?: string | null;
   journeyCards?:
@@ -6712,6 +6830,7 @@ export interface NoticePage {
       }[]
     | null;
   quickToolsTitle?: string | null;
+  quickToolsDescription?: string | null;
   quickTools?:
     | {
         name: string;
@@ -6722,6 +6841,7 @@ export interface NoticePage {
       }[]
     | null;
   trustTitle?: string | null;
+  trustDescription?: string | null;
   trustStats?:
     | {
         value: string;
@@ -6731,6 +6851,7 @@ export interface NoticePage {
       }[]
     | null;
   certificationTitle?: string | null;
+  certificationDescription?: string | null;
   badges?:
     | {
         title: string;
@@ -7587,6 +7708,14 @@ export interface PagesSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -7600,6 +7729,7 @@ export interface PagesSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -7610,6 +7740,7 @@ export interface PagesSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -7619,6 +7750,7 @@ export interface PagesSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -8181,6 +8313,14 @@ export interface AboutPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -8194,6 +8334,7 @@ export interface AboutPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -8204,6 +8345,7 @@ export interface AboutPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -8213,6 +8355,7 @@ export interface AboutPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -8692,6 +8835,14 @@ export interface ServicesPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -8705,6 +8856,7 @@ export interface ServicesPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -8715,6 +8867,7 @@ export interface ServicesPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -8724,6 +8877,7 @@ export interface ServicesPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -9203,6 +9357,14 @@ export interface CareerPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -9216,6 +9378,7 @@ export interface CareerPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -9226,6 +9389,7 @@ export interface CareerPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -9235,6 +9399,7 @@ export interface CareerPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -9714,6 +9879,14 @@ export interface HomePageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -9727,6 +9900,7 @@ export interface HomePageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -9737,6 +9911,7 @@ export interface HomePageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -9746,6 +9921,7 @@ export interface HomePageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -10225,6 +10401,14 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -10238,6 +10422,7 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -10248,6 +10433,7 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -10257,6 +10443,7 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -10736,6 +10923,14 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -10749,6 +10944,7 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -10759,6 +10955,7 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -10768,6 +10965,7 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -11247,6 +11445,14 @@ export interface FaqPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -11260,6 +11466,7 @@ export interface FaqPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -11270,6 +11477,7 @@ export interface FaqPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -11279,6 +11487,7 @@ export interface FaqPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -11758,6 +11967,14 @@ export interface ContactPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -11771,6 +11988,7 @@ export interface ContactPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -11781,6 +11999,7 @@ export interface ContactPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -11790,6 +12009,7 @@ export interface ContactPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -12269,6 +12489,14 @@ export interface LegalPageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -12282,6 +12510,7 @@ export interface LegalPageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -12292,6 +12521,7 @@ export interface LegalPageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -12301,6 +12531,7 @@ export interface LegalPageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
@@ -12780,6 +13011,14 @@ export interface NoticePageSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  heroCTAs?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        variant?: T;
+        id?: T;
+      };
   journeyTitle?: T;
   journeyDescription?: T;
   journeyCards?:
@@ -12793,6 +13032,7 @@ export interface NoticePageSelect<T extends boolean = true> {
         id?: T;
       };
   quickToolsTitle?: T;
+  quickToolsDescription?: T;
   quickTools?:
     | T
     | {
@@ -12803,6 +13043,7 @@ export interface NoticePageSelect<T extends boolean = true> {
         id?: T;
       };
   trustTitle?: T;
+  trustDescription?: T;
   trustStats?:
     | T
     | {
@@ -12812,6 +13053,7 @@ export interface NoticePageSelect<T extends boolean = true> {
         id?: T;
       };
   certificationTitle?: T;
+  certificationDescription?: T;
   badges?:
     | T
     | {
