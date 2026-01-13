@@ -137,41 +137,6 @@ export const Footer: GlobalConfig = {
             },
           ],
         },
-        {
-          label: 'Newsletter',
-          fields: [
-            {
-              name: 'newsletter',
-              type: 'group',
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                  required: true,
-                  defaultValue: 'Stay Updated',
-                },
-                {
-                  name: 'description',
-                  type: 'text',
-                  required: true,
-                  defaultValue: 'Get the latest financial tips and product updates',
-                },
-                {
-                  name: 'placeholder',
-                  type: 'text',
-                  required: true,
-                  defaultValue: 'Your email',
-                },
-                {
-                  name: 'buttonLabel',
-                  type: 'text',
-                  required: true,
-                  defaultValue: 'Subscribe',
-                },
-              ],
-            },
-          ],
-        },
       ],
     },
   ],

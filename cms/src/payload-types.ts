@@ -13887,12 +13887,6 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
-  newsletter: {
-    title: string;
-    description: string;
-    placeholder: string;
-    buttonLabel: string;
-  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -13988,14 +13982,6 @@ export interface FooterSelect<T extends boolean = true> {
         label?: T;
         url?: T;
         id?: T;
-      };
-  newsletter?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        placeholder?: T;
-        buttonLabel?: T;
       };
   updatedAt?: T;
   createdAt?: T;

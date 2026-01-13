@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getFooter, getSiteSettings, getMediaUrl } from '@/lib/api';
@@ -180,27 +180,6 @@ const Footer = () => {
             isCustom: true
           })), legalFallback)}
 
-          {/* Newsletter Signup */}
-          <div>
-            <div className="bg-primary-foreground/5 p-4 rounded-lg">
-              <h5 className="font-medium mb-2">
-                {footerData?.newsletter?.title || 'Stay Updated'}
-              </h5>
-              <p className="text-xs text-primary-foreground/70 mb-3">
-                {footerData?.newsletter?.description || 'Get the latest financial tips and product updates'}
-              </p>
-              <div className="flex space-x-2">
-                <input
-                  type="email"
-                  placeholder={footerData?.newsletter?.placeholder || 'Your email'}
-                  className="flex-1 px-3 py-2 bg-primary-foreground/10 border border-primary-foreground/20 rounded text-xs text-primary-foreground placeholder-primary-foreground/50 focus:outline-none focus:border-accent"
-                />
-                <Button size="sm" variant="hero" className="px-3" title={footerData?.newsletter?.buttonLabel || 'Subscribe'}>
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
