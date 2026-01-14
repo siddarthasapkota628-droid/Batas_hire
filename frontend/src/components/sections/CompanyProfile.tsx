@@ -127,53 +127,61 @@ const CompanyProfile = () => {
             <p className="text-xl text-muted-foreground">{cmsData.directorsDescription || "Experienced leadership guiding our strategic vision"}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
             {boardMembers.map((member: any, index: number) => {
               const imageUrl = getImageUrl(member.photo);
 
               return (
-                <Card key={index} className="p-6 hover:shadow-strong transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-full flex-shrink-0 overflow-hidden bg-primary/10 flex items-center justify-center">
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt={member.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="text-primary">
-                          <User className="w-8 h-8" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-foreground mb-1">{member.name}</h3>
-                      <p className="text-primary font-medium mb-2">{member.position}</p>
-
-                      <div className="space-y-2 text-sm">
-                        {member.experience && (
-                          <div className="flex items-center gap-2">
-                            <Briefcase className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">{member.experience}</span>
-                          </div>
-                        )}
-                        {member.education && (
-                          <div className="flex items-center gap-2">
-                            <GraduationCap className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">{member.education}</span>
-                          </div>
-                        )}
-                        {member.specialization && (
-                          <div className="flex items-center gap-2">
-                            <Award className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-muted-foreground">{member.specialization}</span>
+                <div key={index} className="w-full md:w-[calc(50%-2rem)] max-w-lg">
+                  <Card className="p-8 bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group h-full">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                      <div className="w-24 h-24 rounded-2xl flex-shrink-0 overflow-hidden bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        {imageUrl ? (
+                          <img
+                            src={imageUrl}
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="text-primary">
+                            <User className="w-12 h-12" />
                           </div>
                         )}
                       </div>
+                      <div className="flex-1 text-center sm:text-left">
+                        <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{member.name}</h3>
+                        <p className="text-primary font-semibold mb-4 bg-primary/10 px-3 py-1 rounded-full inline-block text-sm">{member.position}</p>
+
+                        <div className="space-y-3 text-sm">
+                          {member.experience && (
+                            <div className="flex items-center gap-3 justify-center sm:justify-start">
+                              <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                                <Briefcase className="w-4 h-4 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground font-medium">{member.experience}</span>
+                            </div>
+                          )}
+                          {member.education && (
+                            <div className="flex items-center gap-3 justify-center sm:justify-start">
+                              <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                                <GraduationCap className="w-4 h-4 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground font-medium">{member.education}</span>
+                            </div>
+                          )}
+                          {member.specialization && (
+                            <div className="flex items-center gap-3 justify-center sm:justify-start">
+                              <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                                <Award className="w-4 h-4 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground font-medium">{member.specialization}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
               );
             })}
           </div>
@@ -186,37 +194,46 @@ const CompanyProfile = () => {
             <p className="text-xl text-muted-foreground">{cmsData.leadershipDescription || "Meet our executive team driving operational excellence"}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
             {leadership.map((leader: any, index: number) => {
               const imageUrl = getImageUrl(leader.photo);
 
               return (
-                <Card key={index} className="p-6 text-center hover:scale-105 transition-transform">
-                  <div className="w-16 h-16 rounded-full mx-auto mb-4 overflow-hidden bg-accent/10 flex items-center justify-center">
-                    {imageUrl ? (
-                      <img
-                        src={imageUrl}
-                        alt={leader.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="text-accent">
-                        <User className="w-8 h-8" />
+                <div key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] max-w-xs">
+                  <Card className="p-8 text-center bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group h-full flex flex-col items-center">
+                    <div className="w-20 h-20 rounded-2xl mx-auto mb-6 overflow-hidden bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      {imageUrl ? (
+                        <img
+                          src={imageUrl}
+                          alt={leader.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="text-primary">
+                          <User className="w-10 h-10" />
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{leader.name}</h3>
+                    <p className="text-sm text-primary font-semibold mb-4 bg-primary/5 px-3 py-1 rounded-full uppercase tracking-wider">{leader.position}</p>
+                    
+                    <div className="space-y-3 mt-auto w-full">
+                      {leader.department && (
+                        <Badge variant="outline" className="w-full justify-center py-2 border-white/10 bg-white/5 text-muted-foreground uppercase text-[10px] tracking-widest font-black">
+                          {leader.department}
+                        </Badge>
+                      )}
+                      <div className="flex flex-col gap-1">
+                        {leader.experience && (
+                          <p className="text-xs text-muted-foreground font-medium">Experience: {leader.experience}</p>
+                        )}
+                        {leader.expertise && (
+                          <p className="text-xs text-muted-foreground/80 font-medium italic">"{leader.expertise}"</p>
+                        )}
                       </div>
-                    )}
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-1">{leader.name}</h3>
-                  <p className="text-sm text-primary font-medium mb-2">{leader.position}</p>
-                  {leader.department && (
-                    <Badge variant="outline" className="mb-2 text-xs">{leader.department}</Badge>
-                  )}
-                  {leader.experience && (
-                    <p className="text-xs text-muted-foreground mb-1">{leader.experience}</p>
-                  )}
-                  {leader.expertise && (
-                    <p className="text-xs text-muted-foreground">{leader.expertise}</p>
-                  )}
-                </Card>
+                    </div>
+                  </Card>
+                </div>
               );
             })}
           </div>
@@ -240,13 +257,18 @@ const CompanyProfile = () => {
                   <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary rounded-full transform md:-translate-x-2 z-10"></div>
 
                   {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                    <Card className="p-6">
-                      <div className="flex items-center gap-3 mb-2">
-                        <Badge variant="secondary" className="font-bold">{milestone.year}</Badge>
-                        <h3 className="font-semibold text-foreground">{milestone.event}</h3>
+                  <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                    <Card className="p-8 bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 group relative">
+                      <div className="flex items-center gap-4 mb-4">
+                        <Badge variant="secondary" className="font-black bg-primary text-primary-foreground px-3 py-1 text-sm rounded-lg">{milestone.year}</Badge>
+                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{milestone.event}</h3>
                       </div>
-                      <p className="text-sm text-muted-foreground">{milestone.description}</p>
+                      <p className="text-muted-foreground leading-relaxed font-medium">{milestone.description}</p>
+                      
+                      {/* Decorative background element */}
+                      <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <Award className="w-12 h-12 text-primary" />
+                      </div>
                     </Card>
                   </div>
                 </div>
