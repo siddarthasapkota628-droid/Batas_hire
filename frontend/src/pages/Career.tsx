@@ -198,26 +198,32 @@ const Career = () => {
 
                     <div className="grid gap-6 max-w-5xl mx-auto">
                         {jobOpenings.map((job: any, index: number) => (
-                            <Card key={index} className="p-6 hover:shadow-strong transition-all hover:scale-[1.02]">
-                                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <Card key={index} className="p-8 bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 group">
+                                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                                     <div className="flex-1">
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <Briefcase className="w-5 h-5 text-primary" />
-                                            <h3 className="text-xl font-semibold text-foreground">{job.title}</h3>
-                                            <Badge variant="outline" className="ml-auto">{job.salary}</Badge>
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
+                                                <Briefcase className="w-6 h-6" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">{job.title}</h3>
+                                                <div className="flex items-center gap-2 mt-1">
+                                                    <Badge variant="secondary" className="bg-primary/10 text-primary border-none">{job.department}</Badge>
+                                                    <Badge variant="outline" className="border-white/20 text-muted-foreground">{job.salary}</Badge>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="flex flex-wrap gap-3 mb-4">
-                                            <Badge variant="secondary">{job.department}</Badge>
-                                            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                                                <MapPin className="w-4 h-4" />
+                                        <div className="flex flex-wrap gap-4 mb-6">
+                                            <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                                                <MapPin className="w-4 h-4 text-primary" />
                                                 {job.location}
                                             </div>
-                                            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                                                <Clock className="w-4 h-4" />
+                                            <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                                                <Clock className="w-4 h-4 text-primary" />
                                                 {job.type}
                                             </div>
                                             {job.expiryDate && (
-                                                <div className="flex items-center gap-1 text-sm text-destructive font-medium">
+                                                <div className="flex items-center gap-2 text-sm text-destructive font-medium bg-destructive/5 px-2 py-0.5 rounded">
                                                     <Calendar className="w-4 h-4" />
                                                     Expires: {new Date(job.expiryDate).toLocaleDateString(undefined, {
                                                         year: 'numeric',
@@ -227,23 +233,27 @@ const Career = () => {
                                                 </div>
                                             )}
                                         </div>
-                                        <p className="text-muted-foreground mb-3">{job.description}</p>
-                                        <div className="flex flex-wrap gap-2 mb-3">
+                                        <p className="text-muted-foreground mb-6 leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5">{job.description}</p>
+                                        <div className="flex flex-wrap gap-2 mb-4">
                                             {job.skills?.map((skillItem: any, i: number) => (
-                                                <Badge key={i} variant="outline" className="text-xs">{skillItem.skill}</Badge>
+                                                <Badge key={i} variant="outline" className="text-[10px] uppercase tracking-wider border-white/10 bg-white/5">{skillItem.skill}</Badge>
                                             ))}
                                         </div>
-                                        <p className="text-sm text-primary font-medium">Experience: {job.experience}</p>
+                                        <div className="flex items-center gap-2 text-sm font-bold text-primary">
+                                            <TrendingUp className="w-4 h-4" />
+                                            Experience: {job.experience}
+                                        </div>
                                     </div>
-                                    <div className="flex flex-col gap-2">
+                                    <div className="flex flex-col gap-3 min-w-[160px]">
                                         <Button
                                             variant="cta"
-                                            className="w-full lg:w-auto"
+                                            size="lg"
+                                            className="w-full shadow-lg hover:shadow-primary/20"
                                             onClick={() => handleApply(job)}
                                         >
                                             Apply Now
                                         </Button>
-                                        <Button variant="outline" size="sm" className="w-full lg:w-auto">
+                                        <Button variant="outline" className="w-full border-white/10 bg-white/5 hover:bg-white/10">
                                             View Details
                                         </Button>
                                     </div>
@@ -271,13 +281,15 @@ const Career = () => {
                         {benefits.map((benefit: CareerBenefit, index: number) => {
                             const Icon = iconMap[benefit.icon] || Star;
                             return (
-                                <Card key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] p-6 text-center hover:scale-105 transition-transform">
-                                    <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <Icon className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
-                                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
-                                </Card>
+                                <div key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] max-w-xs">
+                                    <Card className="p-8 text-center bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group h-full flex flex-col items-center">
+                                        <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
+                                            <Icon className="w-7 h-7" />
+                                        </div>
+                                        <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{benefit.title}</h3>
+                                        <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{benefit.description}</p>
+                                    </Card>
+                                </div>
                             );
                         })}
                     </div>
@@ -304,13 +316,15 @@ const Career = () => {
                         {lifeAtCompany.map((item: CareerLifeAtCompany, index: number) => {
                             const Icon = iconMap[item.icon] || Coffee;
                             return (
-                                <Card key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] p-6 text-center hover:scale-105 transition-transform">
-                                    <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <Icon className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                                </Card>
+                                <div key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] max-w-xs">
+                                    <Card className="p-8 text-center bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group h-full flex flex-col items-center">
+                                        <div className="w-16 h-16 bg-success/10 text-success rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500">
+                                            <Icon className="w-7 h-7" />
+                                        </div>
+                                        <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-success transition-colors">{item.title}</h3>
+                                        <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{item.description}</p>
+                                    </Card>
+                                </div>
                             );
                         })}
                     </div>

@@ -168,14 +168,16 @@ const Legal = () => {
 
           <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto mb-16">
             {regulatoryInfo.map((info: any, index: number) => (
-              <div key={index} className="w-full md:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] flex">
-                <Card className="w-full p-6 text-center">
-                  <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-6 h-6" />
+              <div key={index} className="w-full md:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] flex max-w-sm">
+                <Card className="w-full p-8 text-center bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group group-hover:bg-white/10">
+                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                    <Shield className="w-8 h-8" />
                   </div>
-                  <h3 className="font-semibold text-foreground mb-2">{info.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-1">{info.details}</p>
-                  <p className="text-xs text-accent">{info.validity}</p>
+                  <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{info.title}</h3>
+                  <div className="bg-white/5 p-3 rounded-xl border border-white/5 mb-3">
+                    <p className="text-sm text-muted-foreground font-medium">{info.details}</p>
+                  </div>
+                  <p className="text-xs text-primary font-black uppercase tracking-widest">{info.validity}</p>
                 </Card>
               </div>
             ))}
@@ -197,27 +199,29 @@ const Legal = () => {
               const colorClass = colorMap[doc.color] || colorMap['blue'];
 
               return (
-                <div key={index} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex">
-                  <Card className="w-full p-6 hover:shadow-strong transition-shadow">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${colorClass}`}>
-                      <Icon className="w-6 h-6" />
+                <div key={index} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex max-w-sm">
+                  <Card className="w-full p-8 bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group flex flex-col">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 ${colorClass}`}>
+                      <Icon className="w-8 h-8" />
                     </div>
 
-                    <div className="mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="font-semibold text-foreground">{doc.title}</h3>
-                        <Badge variant="outline" className="text-xs">{doc.category}</Badge>
+                    <div className="mb-6 flex-grow">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{doc.title}</h3>
+                        <Badge className="bg-white/10 text-muted-foreground border-white/10 text-[10px] uppercase font-black px-2">{doc.category}</Badge>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-2">{doc.description}</p>
-                      <p className="text-xs text-muted-foreground">Last updated: {doc.lastUpdated}</p>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-2">{doc.description}</p>
+                      <div className="flex items-center gap-2 text-[10px] text-muted-foreground/60 uppercase font-black bg-white/5 px-2 py-1 rounded w-fit">
+                        Last updated: {doc.lastUpdated}
+                      </div>
                     </div>
 
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="flex-1">
+                    <div className="flex gap-3">
+                      <Button variant="cta" size="sm" className="flex-1 shadow-md hover:shadow-primary/20">
                         <Eye className="w-4 h-4 mr-2" />
-                        View
+                        View Document
                       </Button>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="outline" size="sm" className="border-white/10 bg-white/5 hover:bg-white/10">
                         <Download className="w-4 h-4" />
                       </Button>
                     </div>
@@ -237,12 +241,15 @@ const Legal = () => {
 
             <div className="space-y-6">
               {notices.map((notice: any, index: number) => (
-                <Card key={index} className={`p-6 border-l-4 ${getBorderColor(notice.type)}`}>
-                  <h3 className="font-semibold text-foreground mb-2">{notice.title}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {notice.description}
-                  </p>
-                </Card>
+                <div key={index} className="relative group">
+                  <div className={`absolute -inset-0.5 rounded-2xl opacity-50 group-hover:opacity-100 transition duration-500 blur ${notice.type === 'primary' ? 'bg-primary/20' : notice.type === 'success' ? 'bg-success/20' : 'bg-accent/20'}`} />
+                  <Card className={`relative p-8 bg-background/80 backdrop-blur-md border-l-8 ${getBorderColor(notice.type)} hover:bg-white/[0.02] transition-colors duration-500`}>
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{notice.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {notice.description}
+                    </p>
+                  </Card>
+                </div>
               ))}
             </div>
           </div>

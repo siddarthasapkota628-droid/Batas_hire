@@ -1,5 +1,6 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Bell, AlertTriangle, Info, FileText, Calendar, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
@@ -115,31 +116,31 @@ const Notice = () => {
             {notices.map((notice: any, index: number) => {
               const Icon = iconMap[notice.icon] || Info;
               return (
-                <Card key={index} className="border-0 shadow-medium bg-card-elevated overflow-hidden">
-                  <div className="p-6">
+                <Card key={index} className="bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 group overflow-hidden">
+                  <div className="p-8">
                     {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <div className={`p-2 rounded-full border ${getTypeStyle(notice.type)}`}>
-                          <Icon className="w-5 h-5" />
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-2xl border bg-white/5 group-hover:bg-white/10 transition-colors duration-500 ${getTypeStyle(notice.type)}`}>
+                          <Icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-500" />
                         </div>
                         <div>
-                          <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${getTypeStyle(notice.type)}`}>
+                          <div className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${getTypeStyle(notice.type)}`}>
                             {notice.type}
                           </div>
                         </div>
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground bg-white/5 px-2 py-1 rounded">
                         {notice.date}
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-3">
+                    <div className="group-hover:translate-x-1 transition-transform duration-500">
+                      <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                         {notice.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed bg-white/5 p-6 rounded-2xl border border-white/5">
                         {notice.content}
                       </p>
                     </div>
@@ -177,22 +178,22 @@ const Notice = () => {
 
           {/* Subscribe to Updates */}
           <div className="text-center mt-12 max-w-2xl mx-auto">
-            <Card className="p-6 border-0 shadow-medium bg-card-elevated">
-              <h4 className="text-lg font-semibold text-foreground mb-3">
+            <Card className="p-10 bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 transition-all duration-500 group">
+              <h4 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                 {pageData?.subscribeSection?.title || "Subscribe to Notice Updates"}
               </h4>
-              <p className="text-sm text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-8 leading-relaxed max-w-lg mx-auto font-medium">
                 {pageData?.subscribeSection?.description || "Get notified about important updates and announcements via email."}
               </p>
-              <div className="flex space-x-2">
+              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email address"
-                  className="flex-1 px-4 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
+                  className="flex-1 px-6 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder:text-muted-foreground font-medium"
                 />
-                <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                <Button variant="cta" className="px-8 py-3 shadow-lg hover:shadow-primary/20">
                   {pageData?.subscribeSection?.buttonText || "Subscribe"}
-                </button>
+                </Button>
               </div>
             </Card>
           </div>

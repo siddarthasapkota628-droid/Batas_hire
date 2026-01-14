@@ -122,49 +122,49 @@ const Products = ({ cmsData = {}, supplemental }: ProductsProps) => {
             return (
               <Card
                 key={index}
-                className="group overflow-hidden border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-[1.02] w-full md:w-[calc(50%-2rem)] max-w-[600px]"
+                className="group overflow-hidden bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 w-full md:w-[calc(50%-2rem)] max-w-[550px]"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-72 overflow-hidden">
                   <img
                     src={
                       product.image ||
                       (index === 0 ? bnplImage : vehicleImage)
                     }
                     alt={product.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-6 left-6">
+                    <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/20">
                       <ProductIcon className="w-4 h-4 text-white" />
-                      <span className="text-white text-sm font-medium">
-                        Product
+                      <span className="text-white text-xs font-bold uppercase tracking-wider">
+                        Finance
                       </span>
                     </div>
                   </div>
-                  <div className="absolute bottom-4 left-4">
-                    <h3 className="text-2xl font-bold text-white mb-2">
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
                       {product.title}
                     </h3>
-                    <p className="text-white/90 text-sm">{product.subtitle}</p>
+                    <p className="text-white/90 text-sm font-medium drop-shadow-md">{product.subtitle}</p>
                   </div>
                 </div>
 
                 <div className="p-6">
                   {/* Stats Grid */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-2 gap-4 mb-8">
                     {product.stats?.map((stat: any, sIndex: number) => {
                       const StatIcon = iconMap[stat.icon] || Clock;
                       return (
                         <div
                           key={sIndex}
-                          className="text-center p-3 bg-card-elevated rounded-lg"
+                          className="text-center p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-primary/30 transition-colors"
                         >
-                          <StatIcon className="w-6 h-6 text-primary mx-auto mb-2" />
-                          <div className="font-semibold text-foreground">
+                          <StatIcon className="w-7 h-7 text-primary mx-auto mb-2" />
+                          <div className="font-bold text-foreground">
                             {stat.value}
                           </div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-[10px] text-muted-foreground uppercase font-bold tracking-tight">
                             {stat.label}
                           </div>
                         </div>

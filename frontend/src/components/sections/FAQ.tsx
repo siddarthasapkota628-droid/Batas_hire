@@ -118,25 +118,23 @@ const FAQ = () => {
                   const isOpen = openFAQ === globalIndex;
 
                   return (
-                    <Card key={faqIndex} className="border-0 shadow-medium overflow-hidden">
+                    <Card key={faqIndex} className="border border-white/10 bg-white/5 backdrop-blur-sm shadow-soft hover:shadow-medium hover:border-primary/30 transition-all duration-300 overflow-hidden">
                       <button
                         onClick={() => toggleFAQ(globalIndex)}
-                        className="w-full p-6 text-left flex items-center justify-between hover:bg-card-elevated transition-colors"
+                        className={`w-full p-6 text-left flex items-center justify-between transition-colors ${isOpen ? 'bg-primary/5' : 'hover:bg-white/5'}`}
                       >
-                        <span className="font-semibold text-foreground pr-4">
+                        <span className={`font-bold transition-colors ${isOpen ? 'text-primary' : 'text-foreground'}`}>
                           {faq.question}
                         </span>
-                        {isOpen ? (
-                          <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 text-primary flex-shrink-0" />
-                        )}
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-primary text-primary-foreground rotate-180' : 'bg-primary/10 text-primary'}`}>
+                          <ChevronDown className="w-5 h-5" />
+                        </div>
                       </button>
 
                       {isOpen && (
-                        <div className="px-6 pb-6">
-                          <div className="pt-4 border-t border-border">
-                            <p className="text-muted-foreground leading-relaxed">
+                        <div className="px-6 pb-6 animate-slide-up">
+                          <div className="pt-4 border-t border-white/10">
+                            <p className="text-muted-foreground leading-relaxed font-medium">
                               {faq.answer}
                             </p>
                           </div>

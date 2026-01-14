@@ -134,31 +134,33 @@ const HowItWorks = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center gap-8 mb-12">
             {steps.map((step: any, index: number) => (
-              <div key={step.id} className="relative group w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2rem)] min-w-[230px]">
-                <Card className="relative z-10 h-full p-6 text-center border-0 shadow-medium hover:shadow-strong transition-all duration-300 group-hover:scale-[1.02] bg-card-elevated">
+              <div key={step.id} className="relative group w-full md:w-[calc(50%-2rem)] lg:w-[calc(25%-2.5rem)] min-w-[260px] max-w-sm">
+                <Card className="relative z-10 h-full p-8 text-center bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group flex flex-col">
                   {/* Step Number */}
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm">
+                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center font-black text-lg shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
                     {step.id}
                   </div>
 
                   {/* Icon */}
-                  <div className="flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mx-auto mb-4 mt-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    {step.icon}
+                  <div className="flex items-center justify-center w-20 h-20 bg-primary/10 text-primary rounded-2xl mx-auto mb-6 mt-4 group-hover:bg-primary/20 transition-colors duration-500">
+                    <div className="group-hover:scale-110 transition-transform duration-500">
+                      {step.icon}
+                    </div>
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                  <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
+                  <p className="text-muted-foreground text-sm mb-6 flex-grow leading-relaxed">
                     {step.description}
                   </p>
 
                   {/* Details */}
-                  <ul className="text-left space-y-2">
+                  <ul className="text-left space-y-3 bg-white/5 rounded-xl p-4 border border-white/5">
                     {step.details.map((detail: string, detailIndex: number) => (
-                      <li key={detailIndex} className="flex items-start space-x-2 text-xs text-muted-foreground">
-                        <div className="w-1.5 h-1.5 bg-accent rounded-full mt-1.5 flex-shrink-0"></div>
+                      <li key={detailIndex} className="flex items-start space-x-3 text-xs text-muted-foreground font-medium">
+                        <CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" />
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -171,12 +173,12 @@ const HowItWorks = () => {
           {/* Features Grid */}
           <div className="flex flex-wrap justify-center gap-8 mb-12">
             {features.map((feature: any, index: number) => (
-              <div key={index} className="text-center p-6 rounded-lg bg-card-elevated w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] min-w-[280px]">
-                <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+              <div key={index} className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] min-w-[280px] hover:border-primary/20 transition-all duration-300">
+                <div className="w-14 h-14 bg-primary/10 text-primary rounded-xl flex items-center justify-center mx-auto mb-4">
                   {feature.icon}
                 </div>
-                <h4 className="font-semibold text-foreground mb-2">{feature.title}</h4>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+                <h4 className="font-bold text-lg text-foreground mb-3">{feature.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>

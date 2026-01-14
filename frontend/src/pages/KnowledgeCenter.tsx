@@ -326,30 +326,33 @@ const KnowledgeCenter = () => {
 
                 <div className="flex flex-wrap justify-center gap-8 mb-16">
                   {articles.filter((article: Article) => article.featured).map((article: Article, index: number) => (
-                    <Card key={index} className="w-full lg:w-[calc(50%-2rem)] overflow-hidden hover:shadow-strong transition-all hover:scale-[1.02]">
-                      <div className="h-48 bg-gradient-subtle relative">
-                        <Badge className="absolute top-4 left-4 bg-primary/90">{article.category}</Badge>
+                    <Card key={index} className="w-full lg:w-[calc(50%-2rem)] overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(var(--primary),0.1)] transition-all duration-500 group">
+                      <div className="h-56 bg-gradient-to-br from-primary/20 to-accent/10 relative overflow-hidden">
+                        <Badge className="absolute top-6 left-6 bg-primary/90 text-white border-none px-4 py-1 font-bold">{article.category}</Badge>
+                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                       </div>
-                      <div className="p-6">
-                        <div className="flex items-center gap-4 mb-3">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className="p-8">
+                        <div className="flex items-center gap-6 mb-4">
+                          <div className="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-widest">
                             <Calendar className="w-4 h-4" />
                             {article.date}
                           </div>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
                             <Clock className="w-4 h-4" />
                             {article.readTime}
                           </div>
                         </div>
-                        <h3 className="text-xl font-semibold text-foreground mb-3 hover:text-primary transition-colors cursor-pointer">{article.title}</h3>
-                        <p className="text-muted-foreground mb-4">{article.excerpt}</p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <User className="w-4 h-4" />
+                        <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors cursor-pointer leading-tight">{article.title}</h3>
+                        <p className="text-muted-foreground mb-6 leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5">{article.excerpt}</p>
+                        <div className="flex items-center justify-between border-t border-white/5 pt-6">
+                          <div className="flex items-center gap-3 text-sm font-semibold text-muted-foreground">
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                              <User className="w-4 h-4" />
+                            </div>
                             {article.author}
                           </div>
-                          <Button variant="ghost" size="sm" className="group">
-                            Read More
+                          <Button variant="cta" size="sm" className="group">
+                            Read Full Article
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </Button>
                         </div>
@@ -362,19 +365,19 @@ const KnowledgeCenter = () => {
                 <h2 className="text-3xl font-bold text-foreground mb-8">Recent Articles</h2>
                 <div className="flex flex-wrap justify-center gap-6">
                   {articles.filter((article: Article) => !article.featured).map((article: Article, index: number) => (
-                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-6 hover:shadow-medium transition-all hover:scale-[1.02] cursor-pointer">
-                      <div className="flex items-center gap-4 mb-3">
-                        <Badge variant="outline" className="text-xs">{article.category}</Badge>
-                        <span className="text-xs text-muted-foreground flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
+                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-8 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.05)] transition-all duration-500 hover:-translate-y-2 cursor-pointer group flex flex-col">
+                      <div className="flex items-center justify-between mb-6">
+                        <Badge className="bg-primary/10 text-primary border-none text-[10px] uppercase font-bold tracking-widest">{article.category}</Badge>
+                        <span className="text-[10px] text-muted-foreground font-black uppercase tracking-tighter flex items-center gap-1">
+                          <Clock className="w-3 h-3 text-primary" />
                           {article.readTime}
                         </span>
                       </div>
-                      <h3 className="font-semibold text-foreground mb-2 hover:text-primary transition-colors">{article.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4">{article.excerpt}</p>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <User className="w-3 h-3" />
+                      <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug flex-grow">{article.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed line-clamp-3">{article.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs font-bold text-muted-foreground border-t border-white/5 pt-4">
+                        <span className="flex items-center gap-2">
+                          <User className="w-4 h-4 text-primary" />
                           {article.author}
                         </span>
                         <span>{article.date}</span>
@@ -394,18 +397,18 @@ const KnowledgeCenter = () => {
                 {guides.map((guide: Guide, index: number) => {
                   const Icon = iconMap[guide.icon] || Lightbulb;
                   return (
-                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-6 hover:shadow-strong transition-all hover:scale-[1.02] cursor-pointer">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
-                          <Icon className="w-6 h-6" />
+                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] p-8 bg-white/5 backdrop-blur-md border border-white/10 hover:border-success/50 hover:shadow-[0_0_30px_rgba(var(--success),0.1)] transition-all duration-500 hover:-translate-y-2 cursor-pointer group">
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="w-14 h-14 bg-success/10 text-success rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">
+                          <Icon className="w-7 h-7" />
                         </div>
-                        <Badge variant="outline" className="text-xs">{guide.category}</Badge>
+                        <Badge className="bg-success text-white border-none text-[10px] font-black uppercase px-3">{guide.category}</Badge>
                       </div>
-                      <h3 className="font-semibold text-foreground mb-2">{guide.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-4">{guide.description}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs text-muted-foreground">{guide.steps} steps</span>
-                        <Button variant="ghost" size="sm" className="group">
+                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-success transition-colors">{guide.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{guide.description}</p>
+                      <div className="flex items-center justify-between border-t border-white/5 pt-6">
+                        <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{guide.steps} Steps</span>
+                        <Button variant="ghost" size="sm" className="text-success hover:text-success/80 hover:bg-success/5 group font-bold">
                           Start Guide
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
@@ -425,20 +428,20 @@ const KnowledgeCenter = () => {
                 {publications.map((pub: Report, index: number) => {
                   const Icon = iconMap[pub.icon] || TrendingUp;
                   return (
-                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] p-6 text-center hover:shadow-strong transition-all hover:scale-[1.02]">
-                      <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Icon className="w-6 h-6" />
+                    <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] p-8 text-center bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group">
+                      <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <Icon className="w-8 h-8" />
                       </div>
-                      <h3 className="font-semibold text-foreground mb-2">{pub.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-2">{pub.type}</p>
-                      <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mb-4">
+                      <h3 className="text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{pub.title}</h3>
+                      <p className="text-xs text-primary font-bold uppercase tracking-widest mb-4">{pub.type}</p>
+                      <div className="flex items-center justify-center gap-3 text-xs font-medium text-muted-foreground mb-6">
                         <span>{pub.date}</span>
-                        <span>•</span>
+                        <div className="w-1 h-1 bg-white/20 rounded-full" />
                         <span>{pub.size}</span>
                       </div>
-                      <Button variant="outline" size="sm" className="group">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download PDF
+                      <Button variant="outline" size="sm" className="w-full border-white/10 bg-white/5 hover:bg-white/10 group">
+                        <Download className="w-4 h-4 mr-2 group-hover:translate-y-0.5 transition-transform" />
+                        Download
                       </Button>
                     </Card>
                   );
@@ -453,12 +456,12 @@ const KnowledgeCenter = () => {
               </h2>
               <div className="flex flex-wrap justify-center gap-6">
                 {faqs.map((faq: FAQ, index: number) => (
-                  <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] p-6 hover:shadow-medium transition-shadow">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Badge variant="outline" className="text-xs">{faq.category}</Badge>
+                  <Card key={index} className="w-full md:w-[calc(50%-1.5rem)] p-8 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary/30 transition-all duration-300 group">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Badge className="bg-primary/10 text-primary border-none text-[10px] font-black uppercase px-2">{faq.category}</Badge>
                     </div>
-                    <h3 className="font-semibold text-foreground mb-3">{faq.question}</h3>
-                    <p className="text-sm text-muted-foreground">{faq.answer}</p>
+                    <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors leading-snug">{faq.question}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed bg-white/5 p-4 rounded-xl border border-white/5">{faq.answer}</p>
                   </Card>
                 ))}
               </div>

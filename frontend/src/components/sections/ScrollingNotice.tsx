@@ -40,7 +40,7 @@ const ScrollingNotice = ({ cmsData }: ScrollingNoticeProps) => {
   if (activeNotices.length === 0) return null;
 
   return (
-    <div className="sticky top-16 z-40 bg-background/95 backdrop-blur border-b border-border/50">
+    <div className="sticky top-16 z-40 bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="overflow-hidden py-2">
           <div className="animate-scroll-left whitespace-nowrap">

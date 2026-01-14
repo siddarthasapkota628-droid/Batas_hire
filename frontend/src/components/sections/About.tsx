@@ -123,13 +123,13 @@ const About = () => {
           </div>
 
           {/* Achievements Grid - Fixed Stats */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {stats.map((stat, index) => (
-              <Card key={index} className="text-center p-4 border-0 shadow-medium bg-card-elevated">
+              <Card key={index} className="text-center p-6 border-white/10 shadow-soft bg-white/5 backdrop-blur-sm min-w-[140px] flex-1 max-w-[180px] hover:border-primary/30 transition-all duration-300">
                 <div className="text-2xl md:text-3xl font-bold text-primary mb-1">
                   {stat.number}
                 </div>
-                <div className="text-xs md:text-sm text-muted-foreground">
+                <div className="text-xs md:text-sm text-muted-foreground font-medium">
                   {stat.label}
                 </div>
               </Card>
@@ -138,19 +138,21 @@ const About = () => {
         </div>
 
         {/* Mission, Vision, Values - Fixed Groups */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="flex flex-wrap justify-center gap-8 mb-16">
           {missions.map((item, index) => (
-            <Card key={index} className="p-8 text-center border-0 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-[1.02] bg-card-elevated">
-              <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                {iconMap[item.icon] || <Target className="w-6 h-6" />}
-              </div>
-              <h4 className="text-xl font-semibold text-foreground mb-4">
-                {item.title}
-              </h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {item.description}
-              </p>
-            </Card>
+            <div key={index} className="w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.33%-2rem)] max-w-sm">
+              <Card className="p-8 text-center bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group h-full flex flex-col items-center">
+                <div className="w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  {iconMap[item.icon] || <Target className="w-8 h-8" />}
+                </div>
+                <h4 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h4>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-grow">
+                  {item.description}
+                </p>
+              </Card>
+            </div>
           ))}
         </div>
 
@@ -163,11 +165,11 @@ const About = () => {
           <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
             {complianceDescription}
           </p>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-4">
             {badges.map((badge, index) => (
-              <div key={index} className="flex items-center space-x-2 bg-white/50 rounded-full px-4 py-2">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-sm font-medium text-foreground">{badge.text}</span>
+              <div key={index} className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-5 py-2 hover:bg-white/20 transition-colors">
+                <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                <span className="text-sm font-semibold text-foreground">{badge.text}</span>
               </div>
             ))}
           </div>

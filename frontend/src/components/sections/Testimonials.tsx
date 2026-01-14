@@ -130,50 +130,54 @@ const Testimonials = () => {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-8 mb-16 max-w-5xl mx-auto">
           {stats.map((stat: any, index: number) => (
-            <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number || stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            <div key={index} className="text-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-8 py-6 flex-1 min-w-[160px] max-w-[200px] hover:border-primary/30 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2 tracking-tighter">{stat.number || stat.value}</div>
+              <div className="text-xs text-muted-foreground uppercase font-black tracking-widest">{stat.label}</div>
             </div>
           ))}
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
           {testimonials.map((testimonial: any, index: number) => (
-            <Card key={index} className="p-6 hover:shadow-strong transition-all duration-300 hover:scale-[1.02] relative overflow-hidden">
-              {/* Quote Icon */}
-              <div className="absolute top-4 right-4 opacity-10">
-                <Quote className="w-8 h-8 text-primary" />
-              </div>
-
-              {/* Rating */}
-              <div className="flex items-center gap-1 mb-4">
-                {renderStars(testimonial.rating)}
-              </div>
-
-              {/* Content */}
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                "{testimonial.content}"
-              </p>
-
-              {/* Customer Info */}
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  <p className="text-xs text-muted-foreground">{testimonial.location}</p>
+            <div key={index} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-2rem)] max-w-sm h-full flex mt-4">
+              <Card className="p-8 bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group relative overflow-hidden flex flex-col w-full">
+                {/* Quote Icon */}
+                <div className="absolute top-6 right-6 opacity-10 group-hover:scale-125 transition-transform duration-700">
+                  <Quote className="w-12 h-12 text-primary" />
                 </div>
-                <div className="text-right">
-                  {testimonial.product && (
-                    <div className="text-xs text-primary font-medium bg-primary/10 px-2 py-1 rounded">
-                      {testimonial.product}
-                    </div>
-                  )}
+
+                {/* Rating */}
+                <div className="flex items-center gap-1 mb-6">
+                  {renderStars(testimonial.rating)}
                 </div>
-              </div>
-            </Card>
+
+                {/* Content */}
+                <div className="bg-white/5 p-6 rounded-2xl border border-white/5 mb-6 flex-grow italic">
+                  <p className="text-muted-foreground leading-relaxed font-medium">
+                    "{testimonial.content}"
+                  </p>
+                </div>
+
+                {/* Customer Info */}
+                <div className="flex items-end justify-between mt-auto">
+                  <div>
+                    <h4 className="font-bold text-foreground group-hover:text-primary transition-colors">{testimonial.name}</h4>
+                    <p className="text-xs text-muted-foreground font-semibold">{testimonial.role}</p>
+                    <p className="text-[10px] text-muted-foreground/60 uppercase font-black tracking-tighter">{testimonial.location}</p>
+                  </div>
+                  <div className="text-right">
+                    {testimonial.product && (
+                      <div className="text-[10px] text-primary font-black uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full border border-primary/10">
+                        {testimonial.product}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            </div>
           ))}
         </div>
 
