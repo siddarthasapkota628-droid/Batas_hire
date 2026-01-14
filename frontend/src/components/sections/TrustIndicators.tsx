@@ -41,20 +41,22 @@ const TrustIndicators = ({ cmsData }: { cmsData: any }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="flex flex-wrap justify-center gap-6 mb-16">
           {trustStats?.map((metric: any, index: number) => {
             const IconComponent = getIcon(metric.icon);
             return (
-              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 border-border/50">
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                    <IconComponent className="w-8 h-8 text-primary" />
-                  </div>
-                  <div className="text-3xl font-bold text-foreground mb-1">{metric.value}</div>
-                  <div className="text-sm font-semibold text-foreground mb-2">{metric.label}</div>
-                  <div className="text-xs text-muted-foreground">{metric.subLabel}</div>
-                </CardContent>
-              </Card>
+              <div key={index} className="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px]">
+                <Card className="h-full text-center bg-white/5 backdrop-blur-sm border-white/10 hover:border-primary/30 hover:shadow-[0_0_20px_rgba(var(--primary),0.05)] transition-all duration-500 group">
+                  <CardContent className="p-8">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      <IconComponent className="w-8 h-8 text-primary" />
+                    </div>
+                    <div className="text-3xl font-bold text-foreground mb-2">{metric.value}</div>
+                    <div className="text-sm font-bold text-foreground/80 mb-2 uppercase tracking-wider">{metric.label}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed">{metric.subLabel}</div>
+                  </CardContent>
+                </Card>
+              </div>
             );
           })}
         </div>
@@ -65,19 +67,21 @@ const TrustIndicators = ({ cmsData }: { cmsData: any }) => {
           <p className="text-muted-foreground">{certificationDescription}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto">
           {badges?.map((cert: any, index: number) => {
             const IconComponent = getIcon(cert.icon);
             return (
-              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 border-primary/20">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-success/10 flex items-center justify-center">
-                    <IconComponent className="w-6 h-6 text-success" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-foreground mb-2">{cert.title}</h4>
-                  <p className="text-sm text-muted-foreground">{cert.subTitle}</p>
-                </CardContent>
-              </Card>
+              <div key={index} className="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] max-w-xs">
+                <Card className="h-full text-center bg-white/5 backdrop-blur-sm border-success/20 hover:border-success/50 hover:shadow-[0_0_20px_rgba(var(--success),0.1)] transition-all duration-500 group">
+                  <CardContent className="p-8">
+                    <div className="w-14 h-14 mx-auto mb-6 rounded-xl bg-success/10 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+                      <IconComponent className="w-7 h-7 text-success" />
+                    </div>
+                    <h4 className="text-lg font-bold text-foreground mb-2">{cert.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{cert.subTitle}</p>
+                  </CardContent>
+                </Card>
+              </div>
             );
           })}
         </div>

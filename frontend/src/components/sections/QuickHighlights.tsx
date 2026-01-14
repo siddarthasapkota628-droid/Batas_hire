@@ -34,25 +34,25 @@ const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="flex flex-wrap justify-center gap-6 mb-16">
           {journeyCards?.map((card: any, index: number) => {
             const IconComponent = getIcon(card.icon);
             return (
-              <Link key={index} to={card.link || '#'} className="group">
-                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                      <IconComponent className="w-8 h-8 text-primary" />
+              <Link key={index} to={card.link || '#'} className="group w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] max-w-sm">
+                <Card className="h-full bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group">
+                  <CardContent className="p-8 text-center flex flex-col h-full">
+                    <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      <IconComponent className="w-10 h-10 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                       {card.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <p className="text-muted-foreground mb-6 flex-grow leading-relaxed">
                       {card.description}
                     </p>
-                    <div className="flex items-center justify-center text-primary group-hover:translate-x-1 transition-transform">
-                      <span className="text-sm font-medium mr-1">{card.linkText || 'Explore'}</span>
-                      <ArrowRight className="w-4 h-4" />
+                    <div className="flex items-center justify-center text-primary font-semibold group-hover:gap-2 transition-all">
+                      <span>{card.linkText || 'Explore'}</span>
+                      <ArrowRight className="w-5 h-5 ml-1 transition-transform group-hover:translate-x-1" />
                     </div>
                   </CardContent>
                 </Card>
