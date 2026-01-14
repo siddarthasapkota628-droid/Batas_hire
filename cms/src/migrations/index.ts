@@ -4,6 +4,7 @@ import * as migration_20251218_062733_final_push from './20251218_062733_final_p
 import * as migration_20251218_070232_create_admin_user from './20251218_070232_create_admin_user';
 import * as migration_20260105_054514 from './20260105_054514';
 import * as migration_20260111_100710_after_merged_with_sid from './20260111_100710_after_merged_with_sid';
+import * as migration_20260114_063343_jan14 from './20260114_063343_jan14';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20260111_100710_after_merged_with_sid.up,
     down: migration_20260111_100710_after_merged_with_sid.down,
-    name: '20260111_100710_after_merged_with_sid'
+    name: '20260111_100710_after_merged_with_sid',
+  },
+  {
+    up: migration_20260114_063343_jan14.up,
+    down: migration_20260114_063343_jan14.down,
+    name: '20260114_063343_jan14'
   },
 ];
