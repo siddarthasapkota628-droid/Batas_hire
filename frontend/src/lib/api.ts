@@ -119,10 +119,13 @@ export const getLegalPage = async (locale?: string): Promise<LegalPage> => {
     return response.data.docs[0];
 };
 
-export const getNoticePage = async (locale?: string): Promise<NoticePage> => {
-    const localeQuery = locale ? `&locale=${locale}` : '';
-    const response = await api.get(`/notice-page?where[template][equals]=notice${localeQuery}`);
-    return response.data.docs[0];
+export const getNoticePage = async (locale?: string) => {
+  const localeParam = locale ? `&locale=${locale}` : '';
+  const response = await api.get(
+    `/globals/notices-page?depth=2${localeParam}`
+  );
+
+  return response.data;
 };
 
 export const getHeader = async (locale?: string): Promise<HeaderType> => {

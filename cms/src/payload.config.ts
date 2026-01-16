@@ -16,7 +16,7 @@ import {
   HowItWorksView,
   KnowledgeCenterView,
   LegalView,
-  NoticeView,
+
   ServicesView
 } from './collections/Pages/Views'
 import { Posts } from './collections/Posts'
@@ -31,6 +31,7 @@ import { SiteSettings } from './SiteSettings/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { NoticesPage } from './SiteSettings/NoticePage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -91,7 +92,7 @@ export default buildConfig({
     FAQView,
     ContactView,
     LegalView,
-    NoticeView,
+    
     Posts,
     Media,
     Categories,
@@ -113,7 +114,7 @@ export default buildConfig({
     'http://localhost:5173',
     'http://localhost:3000',
   ].filter(Boolean),
-  globals: [Header, Footer, SiteSettings],
+  globals: [Header, Footer, SiteSettings, NoticesPage],
   localization: {
     locales: [
       {
