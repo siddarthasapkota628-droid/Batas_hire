@@ -5,6 +5,7 @@ import { ChevronDown, ChevronUp, MessageCircle, Phone, Loader2 } from 'lucide-re
 import { useQuery } from '@tanstack/react-query';
 import { getFAQPage } from '@/lib/api';
 import { useLocale } from '@/contexts/LocaleContext';
+import { FaqPage } from '@/types/payload-types';
 
 const FAQ = () => {
   const { locale } = useLocale();
@@ -16,7 +17,7 @@ const FAQ = () => {
     retry: 1,
   });
 
-  const defaultFaqData = [
+  const defaultFaqData: NonNullable<FaqPage['faqCategories']> = [
     {
       categoryName: "BNPL",
       questions: [
@@ -99,21 +100,21 @@ const FAQ = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {faqData.map((category: any, categoryIndex: number) => (
+          {(faqData as any[]).map((category, categoryIndex) => (
             <div key={categoryIndex} className="mb-12">
               {/* Category Header */}
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-8 h-8 bg-primary/10 text-primary rounded-lg flex items-center justify-center font-semibold text-sm">
-                  {category.categoryName?.slice(0, 1) || category.category?.slice(0, 1)}
+                  {category.categoryName?.slice(0, 1)}
                 </div>
                 <h3 className="text-2xl font-semibold text-foreground">
-                  {category.categoryName || category.category}
+                  {category.categoryName}
                 </h3>
               </div>
 
               {/* Questions */}
               <div className="space-y-4">
-                {category.questions.map((faq: any, faqIndex: number) => {
+                {category.questions?.map((faq: any, faqIndex: number) => {
                   const globalIndex = categoryIndex * 10 + faqIndex; // Unique index across categories
                   const isOpen = openFAQ === globalIndex;
 
@@ -150,20 +151,24 @@ const FAQ = () => {
           {/* Contact Support */}
           <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8 text-center mt-16">
             <h3 className="text-2xl font-bold text-foreground mb-4">
-              Still have questions?
+              {pageData?.supportTitle || 'Still have questions?'}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Our customer support team is available 24/7 to assist you with any questions
-              or concerns. Get in touch with us through your preferred channel.
+              {pageData?.supportDescription || "Our customer support team is available 24/7 to assist you with any questions or concerns. Get in touch with us through your preferred channel."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="cta" className="group">
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Chat with Support
+                {pageData?.chatButtonLabel || 'Chat with Support'}
               </Button>
-              <Button variant="outline">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  if (pageData?.phoneUrl) window.location.href = pageData.phoneUrl;
+                }}
+              >
                 <Phone className="w-5 h-5 mr-2" />
-                Call 1800-123-4567
+                {pageData?.callButtonLabel || 'Call 1800-123-4567'}
               </Button>
             </div>
           </div>

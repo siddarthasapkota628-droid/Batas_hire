@@ -542,6 +542,11 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -1691,6 +1696,11 @@ export interface AboutPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -2249,6 +2259,11 @@ export interface ServicesPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -2807,6 +2822,11 @@ export interface CareerPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -3365,6 +3385,11 @@ export interface HomePage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -3923,6 +3948,11 @@ export interface HowItWorksPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -4481,6 +4511,11 @@ export interface KnowledgeCenterPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -5039,6 +5074,11 @@ export interface FaqPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -5597,6 +5637,11 @@ export interface ContactPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -6155,6 +6200,11 @@ export interface LegalPage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -6713,6 +6763,11 @@ export interface NoticePage {
         id?: string | null;
       }[]
     | null;
+  supportTitle?: string | null;
+  supportDescription?: string | null;
+  chatButtonLabel?: string | null;
+  callButtonLabel?: string | null;
+  phoneUrl?: string | null;
   contactHeaderTitle?: string | null;
   contactHeaderSubtitle?: string | null;
   contactMethods?:
@@ -7608,6 +7663,11 @@ export interface PagesSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -8213,6 +8273,11 @@ export interface AboutPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -8735,6 +8800,11 @@ export interface ServicesPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -9257,6 +9327,11 @@ export interface CareerPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -9779,6 +9854,11 @@ export interface HomePageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -10301,6 +10381,11 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -10823,6 +10908,11 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -11345,6 +11435,11 @@ export interface FaqPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -11867,6 +11962,11 @@ export interface ContactPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -12389,6 +12489,11 @@ export interface LegalPageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
@@ -12911,6 +13016,11 @@ export interface NoticePageSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  supportTitle?: T;
+  supportDescription?: T;
+  chatButtonLabel?: T;
+  callButtonLabel?: T;
+  phoneUrl?: T;
   contactHeaderTitle?: T;
   contactHeaderSubtitle?: T;
   contactMethods?:
