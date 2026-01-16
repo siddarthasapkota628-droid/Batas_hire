@@ -5,6 +5,7 @@ import * as migration_20251218_070232_create_admin_user from './20251218_070232_
 import * as migration_20260105_054514 from './20260105_054514';
 import * as migration_20260111_100710_after_merged_with_sid from './20260111_100710_after_merged_with_sid';
 import * as migration_20260114_063343_jan14 from './20260114_063343_jan14';
+import * as migration_20260116_080251_Jan16_batas from './20260116_080251_Jan16_batas';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20260114_063343_jan14.up,
     down: migration_20260114_063343_jan14.down,
-    name: '20260114_063343_jan14'
+    name: '20260114_063343_jan14',
+  },
+  {
+    up: migration_20260116_080251_Jan16_batas.up,
+    down: migration_20260116_080251_Jan16_batas.down,
+    name: '20260116_080251_Jan16_batas'
   },
 ];

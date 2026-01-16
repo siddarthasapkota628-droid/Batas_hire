@@ -1,0 +1,12 @@
+ about            |     1
+ career           |     1
+ faq              |     1
+ legal            |     1
+ how-it-works     |     1
+ contact          |     1
+ knowledge-center |     1
+ home             |     1
+ services         |     1
+ notice           |     1
+ default          |     3
+
