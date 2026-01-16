@@ -572,6 +572,8 @@ export interface Page {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -580,6 +582,8 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -591,6 +595,7 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -1726,6 +1731,8 @@ export interface AboutPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -1734,6 +1741,8 @@ export interface AboutPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -1745,6 +1754,7 @@ export interface AboutPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -2289,6 +2299,8 @@ export interface ServicesPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -2297,6 +2309,8 @@ export interface ServicesPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -2308,6 +2322,7 @@ export interface ServicesPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -2852,6 +2867,8 @@ export interface CareerPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -2860,6 +2877,8 @@ export interface CareerPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -2871,6 +2890,7 @@ export interface CareerPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -3415,6 +3435,8 @@ export interface HomePage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -3423,6 +3445,8 @@ export interface HomePage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -3434,6 +3458,7 @@ export interface HomePage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -3978,6 +4003,8 @@ export interface HowItWorksPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -3986,6 +4013,8 @@ export interface HowItWorksPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -3997,6 +4026,7 @@ export interface HowItWorksPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -4541,6 +4571,8 @@ export interface KnowledgeCenterPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -4549,6 +4581,8 @@ export interface KnowledgeCenterPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -4560,6 +4594,7 @@ export interface KnowledgeCenterPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -5104,6 +5139,8 @@ export interface FaqPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -5112,6 +5149,8 @@ export interface FaqPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -5123,6 +5162,7 @@ export interface FaqPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -5667,6 +5707,8 @@ export interface ContactPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -5675,6 +5717,8 @@ export interface ContactPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -5686,6 +5730,7 @@ export interface ContactPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -6230,6 +6275,8 @@ export interface LegalPage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -6238,6 +6285,8 @@ export interface LegalPage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -6249,6 +6298,7 @@ export interface LegalPage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -6793,6 +6843,8 @@ export interface NoticePage {
   businessHoursNote?: string | null;
   legalHeaderTitle?: string | null;
   legalHeaderSubtitle?: string | null;
+  regulatoryTitle?: string | null;
+  regulatorySubtitle?: string | null;
   regulatoryInfo?:
     | {
         title: string;
@@ -6801,6 +6853,8 @@ export interface NoticePage {
         id?: string | null;
       }[]
     | null;
+  documentsTitle?: string | null;
+  documentsSubtitle?: string | null;
   documents?:
     | {
         title: string;
@@ -6812,6 +6866,7 @@ export interface NoticePage {
         id?: string | null;
       }[]
     | null;
+  noticesTitle?: string | null;
   importantNotices?:
     | {
         title: string;
@@ -7693,6 +7748,8 @@ export interface PagesSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -7701,6 +7758,8 @@ export interface PagesSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -7712,6 +7771,7 @@ export interface PagesSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -8303,6 +8363,8 @@ export interface AboutPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -8311,6 +8373,8 @@ export interface AboutPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -8322,6 +8386,7 @@ export interface AboutPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -8830,6 +8895,8 @@ export interface ServicesPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -8838,6 +8905,8 @@ export interface ServicesPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -8849,6 +8918,7 @@ export interface ServicesPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -9357,6 +9427,8 @@ export interface CareerPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -9365,6 +9437,8 @@ export interface CareerPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -9376,6 +9450,7 @@ export interface CareerPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -9884,6 +9959,8 @@ export interface HomePageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -9892,6 +9969,8 @@ export interface HomePageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -9903,6 +9982,7 @@ export interface HomePageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -10411,6 +10491,8 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -10419,6 +10501,8 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -10430,6 +10514,7 @@ export interface HowItWorksPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -10938,6 +11023,8 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -10946,6 +11033,8 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -10957,6 +11046,7 @@ export interface KnowledgeCenterPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -11465,6 +11555,8 @@ export interface FaqPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -11473,6 +11565,8 @@ export interface FaqPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -11484,6 +11578,7 @@ export interface FaqPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -11992,6 +12087,8 @@ export interface ContactPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -12000,6 +12097,8 @@ export interface ContactPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -12011,6 +12110,7 @@ export interface ContactPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -12519,6 +12619,8 @@ export interface LegalPageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -12527,6 +12629,8 @@ export interface LegalPageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -12538,6 +12642,7 @@ export interface LegalPageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {
@@ -13046,6 +13151,8 @@ export interface NoticePageSelect<T extends boolean = true> {
   businessHoursNote?: T;
   legalHeaderTitle?: T;
   legalHeaderSubtitle?: T;
+  regulatoryTitle?: T;
+  regulatorySubtitle?: T;
   regulatoryInfo?:
     | T
     | {
@@ -13054,6 +13161,8 @@ export interface NoticePageSelect<T extends boolean = true> {
         validity?: T;
         id?: T;
       };
+  documentsTitle?: T;
+  documentsSubtitle?: T;
   documents?:
     | T
     | {
@@ -13065,6 +13174,7 @@ export interface NoticePageSelect<T extends boolean = true> {
         color?: T;
         id?: T;
       };
+  noticesTitle?: T;
   importantNotices?:
     | T
     | {

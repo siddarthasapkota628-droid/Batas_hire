@@ -1,4 +1,4 @@
-import { Tab } from 'payload/types';
+import { Tab } from 'payload';
 
 export const FAQPage: Tab = {
     label: 'FAQ Page',

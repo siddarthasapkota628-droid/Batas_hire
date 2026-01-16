@@ -100,7 +100,7 @@ const FAQ = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {(faqData as any[]).map((category, categoryIndex) => (
+          {faqData.map((category, categoryIndex) => (
             <div key={categoryIndex} className="mb-12">
               {/* Category Header */}
               <div className="flex items-center space-x-3 mb-6">
@@ -114,7 +114,7 @@ const FAQ = () => {
 
               {/* Questions */}
               <div className="space-y-4">
-                {category.questions?.map((faq: any, faqIndex: number) => {
+                {category.questions?.map((faq, faqIndex: number) => {
                   const globalIndex = categoryIndex * 10 + faqIndex; // Unique index across categories
                   const isOpen = openFAQ === globalIndex;
 

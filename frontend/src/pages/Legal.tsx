@@ -7,8 +7,10 @@ import { Button } from '@/components/ui/button';
 import { useQuery } from '@tanstack/react-query';
 import { getLegalPage } from '@/lib/api';
 import { useLocale } from '@/contexts/LocaleContext';
+import { LegalPage } from '@/types/payload-types';
+import React from 'react';
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, React.ElementType> = {
   FileText,
   Shield,
   Scale,
@@ -32,7 +34,7 @@ const Legal = () => {
     retry: 1,
   });
 
-  const defaultDocuments = [
+  const defaultDocuments: NonNullable<LegalPage['documents']> = [
     {
       title: "Terms & Conditions",
       description: "Detailed terms and conditions for using our services and products.",
@@ -83,7 +85,7 @@ const Legal = () => {
     }
   ];
 
-  const defaultRegulatoryInfo = [
+  const defaultRegulatoryInfo: NonNullable<LegalPage['regulatoryInfo']> = [
     {
       title: "RBI Registration",
       details: "Certificate of Registration No: N-12345678",
@@ -101,7 +103,7 @@ const Legal = () => {
     }
   ];
 
-  const defaultNotices = [
+  const defaultNotices: NonNullable<LegalPage['importantNotices']> = [
     {
       title: "RBI Guidelines Compliance",
       description: "Batas Hire and Purchase Financial Services Pvt. Ltd. is registered with the Nepal Rastriya Bank as a Non-Banking Financial Company. We strictly adhere to all NRB guidelines and regulations for NBFC operations.",
@@ -162,12 +164,16 @@ const Legal = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Regulatory Information</h2>
-            <p className="text-xl text-muted-foreground">Our licenses and certifications</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              {pageData?.regulatoryTitle || "Regulatory Information"}
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              {pageData?.regulatorySubtitle || "Our licenses and certifications"}
+            </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto mb-16">
-            {regulatoryInfo.map((info: any, index: number) => (
+            {regulatoryInfo.map((info, index: number) => (
               <div key={index} className="w-full md:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] flex max-w-sm">
                 <Card className="w-full p-8 text-center bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group group-hover:bg-white/10">
                   <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
@@ -189,12 +195,16 @@ const Legal = () => {
       <section className="py-16 bg-gradient-subtle">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Legal Documents</h2>
-            <p className="text-xl text-muted-foreground">Access our policies and legal documentation</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              {pageData?.documentsTitle || "Legal Documents"}
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              {pageData?.documentsSubtitle || "Access our policies and legal documentation"}
+            </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
-            {documents.map((doc: any, index: number) => {
+            {documents.map((doc, index: number) => {
               const Icon = iconMap[doc.icon] || FileText;
               const colorClass = colorMap[doc.color] || colorMap['blue'];
 
@@ -237,10 +247,12 @@ const Legal = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Important Notices</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+              {pageData?.noticesTitle || "Important Notices"}
+            </h2>
 
             <div className="space-y-6">
-              {notices.map((notice: any, index: number) => (
+              {notices.map((notice, index: number) => (
                 <div key={index} className="relative group">
                   <div className={`absolute -inset-0.5 rounded-2xl opacity-50 group-hover:opacity-100 transition duration-500 blur ${notice.type === 'primary' ? 'bg-primary/20' : notice.type === 'success' ? 'bg-success/20' : 'bg-accent/20'}`} />
                   <Card className={`relative p-8 bg-background/80 backdrop-blur-md border-l-8 ${getBorderColor(notice.type)} hover:bg-white/[0.02] transition-colors duration-500`}>
