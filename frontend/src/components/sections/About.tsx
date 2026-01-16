@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getAboutPage } from '@/lib/api';
 import { useLocale } from '@/contexts/LocaleContext';
 import RichText from '@/components/cms/RichText';
+import { AboutPage } from '@/types/payload-types';
 
 const iconMap: Record<string, React.ReactNode> = {
   Target: <Target className="w-6 h-6" />,
@@ -30,54 +31,52 @@ const About = () => {
   }
 
   // Helper to safely access nested data
-  const data = pageData?.docs?.[0] || {};
-  const specifics = data;
+  const specifics = pageData?.docs?.[0];
   // Note: specifics are at the root level of the doc usually if we defined them as fields in the collection directly, 
   // BUT in our config they are inside tabs. Payload flattens tabs in the API response usually, 
   // unless they are named tabs (which they are not in the config I saw, just 'label').
   // Let's assume flattened.
 
-  const headerTitle = specifics.aboutHeaderTitle || "About Batas Hire and Purchase";
-  const headerSubtitle = specifics.aboutHeaderSubtitle || "We're on a mission to make financial services more accessible, transparent, and customer-centric through innovative technology and personalized solutions.";
+  const headerTitle = specifics?.aboutHeaderTitle || "About Batas Hire and Purchase";
+  const headerSubtitle = specifics?.aboutHeaderSubtitle || "We're on a mission to make financial services more accessible, transparent, and customer-centric through innovative technology and personalized solutions.";
 
-  // Handling Rich Text for Story - Simplification: extract text or use default
   // For now, if it's complex, we fallback to default strings. 
   // In a real implementation we would render the RichText serialiser.
   // We'll check if simple text is possible or just use the title for now.
-  const storyTitle = specifics.aboutStoryTitle || "22 Years of Growth in Financial Services";
-  const storyContent = specifics.aboutStoryContent;
+  const storyTitle = specifics?.aboutStoryTitle || "22 Years of Growth in Financial Services";
+  const storyContent = specifics?.aboutStoryContent;
 
   const stats = [
-    { number: specifics.stat1?.number || "50,000+", label: specifics.stat1?.label || "Happy Customers" },
-    { number: specifics.stat2?.number || "₹500 Cr+", label: specifics.stat2?.label || "Loans Disbursed" },
-    { number: specifics.stat3?.number || "99.2%", label: specifics.stat3?.label || "Customer Satisfaction" },
-    { number: specifics.stat4?.number || "15+", label: specifics.stat4?.label || "Banking Partners" }
+    { number: specifics?.stat1?.number || "50,000+", label: specifics?.stat1?.label || "Happy Customers" },
+    { number: specifics?.stat2?.number || "₹500 Cr+", label: specifics?.stat2?.label || "Loans Disbursed" },
+    { number: specifics?.stat3?.number || "99.2%", label: specifics?.stat3?.label || "Customer Satisfaction" },
+    { number: specifics?.stat4?.number || "15+", label: specifics?.stat4?.label || "Banking Partners" }
   ];
 
   const missions = [
     {
-      icon: specifics.mission?.icon || "Target",
-      title: specifics.mission?.title || "Our Mission",
-      description: specifics.mission?.description || "To democratize financial services by providing accessible, transparent, and innovative financing solutions that empower individuals and businesses to achieve their goals."
+      icon: (specifics?.mission?.icon as string) || "Target",
+      title: specifics?.mission?.title || "Our Mission",
+      description: specifics?.mission?.description || "To democratize financial services by providing accessible, transparent, and innovative financing solutions that empower individuals and businesses to achieve their goals."
     },
     {
-      icon: specifics.vision?.icon || "Eye",
-      title: specifics.vision?.title || "Our Vision",
-      description: specifics.vision?.description || "To become the leading digital financial services provider, transforming how people access and manage credit through technology-driven solutions."
+      icon: (specifics?.vision?.icon as string) || "Eye",
+      title: specifics?.vision?.title || "Our Vision",
+      description: specifics?.vision?.description || "To become the leading digital financial services provider, transforming how people access and manage credit through technology-driven solutions."
     },
     {
-      icon: specifics.values?.icon || "Users",
-      title: specifics.values?.title || "Our Values",
-      description: specifics.values?.description || "Transparency, integrity, customer-centricity, and innovation guide everything we do. We believe in building lasting relationships based on trust and mutual success."
+      icon: (specifics?.values?.icon as string) || "Users",
+      title: specifics?.values?.title || "Our Values",
+      description: specifics?.values?.description || "Transparency, integrity, customer-centricity, and innovation guide everything we do. We believe in building lasting relationships based on trust and mutual success."
     }
   ];
 
-  const complianceTitle = specifics.complianceTitle || "Regulatory Compliance";
-  const complianceDescription = specifics.complianceDescription || "Batas Hire and Purchase operates under the regulatory oversight of the NRB as a licensed Non Banking Financial Company (NBFC). We maintain the highest standards of compliance, data security, and customer protection in all our operations.";
+  const complianceTitle = specifics?.complianceTitle || "Regulatory Compliance";
+  const complianceDescription = specifics?.complianceDescription || "Batas Hire and Purchase operates under the regulatory oversight of the NRB as a licensed Non Banking Financial Company (NBFC). We maintain the highest standards of compliance, data security, and customer protection in all our operations.";
   const badges = [
-    { text: specifics.badge1?.text || "RBI Licensed NBFC" },
-    { text: specifics.badge2?.text || "ISO 27001 Certified" },
-    { text: specifics.badge3?.text || "PCI DSS Compliant" }
+    { text: specifics?.badge1?.text || "RBI Licensed NBFC" },
+    { text: specifics?.badge2?.text || "ISO 27001 Certified" },
+    { text: specifics?.badge3?.text || "PCI DSS Compliant" }
   ];
 
   return (

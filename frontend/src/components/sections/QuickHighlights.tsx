@@ -3,8 +3,9 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Calculator, FileCheck, Users, BookOpen, Briefcase, Phone, Book, Car, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '@/contexts/LocaleContext';
+import { HomePage } from '@/types/payload-types';
 
-const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
+const QuickHighlights = ({ cmsData }: { cmsData: Partial<HomePage> }) => {
   const { locale } = useLocale();
   const {
     journeyTitle = "Your Financial Journey Simplified",
@@ -15,7 +16,7 @@ const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
     quickTools = []
   } = cmsData || {}; // Fallback to empty object
 
-  const iconMap: Record<string, any> = {
+  const iconMap: Record<string, React.ElementType> = {
     FileCheck, Users, Briefcase, BookOpen, Calculator, Phone, Book, Car, TrendingUp
   };
 
@@ -35,8 +36,8 @@ const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-6 mb-16">
-          {journeyCards?.map((card: any, index: number) => {
-            const IconComponent = getIcon(card.icon);
+          {(journeyCards as any[])?.map((card, index) => {
+            const IconComponent = getIcon(card.icon as string);
             return (
               <Link key={index} to={card.link || '#'} className="group w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] max-w-sm">
                 <Card className="h-full bg-white/5 backdrop-blur-md border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary),0.1)] transition-all duration-500 hover:-translate-y-2 group">
@@ -68,8 +69,8 @@ const QuickHighlights = ({ cmsData }: { cmsData: any }) => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {quickTools?.map((tool: any, index: number) => {
-            const IconComponent = getIcon(tool.icon);
+          {(quickTools as any[])?.map((tool, index) => {
+            const IconComponent = getIcon(tool.icon as string);
             return (
               <Card key={index} className="hover:shadow-lg transition-all duration-300 border-primary/20 hover:border-primary/40">
                 <CardContent className="p-6">

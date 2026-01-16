@@ -3,8 +3,9 @@ import { ArrowRight, Shield, CheckCircle, Star, CheckCircle2 } from 'lucide-reac
 import heroImage from '@/assets/hero-fintech.jpg';
 import nbfcBadge from '@/assets/nbfc-badge.png';
 import { useLocale } from '@/contexts/LocaleContext';
+import { HomePage } from '@/types/payload-types';
 
-const Hero = ({ cmsData }: { cmsData: any }) => {
+const Hero = ({ cmsData }: { cmsData: Partial<HomePage> }) => {
   const { locale } = useLocale();
   const {
     heroBadge1 = "NBFC Licensed",
@@ -24,10 +25,12 @@ const Hero = ({ cmsData }: { cmsData: any }) => {
       { value: "2 mins", label: "Avg Approval Time" }
     ],
     heroCTAs = [],
-    heroImage: cmsHeroImage
   } = cmsData;
 
-  const bgImage = cmsHeroImage?.url ? `http://localhost:3000${cmsHeroImage.url}` : heroImage;
+  const cmsHeroMedia = cmsData.hero?.media;
+  const bgImage = (cmsHeroMedia && typeof cmsHeroMedia === 'object' && 'url' in cmsHeroMedia && cmsHeroMedia.url)
+    ? `http://localhost:3000${cmsHeroMedia.url}`
+    : heroImage;
 
   const defaultCTAs = [
     { label: locale === 'ne' ? 'BNPL को लागि आवेदन दिनुहोस्' : 'Apply for BNPL', link: '/form/1', variant: 'hero' },
@@ -86,20 +89,20 @@ const Hero = ({ cmsData }: { cmsData: any }) => {
 
           {/* Key Benefits */}
           <div className="grid md:grid-cols-3 gap-4 mb-10 animate-slide-up">
-            {floatingFeatures?.map((feature: any, i: number) => (
+            {floatingFeatures?.map((feature, i) => (
               <div key={i} className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
                 <CheckCircle className="w-6 h-6 text-success flex-shrink-0" />
-                <span className="text-white font-medium">{feature.text}</span>
+                <span className="text-white font-medium">{typeof feature === 'object' && feature !== null && 'text' in feature ? feature.text : (feature as any).text}</span>
               </div>
             ))}
           </div>
 
           {/* Call to Action */}
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up">
-            {ctasToRender.map((cta: any, i: number) => (
+            {(ctasToRender as any[]).map((cta, i) => (
               <Button
                 key={i}
-                variant={cta.variant || 'hero'}
+                variant={(cta.variant as any) || 'hero'}
                 size="xl"
                 className={cta.variant === 'outline' ? "bg-white/10 text-white border-white/30 hover:bg-white/20" : "group"}
                 asChild
@@ -116,10 +119,10 @@ const Hero = ({ cmsData }: { cmsData: any }) => {
 
           {/* Quick Stats */}
           <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/20 animate-slide-up">
-            {heroStats?.map((stat: any, i: number) => (
+            {heroStats?.map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-3xl font-bold text-white">{stat.value}</div>
-                <div className="text-white/70 text-sm">{stat.label}</div>
+                <div className="text-3xl font-bold text-white">{typeof stat === 'object' && stat !== null && 'value' in stat ? stat.value : ''}</div>
+                <div className="text-white/70 text-sm">{typeof stat === 'object' && stat !== null && 'label' in stat ? stat.label : ''}</div>
               </div>
             ))}
           </div>

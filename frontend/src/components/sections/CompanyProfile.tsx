@@ -4,16 +4,41 @@ import { User, Award, Briefcase, GraduationCap, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { getAboutPage } from '@/lib/api';
 import { useLocale } from '@/contexts/LocaleContext';
+import { AboutPage, Media } from '@/types/payload-types';
 
 const CompanyProfile = () => {
   const { locale } = useLocale();
+
+  interface StaticBoardMember {
+    name: string;
+    position: string;
+    experience: string;
+    education: string;
+    specialization: string;
+    photo?: null;
+  }
+
+  interface StaticLeader {
+    name: string;
+    position: string;
+    department: string;
+    experience: string;
+    expertise: string;
+    photo?: null;
+  }
+
+  interface StaticMilestone {
+    year: string;
+    event: string;
+    description: string;
+  }
 
   const { data: pageData, isLoading, error } = useQuery({
     queryKey: ['aboutPage', locale],
     queryFn: () => getAboutPage(locale),
   });
 
-  const staticBoardMembers = [
+  const staticBoardMembers: StaticBoardMember[] = [
     {
       name: "Rajesh Adhikari",
       position: "Chairman & Managing Director",
@@ -44,7 +69,7 @@ const CompanyProfile = () => {
     }
   ];
 
-  const staticLeadership = [
+  const staticLeadership: StaticLeader[] = [
     {
       name: "Bikash Shrestha",
       position: "Chief Technology Officer",
@@ -75,7 +100,7 @@ const CompanyProfile = () => {
     }
   ];
 
-  const staticMilestones = [
+  const staticMilestones: StaticMilestone[] = [
     { year: "2002", event: "Company Incorporated", description: "Batas Hire and Purchase founded with vision to democratize credit" },
     { year: "2005", event: "NBFC License", description: "Obtained NBFC license from NRB" },
     { year: "2010", event: "₹100 Cr AUM", description: "Reached ₹100 crores in Assets Under Management" },
@@ -87,16 +112,16 @@ const CompanyProfile = () => {
   ];
 
   // Safely access CMS data
-  const cmsData = pageData?.docs?.[0] || {};
+  const cmsData = pageData?.docs?.[0];
 
   // Use CMS data if available and has rows, otherwise fallback to static
-  const boardMembers = (cmsData.directors && cmsData.directors.length > 0) ? cmsData.directors : staticBoardMembers;
-  const leadership = (cmsData.leadership && cmsData.leadership.length > 0) ? cmsData.leadership : staticLeadership;
-  const milestones = (cmsData.timeline && cmsData.timeline.length > 0) ? cmsData.timeline : staticMilestones;
+  const boardMembers: (AboutPage['directors'][number] | StaticBoardMember)[] = (cmsData?.directors && cmsData.directors.length > 0) ? cmsData.directors : staticBoardMembers;
+  const leadership: (AboutPage['leadership'][number] | StaticLeader)[] = (cmsData?.leadership && cmsData.leadership.length > 0) ? cmsData.leadership : staticLeadership;
+  const milestones: (AboutPage['timeline'][number] | StaticMilestone)[] = (cmsData?.timeline && cmsData.timeline.length > 0) ? cmsData.timeline : staticMilestones;
 
   // Helper to get image URL
-  const getImageUrl = (photo: any) => {
-    if (photo && photo.url) {
+  const getImageUrl = (photo: number | Media | null | undefined) => {
+    if (photo && typeof photo === 'object' && 'url' in photo && photo.url) {
       // payload usually returns relative URL
       return `http://localhost:3000${photo.url}`;
     }
@@ -123,12 +148,12 @@ const CompanyProfile = () => {
         {/* Board of Directors */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">{cmsData.directorsTitle || "Board of Directors"}</h2>
-            <p className="text-xl text-muted-foreground">{cmsData.directorsDescription || "Experienced leadership guiding our strategic vision"}</p>
+            <h2 className="text-4xl font-bold text-foreground mb-4">{cmsData?.directorsTitle || "Board of Directors"}</h2>
+            <p className="text-xl text-muted-foreground">{cmsData?.directorsDescription || "Experienced leadership guiding our strategic vision"}</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-            {boardMembers.map((member: any, index: number) => {
+            {boardMembers.map((member, index) => {
               const imageUrl = getImageUrl(member.photo);
 
               return (
@@ -190,12 +215,12 @@ const CompanyProfile = () => {
         {/* Leadership Team */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">{cmsData.leadershipTitle || "Leadership Team"}</h2>
-            <p className="text-xl text-muted-foreground">{cmsData.leadershipDescription || "Meet our executive team driving operational excellence"}</p>
+            <h2 className="text-4xl font-bold text-foreground mb-4">{cmsData?.leadershipTitle || "Leadership Team"}</h2>
+            <p className="text-xl text-muted-foreground">{cmsData?.leadershipDescription || "Meet our executive team driving operational excellence"}</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
-            {leadership.map((leader: any, index: number) => {
+            {leadership.map((leader, index) => {
               const imageUrl = getImageUrl(leader.photo);
 
               return (

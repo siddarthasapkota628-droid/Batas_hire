@@ -1,8 +1,8 @@
-import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertTriangle, Info, Megaphone } from 'lucide-react';
+import { HomePage } from '@/types/payload-types';
 
 interface ScrollingNoticeProps {
-  cmsData?: any;
+  cmsData?: Partial<HomePage>;
 }
 
 const ScrollingNotice = ({ cmsData }: ScrollingNoticeProps) => {
@@ -28,10 +28,10 @@ const ScrollingNotice = ({ cmsData }: ScrollingNoticeProps) => {
   ];
 
   // Map CMS notices to include icons and filter by expiry
-  const activeNotices = cmsNotices.length > 0
+  const activeNotices = (cmsNotices.length > 0)
     ? cmsNotices
-      .filter((n: any) => !n.expiryDate || new Date(n.expiryDate) > now)
-      .map((n: any) => ({
+      .filter((n) => !n.expiryDate || new Date(n.expiryDate) > now)
+      .map((n) => ({
         ...n,
         icon: n.type === 'warning' ? AlertTriangle : (n.type === 'info' ? Info : Megaphone)
       }))
@@ -44,8 +44,8 @@ const ScrollingNotice = ({ cmsData }: ScrollingNoticeProps) => {
       <div className="container mx-auto px-4">
         <div className="overflow-hidden py-2">
           <div className="animate-scroll-left whitespace-nowrap">
-            {activeNotices.map((notice: any, index: number) => {
-              const IconComponent = notice.icon;
+            {activeNotices.map((notice, index) => {
+              const IconComponent = notice.icon as React.ElementType;
               return (
                 <span key={index} className="inline-flex items-center space-x-2 mx-8 text-sm">
                   <IconComponent className="w-4 h-4 text-primary" />

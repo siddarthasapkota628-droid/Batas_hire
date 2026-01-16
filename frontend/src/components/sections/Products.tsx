@@ -17,8 +17,9 @@ import {
 
 import bnplImage from '@/assets/bnpl-concept.jpg';
 import vehicleImage from '@/assets/vehicle-finance.jpg';
+import { AboutPage, HomePage, Media } from '@/types/payload-types';
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, React.ElementType> = {
   ShoppingCart,
   Car,
   Home,
@@ -29,9 +30,12 @@ const iconMap: Record<string, any> = {
   CheckCircle
 };
 
+type Product = NonNullable<AboutPage['products']>[number] | NonNullable<HomePage['products']>[number];
+type Stat = NonNullable<NonNullable<AboutPage['products']>[number]['stats']>[number];
+
 interface ProductsProps {
-  cmsData?: any;
-  supplemental?: any[];
+  cmsData?: Partial<AboutPage & HomePage & { template?: string }>;
+  supplemental?: (AboutPage['products'] | HomePage['products']);
 }
 
 const Products = ({ cmsData = {}, supplemental }: ProductsProps) => {
@@ -94,12 +98,12 @@ const Products = ({ cmsData = {}, supplemental }: ProductsProps) => {
   ];
 
   // Merge/Select Data
-  const productsSource = supplemental && supplemental.length > 0 ? supplemental : (cmsData.products || []);
+  const productsSource = (supplemental && (supplemental as any[]).length > 0) ? (supplemental as any[]) : (cmsData.products || []);
 
   const products = productsSource.length > 0
     ? productsSource.slice(0, maxRows).map((p: any) => ({
       ...p,
-      image: p.image?.url ? `http://localhost:3000${p.image.url}` : null
+      image: (p.image && typeof p.image === 'object' && 'url' in p.image) ? `http://localhost:3000${p.image.url}` : null
     }))
     : defaultProducts;
 
@@ -153,8 +157,8 @@ const Products = ({ cmsData = {}, supplemental }: ProductsProps) => {
                 <div className="p-6">
                   {/* Stats Grid */}
                   <div className="grid grid-cols-2 gap-4 mb-8">
-                    {product.stats?.map((stat: any, sIndex: number) => {
-                      const StatIcon = iconMap[stat.icon] || Clock;
+                    {product.stats?.map((stat: Stat, sIndex: number) => {
+                      const StatIcon = iconMap[stat.icon as string] || Clock;
                       return (
                         <div
                           key={sIndex}
@@ -174,14 +178,14 @@ const Products = ({ cmsData = {}, supplemental }: ProductsProps) => {
 
                   <ul className="space-y-3 mb-6">
                     {product.features?.map(
-                      (feature: any, fIndex: number) => (
+                      (feature, fIndex: number) => (
                         <li
                           key={fIndex}
                           className="flex items-start space-x-3"
                         >
                           <CheckCircle className="w-5 h-5 text-success mt-0.5 flex-shrink-0" />
                           <span className="text-muted-foreground text-sm">
-                            {feature.text || feature}
+                            {typeof feature === 'object' && feature !== null && 'text' in feature ? feature.text : (feature as unknown as string)}
                           </span>
                         </li>
                       )

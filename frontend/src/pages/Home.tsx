@@ -9,6 +9,7 @@ import Footer from '@/components/layout/Footer';
 import { useQuery } from '@tanstack/react-query';
 import { getHomePage, getServicesPage, getAboutPage, getKnowledgeCenterPage } from '@/lib/api';
 import { useLocale } from '@/contexts/LocaleContext';
+import { HomePage, ServicesPage, AboutPage, KnowledgeCenterPage } from '@/types/payload-types';
 
 const Home = () => {
   const { locale } = useLocale();
@@ -33,11 +34,11 @@ const Home = () => {
     queryFn: () => getKnowledgeCenterPage(locale),
   });
 
-  const cmsData = homeData?.docs?.[0] || {};
+  const cmsData = homeData?.docs?.[0] || {} as HomePage;
   const supplemental = {
     products: servicesData?.docs?.[0]?.products || [],
     testimonials: aboutData?.docs?.[0]?.testimonials || [],
-    articles: knowledgeData?.articles || [], // Check if knowledgeData is Doc or docs[0]
+    articles: knowledgeData?.articles || [],
   };
 
 

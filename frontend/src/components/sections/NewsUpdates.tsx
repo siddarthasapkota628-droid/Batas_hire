@@ -3,40 +3,48 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Calendar, TrendingUp, Award, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { HomePage, AboutPage, KnowledgeCenterPage } from '@/types/payload-types';
 
-const NewsUpdates = ({ cmsData, supplemental }: { cmsData: any; supplemental: any }) => {
+interface NewsUpdatesProps {
+  cmsData: Partial<HomePage>;
+  supplemental: {
+    articles: NonNullable<KnowledgeCenterPage['articles']>;
+    testimonials: NonNullable<AboutPage['testimonials']>;
+  };
+}
+
+const NewsUpdates = ({ cmsData, supplemental }: NewsUpdatesProps) => {
   const { homeTestimonialsConfig, homeKnowledgeConfig } = cmsData;
 
-  // Helper to safely get numeric value (handles localized objects if they slip through)
-  const getSafeNumber = (val: any, fallback: number) => {
+  // Helper to safely get numeric value
+  const getSafeNumber = (val: number | string | null | undefined, fallback: number) => {
     if (typeof val === 'number') return isNaN(val) ? fallback : val;
     if (typeof val === 'string') {
       const parsed = parseInt(val, 10);
       return isNaN(parsed) ? fallback : parsed;
     }
-    if (val && typeof val === 'object' && !Array.isArray(val)) {
-      // In case we get {en: 5, ne: 5}
-      const firstVal = Object.values(val)[0];
-      return getSafeNumber(firstVal, fallback);
-    }
     return fallback;
   };
 
-  const newsItems = supplemental?.articles?.slice(0, getSafeNumber(homeKnowledgeConfig?.maxRows, 3)).map((art: any) => ({
-    title: art.title,
-    description: art.excerpt,
-    date: art.date,
-    badge: art.category,
-    badgeColor: "bg-primary", // Could be dynamic if category had color
-    icon: TrendingUp
-  })) || [];
+  const newsItems = (supplemental?.articles || [])
+    .slice(0, getSafeNumber(homeKnowledgeConfig?.maxRows, 3))
+    .map((art) => ({
+      title: art.title,
+      description: art.excerpt,
+      date: art.date,
+      badge: art.category,
+      badgeColor: "bg-primary",
+      icon: TrendingUp
+    }));
 
-  const testimonials = supplemental?.testimonials?.slice(0, getSafeNumber(homeTestimonialsConfig?.maxRows, 3)).map((t: any) => ({
-    name: t.name,
-    location: t.location || t.role,
-    text: t.content,
-    rating: getSafeNumber(t.rating, 5)
-  })) || [];
+  const testimonials = (supplemental?.testimonials || [])
+    .slice(0, getSafeNumber(homeTestimonialsConfig?.maxRows, 3))
+    .map((t) => ({
+      name: t.name,
+      location: t.location || t.role,
+      text: t.content,
+      rating: getSafeNumber(t.rating, 5)
+    }));
 
   return (
     <section className="py-16 bg-background">
@@ -60,7 +68,7 @@ const NewsUpdates = ({ cmsData, supplemental }: { cmsData: any; supplemental: an
             </div>
 
             <div className="space-y-6">
-              {newsItems.map((item: any, index: number) => {
+              {newsItems.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
                   <Card key={index} className="hover:shadow-lg transition-all duration-300 border-border/50">
@@ -100,7 +108,7 @@ const NewsUpdates = ({ cmsData, supplemental }: { cmsData: any; supplemental: an
             </div>
 
             <div className="space-y-6">
-              {testimonials.map((testimonial: any, index: number) => (
+              {testimonials.map((testimonial, index) => (
                 <Card key={index} className="hover:shadow-lg transition-all duration-300 border-border/50">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">

@@ -7,6 +7,13 @@ import { useQuery } from '@tanstack/react-query';
 import { getHeader, getSiteSettings, getMediaUrl } from '@/lib/api';
 import { useLocale } from '@/contexts/LocaleContext';
 import { Globe } from 'lucide-react';
+import { Header as HeaderType, Page } from '@/types/payload-types';
+
+interface NavLink {
+  href: string;
+  label: string;
+  id?: string;
+}
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +29,7 @@ const Header = () => {
     queryFn: () => getSiteSettings(locale),
   });
 
-  const defaultNavigationLinks = [
+  const defaultNavigationLinks: NavLink[] = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
     { href: '/products', label: 'Products & Services' },
@@ -36,16 +43,19 @@ const Header = () => {
   ];
 
   // Map headerData?.navItems to the correct structure if available
-  const navigationLinks = headerData?.navItems?.length > 0
-    ? headerData.navItems.map((item: any) => {
-      const slug = item.link.reference?.value?.slug;
+  const navigationLinks: NavLink[] = (headerData?.navItems || []).length > 0
+    ? (headerData?.navItems || []).map((item) => {
+      const referenceValue = item.link.reference?.value;
+      const slug = typeof referenceValue === 'object' ? (referenceValue as Page).slug : undefined;
+
       const href = item.link.type === 'custom'
-        ? item.link.url
+        ? (item.link.url || '#')
         : (slug === 'home' ? '/' : (slug ? `/${slug}` : '#'));
 
       return {
         label: item.link.label,
-        href
+        href,
+        id: item.id || undefined
       };
     })
     : defaultNavigationLinks;
@@ -55,7 +65,7 @@ const Header = () => {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          {siteSettings?.siteLogo?.url ? (
+          {siteSettings?.siteLogo && typeof siteSettings.siteLogo === 'object' && siteSettings.siteLogo.url ? (
             <img
               src={getMediaUrl(siteSettings.siteLogo.url)}
               alt={siteSettings.siteTitle || 'Logo'}
@@ -73,11 +83,11 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {navigationLinks.map((link) => (
+          {navigationLinks.map((link, index) => (
             <Link
-              key={link.href}
+              key={link.id || `${link.href}-${index}`}
               to={link.href}
-              className="text-foreground/80 hover:text-primary transition-smooth"
+              className="text-foreground/80 hover:text-primary transition-smooth whitespace-nowrap"
             >
               {link.label}
             </Link>
@@ -118,9 +128,9 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden border-t bg-background">
           <div className="container px-4 py-4 space-y-3">
-            {navigationLinks.map((link) => (
+            {navigationLinks.map((link, index) => (
               <Link
-                key={link.href}
+                key={link.id || `${link.href}-${index}-mobile`}
                 to={link.href}
                 className="block py-2 text-foreground/80 hover:text-primary transition-smooth"
                 onClick={() => setIsMenuOpen(false)}
