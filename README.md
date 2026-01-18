@@ -69,7 +69,7 @@ We've implemented a robust Role-Based Access Control system. Unlike standard CMS
 - **Management**: pnpm Workspaces.
 
 ## 👥 Authors
-- **Rujan Shrestha** - [@Rujan0833](https://github.com/Rujan0833)
+- **Rujan Rajlawat** - [@Rujan0833](https://github.com/Rujan0833)
 
 ---
 <div align="center">
