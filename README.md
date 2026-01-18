@@ -1,15 +1,24 @@
-# 🏦 Batas CMS
+# 🏦 Batas CMS: Dynamic Financial Platform
 
-> Modern, secure, and dynamic content management for Batas Hire and Purchase.
+> Transformed from a static frontend into a fully dynamic, enterprise-ready CMS for Batas Hire and Purchase.
 
 [![PayloadCMS](https://img.shields.io/badge/PayloadCMS-3.x-blue)](https://payloadcms.com/)
 [![pnpm](https://img.shields.io/badge/pnpm-Workspaces-orange)](https://pnpm.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue)](https://www.typescriptlang.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Latest-336791)](https://www.postgresql.org/)
 
-## 🚀 Quick Setup
+## 🌟 The Transformation
 
-This project uses **pnpm workspaces**. You can manage everything from the root directory.
+What started as a frontend-only project is now a **fully dynamic platform**. Every piece of content you see on the website—from the Hero sections and Services cards to the Header and Footer—is now safely managed through **PayloadCMS**.
+
+### Key Achievements:
+- **100% Dynamic Content**: Every frontend component is synced with the CMS via a robust API.
+- **Advanced RBAC**: Granular "Read/Write/Delete" permissions for every collection and global setting (Header, Footer, Site Branding).
+- **pnpm Monorepo**: Modern workspace architecture for lightning-fast development.
+- **Form Automation**: Dynamic form builder with automated submission routing for Careers, Services, and Contacts.
+
+---
+
+## 🚀 Quick Start
 
 ### 1. Installation
 ```bash
@@ -19,59 +28,24 @@ pnpm install
 pnpm approve-builds
 ```
 
-### 2. Environment Setup
-Configure your database and secrets in the `.env` files:
-- **CMS**: `cms/.env` (`DATABASE_URI`, `PAYLOAD_SECRET`)
-- **Frontend**: `frontend/.env.local` (`VITE_API_URL`)
-
-### 3. Development
+### 2. Run the Project
 ```bash
-# Run CMS and Frontend together
+# Start CMS (3000) and Frontend (8080)
 pnpm run dev
-
-# Run individually
-pnpm run dev:cms
-pnpm run dev:frontend
 ```
 
 ---
 
-## ✨ Core Features
-
-### 🔏 Granular RBAC (Advanced Security)
-We've implemented a robust Role-Based Access Control system. Unlike standard CMS roles, you can:
-- **Protect Globals**: Restrict Header, Footer, and Site Settings.
-- **Secure Forms**: Manage permissions for the Form Builder and all user submissions (Career, Services, etc.).
-- **Centralized Logic**: All security is handled via a unified `checkRole` system in `rbac.ts`.
-
-### 📦 pnpm Monorepo
-- **Efficiency**: Shared dependencies between CMS and Frontend.
-- **Speed**: Lightning-fast installation and development builds.
-- **Simplicity**: No more `cd`ing into multiple folders to run the project.
-
----
-
-## 🔌 API Summary
-
-| Resource | Endpoint | Access |
-| :--- | :--- | :--- |
-| **Pages** | `/api/pages` | Public Read / RBAC Edit |
-| **Globals** | `/api/globals/header` | Public Read / RBAC Edit |
-| **Submissions** | `/api/form-submissions` | Private (RBAC) |
-| **Media** | `/api/media` | Public Read / RBAC Upload |
-
----
-
-## 🛠️ Tech Stack
+## 🔌 Core Tech Stack
 
 - **Backend**: PayloadCMS 3.x (Next.js 15), PostgreSQL.
 - **Frontend**: React 18, Vite, Tailwind CSS, Shadcn/ui.
-- **Management**: pnpm Workspaces.
+- **Infrastructure**: pnpm Workspaces, TypeScript 5.8.
 
-## 👥 Authors
+## 👤 Author
 - **Rujan Rajlawat** - [@Rujan0833](https://github.com/Rujan0833)
 
 ---
 <div align="center">
-<b>Built for Batas Hire and Purchase</b>
+<b>A Complete CMS Transformation for Batas Hire and Purchase</b>
 </div>
