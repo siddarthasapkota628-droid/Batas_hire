@@ -7,7 +7,7 @@ export const Footer: GlobalConfig = {
   slug: 'footer',
   lockDocuments: false,
   access: {
-    read: checkRole('footer', 'read'),
+    read: () => true, // Publicly accessible for the frontend
     update: checkRole('footer', 'update'),
   },
   fields: [

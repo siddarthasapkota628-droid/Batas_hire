@@ -7,7 +7,7 @@ import { revalidateHeader } from './hooks/revalidateHeader'
 export const Header: GlobalConfig = {
   slug: 'header',
   access: {
-    read: checkRole('header', 'read'),
+    read: () => true, // Publicly accessible for the frontend
     update: checkRole('header', 'update'),
   },
   fields: [

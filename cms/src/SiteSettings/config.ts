@@ -5,7 +5,7 @@ export const SiteSettings: GlobalConfig = {
     slug: 'site-settings',
     lockDocuments: false,
     access: {
-        read: checkRole('site-settings', 'read'),
+        read: () => true, // Publicly accessible for the frontend
         update: checkRole('site-settings', 'update'),
     },
     fields: [

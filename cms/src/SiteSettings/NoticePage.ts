@@ -9,7 +9,7 @@ export const NoticesPage: GlobalConfig = {
   },
 
   access: {
-    read: checkRole('notices-page', 'read'),
+    read: () => true, // Publicly accessible for the frontend
     update: checkRole('notices-page', 'update'),
   },
 
