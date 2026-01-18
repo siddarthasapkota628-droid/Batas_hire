@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { checkRole } from '../access/rbac'
 import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
 
@@ -6,7 +7,8 @@ export const Footer: GlobalConfig = {
   slug: 'footer',
   lockDocuments: false,
   access: {
-    read: () => true,
+    read: checkRole('footer', 'read'),
+    update: checkRole('footer', 'update'),
   },
   fields: [
     {

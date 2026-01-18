@@ -11,6 +11,7 @@ import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { isSuperAdmin } from '../access/isSuperAdmin'
 import { isClientAdmin } from '../access/isClientAdmin'
+import { checkRole } from '../access/rbac'
 // import FormFolderGrid from '@/components/FormFolderGrid'
 
 const isSuperOrClientAdmin = (args: any) => isSuperAdmin(args) || isClientAdmin(args)
@@ -67,6 +68,12 @@ export const plugins: Plugin[] = [
       payment: false,
     },
     formOverrides: {
+      access: {
+        create: checkRole('forms', 'create'),
+        read: checkRole('forms', 'read'),
+        update: checkRole('forms', 'update'),
+        delete: checkRole('forms', 'delete'),
+      },
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
           if ('name' in field && ['title', 'submitButtonLabel', 'confirmationTitle', 'confirmationMessage'].includes(field.name)) {
@@ -250,10 +257,10 @@ export const plugins: Plugin[] = [
         hidden: true,
       },
       access: {
-        read: isSuperOrClientAdmin,
-        update: isSuperOrClientAdmin,
+        read: checkRole('form-submissions', 'read'),
+        update: checkRole('form-submissions', 'update'),
         create: () => true,
-        delete: isSuperOrClientAdmin,
+        delete: checkRole('form-submissions', 'delete'),
       },
     },
   }),

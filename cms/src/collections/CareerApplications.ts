@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { checkRole } from '../access/rbac'
 import { isSuperAdmin } from '../access/isSuperAdmin'
 import { isClientAdmin } from '../access/isClientAdmin'
 
@@ -15,10 +16,8 @@ export const CareerApplications: CollectionConfig = {
     },
     access: {
         read: (args) => {
-            const { req: { user } } = args
-
-            // Basic login check
-            if (!user) return false
+            const rbacResult = checkRole('career-applications', 'read')(args)
+            if (typeof rbacResult === 'boolean' && !rbacResult) return false
 
             const careerFilter = {
                 form: {
@@ -26,16 +25,16 @@ export const CareerApplications: CollectionConfig = {
                 },
             }
 
-            // If Super Admin or Client Admin, return the filter
-            const roles = user.roles || []
-            if (roles.includes('admin') || roles.includes('client-admin')) {
-                return careerFilter
+            if (typeof rbacResult === 'object') {
+                return {
+                    and: [careerFilter, rbacResult],
+                }
             }
 
-            return false
+            return careerFilter as any
         },
-        update: isSuperOrClientAdmin,
-        delete: isSuperOrClientAdmin,
+        update: checkRole('career-applications', 'update'),
+        delete: checkRole('career-applications', 'delete'),
         create: () => true, // Changed to true so the server hook can create records
     },
     fields: [

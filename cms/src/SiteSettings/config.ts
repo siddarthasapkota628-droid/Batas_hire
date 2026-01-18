@@ -1,10 +1,12 @@
 import type { GlobalConfig } from 'payload'
+import { checkRole } from '../access/rbac'
 
 export const SiteSettings: GlobalConfig = {
     slug: 'site-settings',
     lockDocuments: false,
     access: {
-        read: () => true,
+        read: checkRole('site-settings', 'read'),
+        update: checkRole('site-settings', 'update'),
     },
     fields: [
         {

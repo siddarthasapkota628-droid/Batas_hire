@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { checkRole } from '../access/rbac'
 
 export const NoticesPage: GlobalConfig = {
   slug: 'notices-page',
@@ -7,8 +8,9 @@ export const NoticesPage: GlobalConfig = {
     group: 'Pages',
   },
 
-    access: {
-    read: () => true, // ✅ allow public read
+  access: {
+    read: checkRole('notices-page', 'read'),
+    update: checkRole('notices-page', 'update'),
   },
 
   fields: [

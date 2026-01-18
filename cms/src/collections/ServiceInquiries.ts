@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { checkRole } from '../access/rbac'
 
 export const ServiceInquiries: CollectionConfig = {
     slug: 'service-inquiries',
@@ -10,14 +11,22 @@ export const ServiceInquiries: CollectionConfig = {
         description: 'Direct view for Service Inquiry form submissions.',
     },
     access: {
-        read: ({ req: { user } }) => {
-            if (!user) return false
+        read: (args) => {
+            const rbacResult = checkRole('service-inquiries', 'read')(args)
+            if (typeof rbacResult === 'boolean' && !rbacResult) return false
+
             const filter = { form: { equals: 2 } } // Service Form ID
-            const roles = user.roles || []
-            return roles.includes('admin') || roles.includes('client-admin') ? filter : false
+
+            if (typeof rbacResult === 'object') {
+                return {
+                    and: [filter, rbacResult],
+                }
+            }
+
+            return filter as any
         },
-        update: ({ req: { user } }) => !!user,
-        delete: ({ req: { user } }) => !!user,
+        update: checkRole('service-inquiries', 'update'),
+        delete: checkRole('service-inquiries', 'delete'),
         create: () => true,
     },
     fields: [

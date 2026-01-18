@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { checkRole } from '../access/rbac'
 
 export const ContactSubmissions: CollectionConfig = {
     slug: 'contact-submissions',
@@ -10,20 +11,26 @@ export const ContactSubmissions: CollectionConfig = {
         description: 'Direct view for General Contact form submissions.',
     },
     access: {
-        read: ({ req: { user } }) => {
-            if (!user) return false
-            // For Contact form, we might need to find the ID or filter by name in submissionData
-            // For now, we'll use a placeholder or filter out known IDs (2 and 3)
+        read: (args) => {
+            const rbacResult = checkRole('contact-submissions', 'read')(args)
+            if (typeof rbacResult === 'boolean' && !rbacResult) return false
+
             const filter = {
                 form: {
                     equals: 4,
                 },
             }
-            const roles = user.roles || []
-            return roles.includes('admin') || roles.includes('client-admin') ? filter : false
+
+            if (typeof rbacResult === 'object') {
+                return {
+                    and: [filter, rbacResult],
+                }
+            }
+
+            return filter as any
         },
-        update: ({ req: { user } }) => !!user,
-        delete: ({ req: { user } }) => !!user,
+        update: checkRole('contact-submissions', 'update'),
+        delete: checkRole('contact-submissions', 'delete'),
         create: () => true,
     },
     fields: [

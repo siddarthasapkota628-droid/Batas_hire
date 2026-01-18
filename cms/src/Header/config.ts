@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { checkRole } from '../access/rbac'
 
 import { link } from '@/fields/link'
 import { revalidateHeader } from './hooks/revalidateHeader'
@@ -6,7 +7,8 @@ import { revalidateHeader } from './hooks/revalidateHeader'
 export const Header: GlobalConfig = {
   slug: 'header',
   access: {
-    read: () => true,
+    read: checkRole('header', 'read'),
+    update: checkRole('header', 'update'),
   },
   fields: [
     {

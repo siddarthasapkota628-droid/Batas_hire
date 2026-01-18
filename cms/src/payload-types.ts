@@ -977,7 +977,21 @@ export interface Role {
   name: string;
   permissions?:
     | {
-        resource: 'pages' | 'media' | 'users' | 'posts' | 'categories';
+        resource:
+          | 'pages'
+          | 'media'
+          | 'users'
+          | 'posts'
+          | 'categories'
+          | 'header'
+          | 'footer'
+          | 'site-settings'
+          | 'notices-page'
+          | 'forms'
+          | 'form-submissions'
+          | 'career-applications'
+          | 'service-inquiries'
+          | 'contact-submissions';
         /**
          * Leave empty for ALL pages. Select pages to restrict access.
          */
