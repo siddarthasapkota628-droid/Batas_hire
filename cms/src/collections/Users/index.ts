@@ -7,6 +7,7 @@ import { isClientAdmin } from '../../access/isClientAdmin'
 // Local helper to replace deleted file
 const isSuperOrClientAdmin = (args: any) => isSuperAdmin(args) || isClientAdmin(args)
 import { canManageSystemRoles, canManageAdminPanelAccess } from '../../access/roleManagement'
+import { checkRole } from '../../access/rbac'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -19,34 +20,44 @@ export const Users: CollectionConfig = {
       // 2. Others need explicit flag
       return Boolean((user as any).enableAdminPanelAccess);
     },
-    create: isSuperOrClientAdmin, // Only Admins can create users
-    delete: isSuperOrClientAdmin, // Only Admins can delete users
-    read: ({ req: { user } }) => {
+    create: checkRole('users', 'create'),
+    delete: checkRole('users', 'delete'),
+    read: (args) => {
+      const {
+        req: { user },
+      } = args
       if (user?.roles?.includes('admin')) return true
-      if (user?.roles?.includes('client-admin')) {
-        return {
+
+      // Combine System Role filters with RBAC
+      const rbacResult = checkRole('users', 'read')(args)
+      if (typeof rbacResult === 'boolean' && !rbacResult) return false
+
+      const systemFilters = user?.roles?.includes('client-admin')
+        ? {
           roles: {
             not_equals: 'admin',
           },
-        } as any
-      }
-      // Allow users to read themselves
-      if (user) {
-        return {
+        }
+        : {
           id: {
-            equals: user.id,
+            equals: user?.id,
           },
-        } as any
+        }
+
+      if (typeof rbacResult === 'object') {
+        return {
+          and: [systemFilters, rbacResult],
+        }
       }
-      return false
+
+      return systemFilters as any
     },
     update: (args) => {
       // Allow users to update themselves
       if (args.req.user && args.id === args.req.user.id) {
         return true
       }
-      console.log('DEBUG: Users Collection Update Access', args.req.user?.email)
-      return isSuperOrClientAdmin(args)
+      return checkRole('users', 'update')(args)
     },
   },
   admin: {

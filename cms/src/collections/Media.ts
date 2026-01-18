@@ -19,13 +19,9 @@ export const Media: CollectionConfig = {
   slug: 'media',
   folders: true,
   access: {
- // create: checkRole('media', 'create'),
-    create: anyone,
+    create: checkRole('media', 'create'),
     delete: checkRole('media', 'delete'),
-    read: (args) => {
-
-      return anyone(args)
-    },
+    read: anyone,
     update: checkRole('media', 'update'),
   },
   fields: [

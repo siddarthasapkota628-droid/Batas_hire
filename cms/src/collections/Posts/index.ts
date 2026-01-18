@@ -9,8 +9,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
+import { checkRole } from '../../access/rbac'
 import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
@@ -30,10 +29,26 @@ import { slugField } from 'payload'
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   access: {
-    create: authenticated,
-    delete: authenticated,
-    read: authenticatedOrPublished,
-    update: authenticated,
+    create: checkRole('posts', 'create'),
+    delete: checkRole('posts', 'delete'),
+    read: (args) => {
+      const {
+        req: { user },
+      } = args
+
+      // 1. If no user (Public/Frontend), allow reading published posts
+      if (!user) {
+        return {
+          _status: {
+            equals: 'published',
+          },
+        }
+      }
+
+      // 2. If user exists (Admin Panel), strictly enforce RBAC
+      return checkRole('posts', 'read')(args)
+    },
+    update: checkRole('posts', 'update'),
   },
   // This config controls what's populated by default when a post is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property

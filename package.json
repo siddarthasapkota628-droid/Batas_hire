@@ -2,20 +2,31 @@
   "name": "batas-project",
   "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "frontend",
-    "cms"
-  ],
   "scripts": {
-    "dev:frontend": "npm run dev --workspace=frontend",
-    "dev:cms": "npm run dev --workspace=cms",
-    "dev": "concurrently \"npm run dev:cms\" \"npm run dev:frontend\"",
-    "build:frontend": "npm run build --workspace=frontend",
-    "build:cms": "npm run build --workspace=cms",
-    "build": "npm run build:cms && npm run build:frontend",
-    "install:all": "npm install"
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:cms": "pnpm --filter cms dev",
+    "dev": "concurrently \"pnpm run dev:cms\" \"pnpm run dev:frontend\"",
+    "build:frontend": "pnpm --filter frontend build",
+    "build:cms": "pnpm --filter cms build",
+    "build": "pnpm build:cms && pnpm build:frontend",
+    "install:all": "pnpm install"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild",
+      "unrs-resolver",
+      "@swc/core",
+      "@next/swc-win32-x64-msvc"
+    ],
+    "ignoredBuiltDependencies": [
+      "@swc/core",
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }
