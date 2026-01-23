@@ -70,7 +70,7 @@ export const plugins: Plugin[] = [
     formOverrides: {
       access: {
         create: checkRole('forms', 'create'),
-        read: checkRole('forms', 'read'),
+        read: () => true,
         update: checkRole('forms', 'update'),
         delete: checkRole('forms', 'delete'),
       },

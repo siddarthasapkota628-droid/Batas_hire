@@ -45,7 +45,7 @@ const Footer = () => {
 
   const legalFallback = [
     { label: 'Legal & Compliance', href: '/legal' },
-    { label: 'Privacy Policy', href: '/legal' },
+    { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms & Conditions', href: '/legal' },
     { label: 'NBFC Disclaimers', href: '/legal' },
     { label: 'Grievance Redressal', href: '/legal' }
