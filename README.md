@@ -44,6 +44,7 @@ pnpm run dev
 
 ## 👤 Author
 - **Rujan Rajlawat** - [@Rujan0833](https://github.com/Rujan0833)
+- **Siddartha Sapkota**
 
 ---
 <div align="center">
