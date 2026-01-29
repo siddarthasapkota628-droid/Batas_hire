@@ -109,6 +109,7 @@ export default buildConfig({
     'http://localhost:3000',
     'http://batas.com',
     'http://api.batas.com',
+    '*' // Temporarily allow everything to test if it's working
   ].filter(Boolean),
   csrf: [
     getServerSideURL(),
