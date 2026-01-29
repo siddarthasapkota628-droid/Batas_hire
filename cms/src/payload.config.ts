@@ -107,12 +107,16 @@ export default buildConfig({
     'http://localhost:8080',
     'http://localhost:5173',
     'http://localhost:3000',
+    'http://batas.com',
+    'http://api.batas.com',
   ].filter(Boolean),
   csrf: [
     getServerSideURL(),
     'http://localhost:8080',
     'http://localhost:5173',
     'http://localhost:3000',
+    'http://batas.com',
+    'http://api.batas.com',
   ].filter(Boolean),
   globals: [Header, Footer, SiteSettings, NoticesPage],
   localization: {

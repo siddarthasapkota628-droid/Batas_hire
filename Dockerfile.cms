@@ -1,24 +1,23 @@
 FROM node:20-alpine
-
-# Enable pnpm
 RUN corepack enable
-
 WORKDIR /app
 
-# Copy workspace files FIRST
-COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+# 1. Copy workspace configs
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY cms/package.json ./cms/
 
-# Copy cms package.json
-COPY cms/package.json cms/package.json
+# 2. Install production dependencies only
+RUN pnpm install --shamefully-hoist --prod
 
-# Install deps (workspace-aware)
-RUN pnpm install --frozen-lockfile
-
-# Copy cms source
+# 3. Copy the cms source AND the already-built .next folder
 COPY cms ./cms
+# Ensure the .next folder from your host is copied over
+COPY cms/.next ./cms/.next
 
-# Move into cms
 WORKDIR /app/cms
 
-EXPOSE 3000
-CMD ["pnpm", "run", "dev"]
+ENV NODE_ENV=production
+ENV PAYLOAD_CONFIG_PATH=src/payload.config.ts
+
+# Use the direct path to the binary we found earlier
+CMD ["node", "/app/node_modules/next/dist/bin/next", "start"]

@@ -1,0 +1,148 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+type: Opaque
+stringData:
+  POSTGRES_DB: Batas_cms
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: admin123
+  # Payload 3.0+ uses this for the connection string
+  DATABASE_URI: postgresql://postgres:admin123@postgres:5432/Batas_cms
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  clusterIP: None
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: postgres:16
+          command: ["sh", "-c", "until pg_isready -h postgres -p 5432 -U postgres; do echo Waiting; sleep 2; done"]
+      containers:
+        - name: backend
+          image: vipersid/batas-backend:latest
+          imagePullPolicy: Always
+          workingDir: /app
+          # Using the shell-executable bin path
+          command: ["/app/node_modules/.bin/next"]
+          args: ["start", "cms"] 
+          env:
+            - name: DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: DATABASE_URI
+            - name: PAYLOAD_SECRET
+              value: supersecret
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "3000"
+            - name: CORS_ORIGIN
+              value: "http://batas.com"
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          # Assuming you built frontend similarly; if not, ensure it's built in minikube too
+          image: vipersid/batas-frontend:latest
+          imagePullPolicy: Always
+          env:
+            - name: PAYLOAD_PUBLIC_SERVER_URL
+              value: "http://api.batas.com"
+          ports:
+            - containerPort: 3000

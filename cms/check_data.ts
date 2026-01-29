@@ -1,6 +1,10 @@
-import { pgClient } from 'pg';
-const client = new pgClient({
-    connectionString: "postgresql://postgres:reaper0833@localhost:5432/BHG"
+import { Client } from 'pg';
+
+// Use an environment variable, with a fallback for local dev if needed
+const connectionString = process.env.DATABASE_URI || "postgresql://postgres:admin123@localhost:5432/Batas_cms";
+
+const client = new Client({
+    connectionString: connectionString
 });
 
 async function run() {

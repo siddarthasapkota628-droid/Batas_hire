@@ -1,0 +1,143 @@
+# ===========================
+# 1️⃣ Secret for Supabase
+# ===========================
+apiVersion: v1
+kind: Secret
+metadata:
+  name: supabase-secret
+type: Opaque
+stringData:
+  DATABASE_URI: postgresql://postgres.gxloagoxymsvjkpykzhz:kartik252059@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+  PAYLOAD_SECRET: supersecret
+
+---
+# ===========================
+# 2️⃣ Backend Service
+# ===========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: ClusterIP
+
+---
+# ===========================
+# 3️⃣ Backend Deployment
+# ===========================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      initContainers:
+        - name: wait-for-supabase
+          image: postgres:16
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for Supabase DB to be reachable..."
+              until pg_isready -h aws-1-ap-south-1.pooler.supabase.com -p 5432 -U postgres.gxloagoxymsvjkpykzhz; do
+                echo "DB not ready, retrying..."
+                sleep 5
+              done
+              echo "Supabase DB is reachable!"
+          env:
+            - name: PGPASSWORD
+              value: "kartik252059"
+      containers:
+        - name: backend
+          image: vipersid/batas-backend:latest
+          imagePullPolicy: Always
+          env:
+            - name: DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: supabase-secret
+                  key: DATABASE_URI
+            - name: PAYLOAD_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: supabase-secret
+                  key: PAYLOAD_SECRET
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "3000"
+          ports:
+            - containerPort: 3000
+          # Updated Probes to avoid 404 and allow for Next.js startup time
+          readinessProbe:
+            httpGet:
+              path: /admin/login
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /admin/login
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 5
+
+---
+# ===========================
+# 4️⃣ Frontend Service
+# ===========================
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+  type: NodePort
+
+---
+# ===========================
+# 5️⃣ Frontend Deployment
+# ===========================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: vipersid/batas-frontend:latest
+          imagePullPolicy: Always
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://api.batas.com"
+          ports:
+            - containerPort: 80
