@@ -109,7 +109,8 @@ export default buildConfig({
     'http://localhost:3000',
     'http://batas.com',
     'http://api.batas.com',
-    '*' // Temporarily allow everything to test if it's working
+    'https://batas-frontend.onrender.com',
+    '*', // Temporarily allow everything to test if it's working
   ].filter(Boolean),
   csrf: [
     getServerSideURL(),
@@ -118,6 +119,8 @@ export default buildConfig({
     'http://localhost:3000',
     'http://batas.com',
     'http://api.batas.com',
+    'https://batas-frontend.onrender.com',
+    'https://cms-backend-lwsj.onrender.com'
   ].filter(Boolean),
   globals: [Header, Footer, SiteSettings, NoticesPage],
   localization: {
