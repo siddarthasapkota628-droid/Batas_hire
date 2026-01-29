@@ -18,7 +18,7 @@ COPY cms ./cms
 # 4. Build the project inside Docker
 # This creates the .next folder that was missing
 WORKDIR /app/cms
-RUN pnpm run build
+RUN pnpm next build --experimental-build-mode compile
 
 # Stage 2: Production stage
 FROM node:20-alpine AS runner
