@@ -143,24 +143,6 @@ export default buildConfig({
     tasks: [],
   },
 
-  plugins: [
-    ...existingPlugins, // Keep your original plugins (like SEO or nested pages)
-    s3Storage({
-      collections: {
-        'media': true,
-      },
-      bucket: process.env.S3_BUCKET || 'media', 
-      config: {
-        forcePathStyle: true, 
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || 'cfacf489313590ab77699e454a976ae4',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || 'd10307683ee9992b1e92a5c659de0c0929622c43447b07746fdaa09c85aa67b1',
-        },
-        region: process.env.S3_REGION || 'ap-south-1',
-        endpoint: process.env.S3_ENDPOINT || 'https://gxloagoxymsvjkpykzhz.storage.supabase.co/storage/v1/s3',
-      },
-    }),
-  ],
 
 })
 
