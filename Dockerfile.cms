@@ -42,10 +42,7 @@ WORKDIR /app/cms
 
 EXPOSE 10000
 
-<<<<<<< HEAD
-# Use the direct path to the binary we found earlier
-CMD ["node", "/app/node_modules/next/dist/bin/next", "start"]
-=======
+
 # Start using the standard pnpm start command
 CMD ["pnpm", "start"]
->>>>>>> f0af5a447b9ab0c35e73ad2f3773ee182ec3f18f
+
