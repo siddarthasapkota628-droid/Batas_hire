@@ -161,8 +161,6 @@ export default buildConfig({
       },
     }),
   ],
-<<<<<<< HEAD
+
 })
-=======
-})
->>>>>>> f0af5a447b9ab0c35e73ad2f3773ee182ec3f18f
+
