@@ -1,23 +1,51 @@
-FROM node:20-alpine
-RUN corepack enable
+# Stage 1: Build stage
+FROM node:20-alpine AS builder
+# Enable pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /app
 
-# 1. Copy workspace configs
+# 1. Copy workspace configs and lockfile
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+# Copy cms package.json
 COPY cms/package.json ./cms/
 
-# 2. Install production dependencies only
-RUN pnpm install --shamefully-hoist --prod
+# 2. Install ALL dependencies (needed for build)
+RUN pnpm install --no-frozen-lockfile
 
-# 3. Copy the cms source AND the already-built .next folder
+# 3. Copy the rest of the source code
 COPY cms ./cms
-# Ensure the .next folder from your host is copied over
-COPY cms/.next ./cms/.next
+
+# 4. Build the project inside Docker
+# This creates the .next folder that was missing
+WORKDIR /app/cms
+RUN pnpm next build --experimental-build-mode compile
+
+# Stage 2: Production stage
+FROM node:20-alpine AS runner
+RUN corepack enable && corepack prepare pnpm@latest --activate
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=10000
+
+# 5. Copy only production dependencies
+COPY --from=builder /app/package.json /app/pnpm-lock.yaml /app/pnpm-workspace.yaml ./
+COPY --from=builder /app/cms/package.json ./cms/
+RUN pnpm install --prod --no-frozen-lockfile
+
+# 6. Copy built files from the builder stage
+COPY --from=builder /app/cms/.next ./cms/.next
+COPY --from=builder /app/cms/public ./cms/public
+COPY --from=builder /app/cms/src ./cms/src
 
 WORKDIR /app/cms
 
-ENV NODE_ENV=production
-ENV PAYLOAD_CONFIG_PATH=src/payload.config.ts
+EXPOSE 10000
 
+<<<<<<< HEAD
 # Use the direct path to the binary we found earlier
 CMD ["node", "/app/node_modules/next/dist/bin/next", "start"]
+=======
+# Start using the standard pnpm start command
+CMD ["pnpm", "start"]
+>>>>>>> f0af5a447b9ab0c35e73ad2f3773ee182ec3f18f
