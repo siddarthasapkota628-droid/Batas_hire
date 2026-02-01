@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url'
 
 import { buildConfig, PayloadRequest } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { s3Storage } from '@payloadcms/storage-s3' // Ensure this is installed
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -31,20 +32,12 @@ import { Header } from './Header/config'
 import { SiteSettings } from './SiteSettings/config'
 import { NoticesPage } from './SiteSettings/NoticePage'
 
-import { plugins } from './plugins'
+import { plugins as existingPlugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 
-/* -------------------------------------------------------------------------- */
-/*                                DIR SETUP                                   */
-/* -------------------------------------------------------------------------- */
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
-/* -------------------------------------------------------------------------- */
-/*                                CONFIG                                      */
-/* -------------------------------------------------------------------------- */
 
 export default buildConfig({
   admin: {
@@ -87,7 +80,6 @@ export default buildConfig({
     FAQView,
     ContactView,
     LegalView,
-
     Posts,
     Media,
     Categories,
@@ -132,8 +124,6 @@ export default buildConfig({
     fallback: true,
   },
 
-  plugins,
-
   secret: process.env.PAYLOAD_SECRET!,
 
   sharp,
@@ -146,11 +136,29 @@ export default buildConfig({
     access: {
       run: ({ req }: { req: PayloadRequest }) => {
         if (req.user) return true
-
         const authHeader = req.headers.get('authorization')
         return authHeader === `Bearer ${process.env.CRON_SECRET}`
       },
     },
     tasks: [],
   },
+
+  plugins: [
+    ...existingPlugins, // Keep your original plugins (like SEO or nested pages)
+    s3Storage({
+      collections: {
+        'media': true,
+      },
+      bucket: process.env.S3_BUCKET || 'media', 
+      config: {
+        forcePathStyle: true, 
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || 'cfacf489313590ab77699e454a976ae4',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || 'd10307683ee9992b1e92a5c659de0c0929622c43447b07746fdaa09c85aa67b1',
+        },
+        region: process.env.S3_REGION || 'ap-south-1',
+        endpoint: process.env.S3_ENDPOINT || 'https://gxloagoxymsvjkpykzhz.storage.supabase.co/storage/v1/s3',
+      },
+    }),
+  ],
 })
